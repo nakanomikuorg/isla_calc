@@ -1,7 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:isla_calc/routes/routes.dart';
-import 'package:isla_calc/themes/lib_color_schemes.g.dart';
+import 'package:isla_calc/themes/theme_info.dart';
+
+/*
+
+.___       .__           _________        .__
+|   | _____|  | _____    \_   ___ \_____  |  |   ____
+|   |/  ___/  | \__  \   /    \  \/\__  \ |  | _/ ___\
+|   |\___ \|  |__/ __ \_ \     \____/ __ \|  |_\  \___
+|___/____  >____(____  /  \______  (____  /____/\___  >
+.        \/          \/          \/     \/          \/
+大切な人と、いつかまた巡り会えますように
+愿你有朝一日，能与珍爱之人再次相逢
+
+Code licensed under GPLv3, documentation under CC BY-SA 4.0.
+Made with love by ALL Contributors.
+ */
 
 void main() {
   runApp(const MyApp());
@@ -12,21 +26,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (Theme.of(context).platform == TargetPlatform.android) {
-      SystemUiOverlayStyle _style = const SystemUiOverlayStyle(
-        statusBarColor: Colors.transparent,
-      );
-      SystemChrome.setSystemUIOverlayStyle(_style);
-    }
-
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: lightColorScheme,
-      ),
-      darkTheme: ThemeData(
-        colorScheme: darkColorScheme,
-      ),
+      theme: ThemeInfo.getThemeData(),
+      darkTheme: ThemeInfo.getDarkThemeData(),
       initialRoute: '/',
       onGenerateRoute: (RouteSettings settings) {
         final String? name = settings.name;
