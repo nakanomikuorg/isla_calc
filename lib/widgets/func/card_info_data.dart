@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../models/func/card_info.dart';
-import '../../models/func/cards_info.dart';
 
-class CardInfosData {
+class CardInfoData {
   // 艾拉首页
   // 常规计算
   /// 标准计算器
@@ -81,16 +79,6 @@ class CardInfosData {
     desmos,
   ];
 
-  static const commonCalcCardsInfo = CardsInfo(
-    ' 📗 常规计算',
-    <CardInfo>[
-      standardCalc,
-      scientificCalc,
-      fractionCalc,
-      commonCalcMore,
-    ],
-  );
-
   // 更多
   /// 全局设置
   static const globalSettings = CardInfo(
@@ -115,20 +103,6 @@ class CardInfosData {
     Icons.info_outline_rounded,
     '/about-the-app',
   );
-
-  static const moreCardsInfo = CardsInfo(
-    ' 📦 更多',
-    <CardInfo>[
-      globalSettings,
-      relatedInstructions,
-      aboutTheApp,
-    ],
-  );
-
-  static final commonCalcOtherCardsInfos = <CardsInfo>[
-    commonCalcCardsInfo,
-    moreCardsInfo,
-  ];
 
   // 单位转换
   // 基本单位
@@ -190,20 +164,6 @@ class CardInfosData {
     timeConv,
     currentConv,
     tempConv,
-  ];
-
-  static const baseUnitCardsInfo = CardsInfo(
-    ' 🧊 基本单位',
-    <CardInfo>[
-      lenConv,
-      massConv,
-      timeConv,
-      baseUnitMore,
-    ],
-  );
-
-  static final unitConvOtherCardsInfos = <CardsInfo>[
-    baseUnitCardsInfo,
   ];
 
   // 特殊计算
@@ -273,16 +233,6 @@ class CardInfosData {
     gamePriceCalc,
   ];
 
-  static const dailyLifeInfo = CardsInfo(
-    ' 🏓 日常生活',
-    <CardInfo>[
-      relativesConv,
-      bMI,
-      foodCalorieCalc,
-      dailyLifeMore,
-    ],
-  );
-
   // 日期时间
   /// 生肖计算
   static const zodiacCalc = CardInfo(
@@ -348,16 +298,6 @@ class CardInfosData {
     calendarConv,
     timeZoneConv,
   ];
-
-  static const dateTimeInfo = CardsInfo(
-    ' 🗓️ 日期时间',
-    <CardInfo>[
-      zodiacCalc,
-      birthdayCalc,
-      countdown,
-      dateTimeMore,
-    ],
-  );
 
   // 金融理财
   /// 房贷计算
@@ -451,33 +391,4 @@ class CardInfosData {
     tVMCalc,
     digitalCurrencyCalc,
   ];
-
-  static const financialManagementCardsInfo = CardsInfo(
-    ' 💸 金融理财',
-    <CardInfo>[
-      mortgageCalc,
-      loanCalc,
-      personalTaxCalc,
-      financialManagementMore,
-    ],
-  );
-
-  static final specialCalcOtherCardsInfos = <CardsInfo>[
-    dailyLifeInfo,
-    dateTimeInfo,
-    financialManagementCardsInfo,
-  ];
-
-  // 专业领域
-  // 建筑工程
-
-  static Future<bool> getCardInfoIsFavourite(String pushName) async {
-    final prefs = await SharedPreferences.getInstance();
-    return prefs.getBool(pushName) ?? false;
-  }
-
-  static void setCardInfoIsFavourite(String pushName, bool isFavourite) async {
-    final prefs = await SharedPreferences.getInstance();
-    prefs.setBool(pushName, isFavourite);
-  }
 }

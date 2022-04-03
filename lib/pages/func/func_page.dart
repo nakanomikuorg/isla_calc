@@ -5,7 +5,7 @@ import '../../models/func/card_info.dart';
 import '../../models/func/cards_info.dart';
 import '../../themes/text_info.dart';
 import '../../widgets/func/card.dart';
-import '../../widgets/func/card_info_data.dart';
+import '../../widgets/func/cards_info_data.dart';
 import '../../widgets/func/navigation_bar.dart';
 
 class FuncSelectionPage extends StatefulWidget {
@@ -55,7 +55,7 @@ class _FuncSelectionPageState extends State<FuncSelectionPage> {
         ],
       ),
     ],
-    otherCardsInfos: CardInfosData.commonCalcOtherCardsInfos,
+    otherCardsInfos: CardsInfoData.commonCalcOtherCardsInfos,
   );
   static final _unitConv = FuncSelectionBodyContent(
     '单位换算',
@@ -85,7 +85,7 @@ class _FuncSelectionPageState extends State<FuncSelectionPage> {
         ],
       )
     ],
-    otherCardsInfos: CardInfosData.unitConvOtherCardsInfos,
+    otherCardsInfos: CardsInfoData.unitConvOtherCardsInfos,
   );
   static final _specialCalc = FuncSelectionBodyContent(
     '特殊计算',
@@ -115,7 +115,7 @@ class _FuncSelectionPageState extends State<FuncSelectionPage> {
         ],
       ),
     ],
-    otherCardsInfos: CardInfosData.specialCalcOtherCardsInfos,
+    otherCardsInfos: CardsInfoData.specialCalcOtherCardsInfos,
   );
   static const _professionalField = FuncSelectionBodyContent(
     '专业领域',
