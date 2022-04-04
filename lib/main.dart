@@ -38,12 +38,15 @@ class MyApp extends StatelessWidget {
         if (pageContentBuilder != null) {
           if (settings.arguments != null) {
             final Route route = MaterialPageRoute(
-                builder: (context) =>
-                    pageContentBuilder(context, arguments: settings.arguments));
+                builder: (context) => pageContentBuilder(
+                      context,
+                      arguments: settings.arguments,
+                    ));
             return route;
           } else {
             final Route route = MaterialPageRoute(
-                builder: (context) => pageContentBuilder(context));
+              builder: (context) => pageContentBuilder(context),
+            );
             return route;
           }
         }

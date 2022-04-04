@@ -3,8 +3,20 @@ import 'package:flutter/material.dart';
 import '../../models/func/card_info.dart';
 
 class CardInfoData {
+  static const _moreText = '更多';
+
   // 艾拉首页
-  // 常规计算
+  /// 常规计算
+  static const commonCalc = <CardInfo>[
+    standardCalc,
+    scientificCalc,
+    fractionCalc,
+    baseConv,
+    logicCalc,
+    bitCalc,
+    desmos,
+  ];
+
   /// 标准计算器
   static const standardCalc = CardInfo(
     '标准计算器',
@@ -63,23 +75,12 @@ class CardInfoData {
 
   /// 更多（常规计算）
   static const commonCalcMore = CardInfo(
-    '更多...',
+    _moreText,
     '逻辑计算器、位计算器...',
     Icons.more_horiz_rounded,
     '/common-calc-more',
   );
 
-  static final commonCalc = <CardInfo>[
-    standardCalc,
-    scientificCalc,
-    fractionCalc,
-    baseConv,
-    logicCalc,
-    bitCalc,
-    desmos,
-  ];
-
-  // 更多
   /// 全局设置
   static const globalSettings = CardInfo(
     '全局设置',
@@ -105,7 +106,15 @@ class CardInfoData {
   );
 
   // 单位转换
-  // 基本单位
+  /// 基本单位
+  static const baseUnitConv = <CardInfo>[
+    lenConv,
+    massConv,
+    timeConv,
+    currentConv,
+    tempConv,
+  ];
+
   /// 长度换算
   static const lenConv = CardInfo(
     '长度换算',
@@ -152,22 +161,23 @@ class CardInfoData {
 
   /// 更多（基本单位）
   static const baseUnitMore = CardInfo(
-    '更多...',
+    _moreText,
     '电流换算、温度换算...',
     Icons.more_horiz_rounded,
     '/base-unit-more',
   );
 
-  static final baseUnitConv = <CardInfo>[
-    lenConv,
-    massConv,
-    timeConv,
-    currentConv,
-    tempConv,
+  // 特殊计算
+  /// 日常生活
+  static const dailyLife = <CardInfo>[
+    relativesConv,
+    bMI,
+    foodCalorieCalc,
+    exerCalorieCalc,
+    fuelConsumptionConv,
+    gamePriceCalc,
   ];
 
-  // 特殊计算
-  // 日常生活
   /// 亲戚称呼
   static const relativesConv = CardInfo(
     '亲戚称呼',
@@ -218,22 +228,22 @@ class CardInfoData {
 
   /// 更多（日常生活）
   static const dailyLifeMore = CardInfo(
-    '更多...',
+    _moreText,
     '运动热量、油耗量换算...',
     Icons.more_horiz_rounded,
     '/daily-life-more',
   );
 
-  static final dailyLife = <CardInfo>[
-    relativesConv,
-    bMI,
-    foodCalorieCalc,
-    exerCalorieCalc,
-    fuelConsumptionConv,
-    gamePriceCalc,
+  /// 日期时间
+  static const dateTime = <CardInfo>[
+    zodiacCalc,
+    birthdayCalc,
+    countdown,
+    dateInterval,
+    calendarConv,
+    timeZoneConv,
   ];
 
-  // 日期时间
   /// 生肖计算
   static const zodiacCalc = CardInfo(
     '生肖计算',
@@ -284,22 +294,25 @@ class CardInfoData {
 
   /// 更多（日期时间）
   static const dateTimeMore = CardInfo(
-    '更多...',
+    _moreText,
     '日期间隔、历法转换...',
     Icons.more_horiz_rounded,
     '/date-time-more',
   );
 
-  static final dateTime = <CardInfo>[
-    zodiacCalc,
-    birthdayCalc,
-    countdown,
-    dateInterval,
-    calendarConv,
-    timeZoneConv,
+  /// 金融理财
+  static const financialManagement = <CardInfo>[
+    mortgageCalc,
+    loanCalc,
+    personalTaxCalc,
+    financialCalc,
+    exchangeRateConv,
+    capitalizeAmount,
+    discountedPriceCalc,
+    tVMCalc,
+    digitalCurrencyCalc,
   ];
 
-  // 金融理财
   /// 房贷计算
   static const mortgageCalc = CardInfo(
     '房贷计算',
@@ -374,21 +387,9 @@ class CardInfoData {
 
   /// 更多（金融理财）
   static const financialManagementMore = CardInfo(
-    '更多...',
+    _moreText,
     '理财计算、汇率换算...',
     Icons.more_horiz_rounded,
     '/financial-management-more',
   );
-
-  static final financialManagement = <CardInfo>[
-    mortgageCalc,
-    loanCalc,
-    personalTaxCalc,
-    financialCalc,
-    exchangeRateConv,
-    capitalizeAmount,
-    discountedPriceCalc,
-    tVMCalc,
-    digitalCurrencyCalc,
-  ];
 }
