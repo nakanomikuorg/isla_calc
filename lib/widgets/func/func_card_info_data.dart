@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../models/func/card_info.dart';
 
-class CardInfoData {
+class FuncCardInfoData {
   static const _moreText = '更多';
 
   // 艾拉首页

@@ -4,7 +4,7 @@ import '../pages/settings/settings_page.dart';
 
 // 配置路由
 final routes = {
-  '/': (context) => const FuncSelectionPage(),
+  '/': (context) => const FuncPage(),
   '/standard-calc': (context) => const StandardCalcPage(),
   '/global-settings': (context) => const SettingsPage(),
 };

@@ -13,9 +13,9 @@ class StandardCalcPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
-      appBar: BlurAppBar(
-        '标准计算器',
-        <Widget>[
+      appBar: BlurAbleAppBar(
+        title: '标准计算器',
+        actions: <Widget>[
           IconButton(
             onPressed: () {},
             icon: Icon(

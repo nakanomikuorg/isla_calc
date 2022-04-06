@@ -1,42 +1,42 @@
 import 'package:flutter/material.dart';
-import 'package:isla_calc/widgets/common_widgets/blur_app_bar.dart';
 
 import '../../models/func/cards_info.dart';
 import '../../themes/text_info.dart';
-import '../../widgets/func/card.dart';
-import '../../widgets/func/cards_info_data.dart';
-import '../../widgets/func/navigation_bar.dart';
+import '../../widgets/common_widgets/general_page.dart';
+import '../../widgets/func/func_card.dart';
+import '../../widgets/func/func_cards_info_data.dart';
+import '../../widgets/func/func_navigation_bar.dart';
 
-class FuncSelectionPage extends StatefulWidget {
-  const FuncSelectionPage({Key? key}) : super(key: key);
+class FuncPage extends StatefulWidget {
+  const FuncPage({Key? key}) : super(key: key);
 
   @override
-  State<FuncSelectionPage> createState() => _FuncSelectionPageState();
+  State<FuncPage> createState() => _FuncPageState();
 }
 
-class _FuncSelectionPageState extends State<FuncSelectionPage> {
-  static const _homePage = FuncSelectionBodyContent(
-    '艾拉计算器',
-    '🍵',
-    cardsInfos: CardsInfoData.homePageCardsInfos,
+class _FuncPageState extends State<FuncPage> {
+  static const _homePage = FuncPageBody(
+    title: '艾拉计算器',
+    emj: '🍨',
+    cardsInfos: FuncCardsInfoData.homePageCardsInfos,
   );
-  static const _unitConv = FuncSelectionBodyContent(
-    '单位换算',
-    '📏',
-    cardsInfos: CardsInfoData.unitConvCardsInfos,
+  static const _unitConv = FuncPageBody(
+    title: '单位换算',
+    emj: '📏',
+    cardsInfos: FuncCardsInfoData.unitConvCardsInfos,
   );
-  static const _specialCalc = FuncSelectionBodyContent(
-    '特殊计算',
-    '💷',
-    cardsInfos: CardsInfoData.specialCalcCardsInfos,
+  static const _specialCalc = FuncPageBody(
+    title: '特殊计算',
+    emj: '💷',
+    cardsInfos: FuncCardsInfoData.specialCalcCardsInfos,
   );
-  static const _professionalField = FuncSelectionBodyContent(
-    '专业领域',
-    '⚗',
-    cardsInfos: CardsInfoData.specialCalcCardsInfos,
+  static const _professionalField = FuncPageBody(
+    title: '专业领域',
+    emj: '⚗',
+    cardsInfos: FuncCardsInfoData.specialCalcCardsInfos,
   );
 
-  static const List<FuncSelectionBodyContent> _pages = [
+  static const List<FuncPageBody> _pages = [
     _homePage,
     _unitConv,
     _specialCalc,
@@ -53,24 +53,10 @@ class _FuncSelectionPageState extends State<FuncSelectionPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.surface,
-      extendBody: true,
-      extendBodyBehindAppBar: true,
-      appBar: BlurAppBar(
-        '',
-        <Widget>[
-          IconButton(
-            onPressed: () {},
-            icon: Icon(
-              Icons.more_vert_rounded,
-              color: Theme.of(context).colorScheme.onSurface,
-            ),
-          )
-        ],
-      ),
+    return GeneralPage(
+      iconData: Icons.more_vert_rounded,
       body: _pages[_currentPageIndex],
-      bottomNavigationBar: FuncSelectionNavigationBar(
+      bottomNavigationBar: FuncNavigationBar(
         _currentPageIndex,
         _setCurrentPage,
       ),
@@ -78,43 +64,24 @@ class _FuncSelectionPageState extends State<FuncSelectionPage> {
   }
 }
 
-class FuncSelectionBodyContent extends StatelessWidget {
-  const FuncSelectionBodyContent(
-    this._title,
-    this._emj, {
+class FuncPageBody extends StatelessWidget {
+  const FuncPageBody({
     Key? key,
+    required this.title,
+    required this.emj,
     this.cardsInfos,
   }) : super(key: key);
 
-  final String _title;
-  final String _emj;
+  final String title;
+  final String emj;
   final List<CardsInfo>? cardsInfos;
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
+    return GeneralPageBody(
+      title: title,
+      emj: emj,
       children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.fromLTRB(20.0, 16.0, 0.0, 0.0),
-          child: Text(
-            _emj,
-            style: const TextStyle(
-              fontSize: 58.0,
-              fontFamilyFallback: TextInfo.fontFamilyFallback,
-            ),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.fromLTRB(20.0, 16.0, 0.0, 0.0),
-          child: Text(
-            _title,
-            style: TextStyle(
-              color: Theme.of(context).colorScheme.onSurface,
-              fontSize: 32.0,
-              fontFamilyFallback: TextInfo.fontFamilyFallback,
-            ),
-          ),
-        ),
         ...?cardsInfos?.map(
           (commonCardsInfo) {
             return Column(
@@ -123,7 +90,7 @@ class FuncSelectionBodyContent extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(20.0, 32.0, 0.0, 0.0),
                   child: Text(
-                    '  ${commonCardsInfo.groupName}',
+                    commonCardsInfo.groupName,
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.onSurface,
                       fontFamilyFallback: TextInfo.fontFamilyFallback,
@@ -132,7 +99,7 @@ class FuncSelectionBodyContent extends StatelessWidget {
                   ),
                 ),
                 ...commonCardsInfo.groupCardInfos.map((groupCardInfo) {
-                  return FuncMainCard(
+                  return FuncCard(
                     groupCardInfo.cardTitle,
                     groupCardInfo.cardSubtitle,
                     groupCardInfo.cardIconData,
@@ -145,7 +112,7 @@ class FuncSelectionBodyContent extends StatelessWidget {
         ),
         const SizedBox(
           height: 16.0,
-        )
+        ),
       ],
     );
   }

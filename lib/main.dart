@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:isla_calc/routes/routes.dart';
 import 'package:isla_calc/themes/theme_info.dart';
+import 'package:provider/provider.dart';
+
+import 'models/settings/theme_model.dart';
 
 /*
 
@@ -26,33 +29,38 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeInfo.getThemeData(),
-      darkTheme: ThemeInfo.getDarkThemeData(),
-      initialRoute: '/',
-      onGenerateRoute: (RouteSettings settings) {
-        final String? name = settings.name;
-        final Function? pageContentBuilder = routes[name];
-
-        if (pageContentBuilder != null) {
-          if (settings.arguments != null) {
-            final Route route = MaterialPageRoute(
-                builder: (context) => pageContentBuilder(
-                      context,
-                      arguments: settings.arguments,
-                    ));
-            return route;
-          } else {
-            final Route route = MaterialPageRoute(
-              builder: (context) => pageContentBuilder(context),
-            );
-            return route;
-          }
-        }
-
-        return null;
+    return ChangeNotifierProvider(
+      create: (BuildContext context) {
+        return ThemeModel();
       },
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeInfo.getThemeData(),
+        darkTheme: ThemeInfo.getDarkThemeData(),
+        initialRoute: '/',
+        onGenerateRoute: (RouteSettings settings) {
+          final String? name = settings.name;
+          final Function? pageContentBuilder = routes[name];
+
+          if (pageContentBuilder != null) {
+            if (settings.arguments != null) {
+              final Route route = MaterialPageRoute(
+                  builder: (context) => pageContentBuilder(
+                        context,
+                        arguments: settings.arguments,
+                      ));
+              return route;
+            } else {
+              final Route route = MaterialPageRoute(
+                builder: (context) => pageContentBuilder(context),
+              );
+              return route;
+            }
+          }
+
+          return null;
+        },
+      ),
     );
   }
 }

@@ -1,8 +1,8 @@
 import '../../models/func/card_info.dart';
 import '../../models/func/cards_info.dart';
-import 'card_info_data.dart';
+import 'func_card_info_data.dart';
 
-class CardsInfoData {
+class FuncCardsInfoData {
   /// 艾拉首页
   static const homePageCardsInfos = <CardsInfo>[
     commonCalcCardsInfo,
@@ -11,12 +11,12 @@ class CardsInfoData {
 
   /// 常规计算
   static const commonCalcCardsInfo = CardsInfo(
-    '📗 常规计算',
+    '✒ 常规计算',
     <CardInfo>[
-      CardInfoData.standardCalc,
-      CardInfoData.scientificCalc,
-      CardInfoData.fractionCalc,
-      CardInfoData.commonCalcMore,
+      FuncCardInfoData.standardCalc,
+      FuncCardInfoData.scientificCalc,
+      FuncCardInfoData.fractionCalc,
+      FuncCardInfoData.commonCalcMore,
     ],
   );
 
@@ -24,9 +24,9 @@ class CardsInfoData {
   static const moreCardsInfo = CardsInfo(
     '📦 更多',
     <CardInfo>[
-      CardInfoData.globalSettings,
-      CardInfoData.relatedInstructions,
-      CardInfoData.aboutTheApp,
+      FuncCardInfoData.globalSettings,
+      FuncCardInfoData.relatedInstructions,
+      FuncCardInfoData.aboutTheApp,
     ],
   );
 
@@ -39,10 +39,10 @@ class CardsInfoData {
   static const baseUnitCardsInfo = CardsInfo(
     '🧊 基本单位',
     <CardInfo>[
-      CardInfoData.lenConv,
-      CardInfoData.massConv,
-      CardInfoData.timeConv,
-      CardInfoData.baseUnitMore,
+      FuncCardInfoData.lenConv,
+      FuncCardInfoData.massConv,
+      FuncCardInfoData.timeConv,
+      FuncCardInfoData.baseUnitMore,
     ],
   );
 
@@ -57,10 +57,10 @@ class CardsInfoData {
   static const dailyLifeInfo = CardsInfo(
     '🏓 日常生活',
     <CardInfo>[
-      CardInfoData.relativesConv,
-      CardInfoData.bMI,
-      CardInfoData.foodCalorieCalc,
-      CardInfoData.dailyLifeMore,
+      FuncCardInfoData.relativesConv,
+      FuncCardInfoData.bMI,
+      FuncCardInfoData.foodCalorieCalc,
+      FuncCardInfoData.dailyLifeMore,
     ],
   );
 
@@ -68,10 +68,10 @@ class CardsInfoData {
   static const dateTimeInfo = CardsInfo(
     '🗓️ 日期时间',
     <CardInfo>[
-      CardInfoData.zodiacCalc,
-      CardInfoData.birthdayCalc,
-      CardInfoData.countdown,
-      CardInfoData.dateTimeMore,
+      FuncCardInfoData.zodiacCalc,
+      FuncCardInfoData.birthdayCalc,
+      FuncCardInfoData.countdown,
+      FuncCardInfoData.dateTimeMore,
     ],
   );
 
@@ -79,10 +79,10 @@ class CardsInfoData {
   static const financialManagementCardsInfo = CardsInfo(
     '💰 金融理财',
     <CardInfo>[
-      CardInfoData.mortgageCalc,
-      CardInfoData.loanCalc,
-      CardInfoData.personalTaxCalc,
-      CardInfoData.financialManagementMore,
+      FuncCardInfoData.mortgageCalc,
+      FuncCardInfoData.loanCalc,
+      FuncCardInfoData.personalTaxCalc,
+      FuncCardInfoData.financialManagementMore,
     ],
   );
 }

@@ -1,5 +1,13 @@
+import 'package:flutter/material.dart';
+
 class TextInfo {
-  static const List<String> fontFamilyFallback = <String>['Notoemj'];
+  static const fontFamilyFallback = <String>['Seguiemj'];
+  static const titleEmjSize = 64.0;
+  static const titleSize = 32.0;
+  static const titleEmjTextStyle = TextStyle(
+    fontSize: titleEmjSize,
+    fontFamilyFallback: fontFamilyFallback,
+  );
 
   static double getStandardCalcExpDisplayTextSize(String exp) {
     var fontSize = 57.0;
