@@ -3,24 +3,29 @@ import 'package:flutter/material.dart';
 class ThemeInfo {
   static const blurSigma = 8.0;
   static const _fontFamily = 'Harmony';
-  static const _seedColor = Colors.pink;
 
-  static ThemeData getThemeData() {
+  static ThemeData getThemeData(
+    BuildContext context,
+    Color seedColor,
+  ) {
     return ThemeData(
       fontFamily: _fontFamily,
       useMaterial3: true,
       colorScheme: ColorScheme.fromSeed(
-        seedColor: _seedColor,
+        seedColor: seedColor,
       ),
     );
   }
 
-  static ThemeData getDarkThemeData() {
+  static ThemeData getDarkThemeData(
+    BuildContext context,
+    Color seedColor,
+  ) {
     return ThemeData(
       fontFamily: _fontFamily,
       useMaterial3: true,
       colorScheme: ColorScheme.fromSeed(
-        seedColor: _seedColor,
+        seedColor: seedColor,
         brightness: Brightness.dark,
       ),
     );

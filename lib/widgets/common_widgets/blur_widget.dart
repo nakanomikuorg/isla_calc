@@ -5,9 +5,12 @@ import 'package:flutter/material.dart';
 import '../../themes/theme_info.dart';
 
 class BlurWidget extends StatelessWidget {
-  const BlurWidget(this._child, {Key? key}) : super(key: key);
+  const BlurWidget({
+    Key? key,
+    required this.child,
+  }) : super(key: key);
 
-  final Widget _child;
+  final Widget child;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +20,7 @@ class BlurWidget extends StatelessWidget {
           sigmaX: ThemeInfo.blurSigma,
           sigmaY: ThemeInfo.blurSigma,
         ),
-        child: _child,
+        child: child,
       ),
     );
   }

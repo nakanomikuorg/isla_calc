@@ -45,7 +45,7 @@ class BlurAbleAppBar extends StatelessWidget implements PreferredSizeWidget {
 
         return theme.isGaussianBlur
             ? BlurWidget(
-                appBar,
+                child: appBar,
               )
             : appBar;
       },

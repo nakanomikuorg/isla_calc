@@ -33,34 +33,49 @@ class MyApp extends StatelessWidget {
       create: (BuildContext context) {
         return ThemeModel();
       },
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: ThemeInfo.getThemeData(),
-        darkTheme: ThemeInfo.getDarkThemeData(),
-        initialRoute: '/',
-        onGenerateRoute: (RouteSettings settings) {
-          final String? name = settings.name;
-          final Function? pageContentBuilder = routes[name];
+      child: const ColorfulApp(),
+    );
+  }
+}
 
-          if (pageContentBuilder != null) {
-            if (settings.arguments != null) {
-              final Route route = MaterialPageRoute(
-                  builder: (context) => pageContentBuilder(
-                        context,
-                        arguments: settings.arguments,
-                      ));
-              return route;
-            } else {
-              final Route route = MaterialPageRoute(
-                builder: (context) => pageContentBuilder(context),
-              );
-              return route;
+class ColorfulApp extends StatelessWidget {
+  const ColorfulApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<ThemeModel>(
+      builder: (context, theme, child) {
+        var seedColor = theme.color;
+
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: ThemeInfo.getThemeData(context, seedColor),
+          darkTheme: ThemeInfo.getDarkThemeData(context, seedColor),
+          initialRoute: '/',
+          onGenerateRoute: (RouteSettings settings) {
+            final String? name = settings.name;
+            final Function? pageContentBuilder = routes[name];
+
+            if (pageContentBuilder != null) {
+              if (settings.arguments != null) {
+                final Route route = MaterialPageRoute(
+                    builder: (context) => pageContentBuilder(
+                          context,
+                          arguments: settings.arguments,
+                        ));
+                return route;
+              } else {
+                final Route route = MaterialPageRoute(
+                  builder: (context) => pageContentBuilder(context),
+                );
+                return route;
+              }
             }
-          }
 
-          return null;
-        },
-      ),
+            return null;
+          },
+        );
+      },
     );
   }
 }

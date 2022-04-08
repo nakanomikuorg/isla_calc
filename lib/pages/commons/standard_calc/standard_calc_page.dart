@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:isla_calc/widgets/common_widgets/blur_app_bar.dart';
+import 'package:isla_calc/widgets/common_widgets/blur_able_app_bar.dart';
 
 import '../../../themes/text_info.dart';
 import '../../../tool/calc/calc.dart';

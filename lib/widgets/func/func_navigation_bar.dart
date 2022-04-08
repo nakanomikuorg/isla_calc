@@ -54,7 +54,7 @@ class FuncNavigationBar extends StatelessWidget {
 
         return theme.isGaussianBlur
             ? BlurWidget(
-                transparentNavigationBar,
+                child: transparentNavigationBar,
               )
             : transparentNavigationBar;
       },
