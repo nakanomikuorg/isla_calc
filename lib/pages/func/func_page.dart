@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '../../models/func/cards_info.dart';
-import '../../themes/text_info.dart';
 import '../../widgets/common_widgets/general_page.dart';
+import '../../widgets/common_widgets/subtitle.dart';
+import '../../widgets/common_widgets/v_sizebox.dart';
 import '../../widgets/func/func_card.dart';
 import '../../widgets/func/func_cards_info_data.dart';
 import '../../widgets/func/func_navigation_bar.dart';
@@ -87,16 +88,8 @@ class FuncPageBody extends StatelessWidget {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(20.0, 32.0, 0.0, 0.0),
-                  child: Text(
-                    commonCardsInfo.groupName,
-                    style: TextStyle(
-                      color: Theme.of(context).colorScheme.onSurface,
-                      fontFamilyFallback: TextInfo.fontFamilyFallback,
-                      fontSize: 16.0,
-                    ),
-                  ),
+                Subtitle(
+                  title: commonCardsInfo.groupName,
                 ),
                 ...commonCardsInfo.groupCardInfos.map((groupCardInfo) {
                   return FuncCard(
@@ -110,9 +103,7 @@ class FuncPageBody extends StatelessWidget {
             );
           },
         ),
-        const SizedBox(
-          height: 16.0,
-        ),
+        const VSizeBox(),
       ],
     );
   }

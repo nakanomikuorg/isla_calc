@@ -3,6 +3,7 @@ import 'package:isla_calc/routes/routes.dart';
 import 'package:isla_calc/themes/theme_info.dart';
 import 'package:provider/provider.dart';
 
+import 'global_settings_data.dart';
 import 'models/settings/theme_model.dart';
 
 /*
@@ -24,9 +25,14 @@ void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -38,8 +44,28 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class ColorfulApp extends StatelessWidget {
+class ColorfulApp extends StatefulWidget {
   const ColorfulApp({Key? key}) : super(key: key);
+
+  @override
+  State<ColorfulApp> createState() => _ColorfulAppState();
+}
+
+class _ColorfulAppState extends State<ColorfulApp> {
+  @override
+  void initState() {
+    super.initState();
+    _loadGlobalSettings();
+  }
+
+  void _loadGlobalSettings() async {
+    Provider.of<ThemeModel>(context, listen: false).changeGaussianBlur(
+      await GlobalSettingsData.getIsGaussianBlur(),
+    );
+    Provider.of<ThemeModel>(context, listen: false).changeColor(
+      await GlobalSettingsData.getColor(),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {

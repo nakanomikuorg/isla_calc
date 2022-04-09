@@ -3,21 +3,39 @@ import 'package:isla_calc/widgets/common_widgets/blur_able_alert_dialog.dart';
 import 'package:provider/provider.dart';
 
 import '../../models/settings/theme_model.dart';
-import '../../themes/text_info.dart';
+import '../../tool/tools.dart';
 import '../../widgets/common_widgets/blur_able_simple_dialog.dart';
 import '../../widgets/common_widgets/general_page.dart';
 import '../../widgets/settings/custom_color_picker.dart';
 import '../../widgets/settings/multiple_choice_settings.dart';
+import '../../widgets/settings/set_item_group.dart';
 import '../../widgets/settings/switch_settings.dart';
 
-class SettingsPage extends StatefulWidget {
+class SettingsPage extends StatelessWidget {
   const SettingsPage({Key? key}) : super(key: key);
 
   @override
-  State<SettingsPage> createState() => _SettingsPageState();
+  Widget build(BuildContext context) {
+    return const GeneralPage(
+      body: GeneralPageBody(
+        title: '全局设置',
+        emj: '⚒',
+        children: <Widget>[
+          AppearanceSettings(),
+        ],
+      ),
+    );
+  }
 }
 
-class _SettingsPageState extends State<SettingsPage> {
+class AppearanceSettings extends StatefulWidget {
+  const AppearanceSettings({Key? key}) : super(key: key);
+
+  @override
+  State<AppearanceSettings> createState() => _AppearanceSettingsState();
+}
+
+class _AppearanceSettingsState extends State<AppearanceSettings> {
   late Color _currentColor;
   Color? _selectedColor;
 
@@ -33,7 +51,7 @@ class _SettingsPageState extends State<SettingsPage> {
       builder: (BuildContext context) {
         return const BlurAbleSimpleDialog(
           title: '主题模式',
-          options: [
+          options: <String>[
             '跟随系统',
             '日间模式',
             '夜间模式',
@@ -66,65 +84,49 @@ class _SettingsPageState extends State<SettingsPage> {
 
   @override
   Widget build(BuildContext context) {
-    return GeneralPage(
-      body: GeneralPageBody(
-        title: '全局设置',
-        emj: '⚒',
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.fromLTRB(20.0, 32.0, 0.0, 16.0),
-            child: Text(
-              '🌺 外观',
-              style: TextStyle(
-                color: Theme.of(context).colorScheme.onSurface,
-                fontFamilyFallback: TextInfo.fontFamilyFallback,
-                fontSize: 16.0,
-              ),
-            ),
-          ),
-          MultipleChoiceSettings(
-            title: '主题模式',
-            subtitle: '跟随系统',
-            onTap: () async {
-              int? mode = await _changeNightMode(context);
-            },
-          ),
-          MultipleChoiceSettings(
-            title: '风格',
-            subtitle: 'Material Design 3',
-            onTap: () {},
-          ),
-          MultipleChoiceSettings(
-            title: '配色',
-            subtitle:
-                '#${_currentColor.red.toRadixString(16)}${_currentColor.green.toRadixString(16)}${_currentColor.blue.toRadixString(16)}',
-            onTap: () async {
-              bool? isChanged = await _changeColor(context);
+    return SetItemGroup(
+      title: '🌺 外观',
+      children: [
+        MultipleChoiceSettings(
+          title: '主题模式',
+          subtitle: '跟随系统',
+          onTap: () async {
+            int? mode = await _changeNightMode(context);
+          },
+        ),
+        MultipleChoiceSettings(
+          title: '风格',
+          subtitle: 'Material Design 3',
+          onTap: () {},
+        ),
+        MultipleChoiceSettings(
+          title: '配色',
+          subtitle: Tool.getColorString(_currentColor),
+          onTap: () async {
+            bool? isChanged = await _changeColor(context);
 
-              if (isChanged != null && isChanged) {
-                setState(() {
-                  _currentColor = _selectedColor!;
-                });
+            if (isChanged != null && isChanged) {
+              setState(() {
+                _currentColor = _selectedColor!;
+              });
 
-                Provider.of<ThemeModel>(
-                  context,
-                  listen: false,
-                ).changeColor(_currentColor);
-              }
-            },
-          ),
-          SwitchSettings(
-            title: '高斯模糊',
-            desc: '关闭或可提升性能',
-            value:
-                Provider.of<ThemeModel>(context, listen: false).isGaussianBlur,
-            onChanged: (value) {
-              Provider.of<ThemeModel>(context, listen: false)
-                  .changeGaussianBlur(value);
-            },
-          ),
-        ],
-      ),
+              Provider.of<ThemeModel>(
+                context,
+                listen: false,
+              ).changeColor(_currentColor);
+            }
+          },
+        ),
+        SwitchSettings(
+          title: '高斯模糊',
+          desc: '关闭或可提升性能',
+          value: Provider.of<ThemeModel>(context, listen: false).isGaussianBlur,
+          onChanged: (value) {
+            Provider.of<ThemeModel>(context, listen: false)
+                .changeGaussianBlur(value);
+          },
+        ),
+      ],
     );
   }
 }

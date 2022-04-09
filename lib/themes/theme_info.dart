@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 class ThemeInfo {
   static const blurSigma = 8.0;
+  static const bool defaultIsGaussianBlur = true;
+  static const Color defaultColor = Colors.blue;
   static const _fontFamily = 'Harmony';
 
   static ThemeData getThemeData(
