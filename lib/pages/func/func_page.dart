@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../models/func/cards_info.dart';
 import '../../widgets/common_widgets/general_page.dart';
 import '../../widgets/common_widgets/subtitle.dart';
-import '../../widgets/common_widgets/v_sizebox.dart';
+import '../../widgets/common_widgets/v_size_box.dart';
 import '../../widgets/func/func_card.dart';
 import '../../widgets/func/func_cards_info_data.dart';
 import '../../widgets/func/func_navigation_bar.dart';

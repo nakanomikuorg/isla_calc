@@ -1,31 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:isla_calc/widgets/common_widgets/blur_able_app_bar.dart';
 
 import '../../../themes/text_info.dart';
 import '../../../tool/calc/calc.dart';
-import '../../../widgets/commons/standard_calc/calc_display.dart';
-import '../../../widgets/commons/standard_calc/calc_panel.dart';
+import '../../../widgets/common_widgets/calc/calc_body_content.dart';
+import '../../../widgets/common_widgets/general_page.dart';
+import '../../../widgets/commons/standard_calc/standard_calc_display.dart';
+import '../../../widgets/commons/standard_calc/standard_calc_panel.dart';
 
 class StandardCalcPage extends StatelessWidget {
   const StandardCalcPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.surface,
-      appBar: BlurAbleAppBar(
-        title: '标准计算器',
-        actions: <Widget>[
-          IconButton(
-            onPressed: () {},
-            icon: Icon(
-              Icons.more_vert_rounded,
-              color: Theme.of(context).colorScheme.onSurface,
-            ),
-          )
-        ],
-      ),
-      body: const StandardCalcBodyContent(),
+    return const GeneralPage(
+      appBarTitle: '标准计算器',
+      iconData: Icons.more_vert_rounded,
+      body: StandardCalcBodyContent(),
+      extendBodyBehindAppBar: false,
     );
   }
 }
@@ -221,28 +212,14 @@ class _StandardCalcBodyContentState extends State<StandardCalcBodyContent> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: ElevationOverlay.colorWithOverlay(
-        Theme.of(context).colorScheme.surface,
-        Theme.of(context).colorScheme.primary,
-        8.0,
+    return CalcBodyContent(
+      display: StandardCalcDisplay(
+        _expController,
+        _currentAns,
+        TextInfo.getStandardCalcExpDisplayTextSize(_newExp),
       ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: <Widget>[
-          Expanded(
-            child: CalcDisplay(
-              _expController,
-              _currentAns,
-              TextInfo.getStandardCalcExpDisplayTextSize(_newExp),
-            ),
-          ),
-          Stack(
-            children: <Widget>[
-              CalcPanel(_responseKey),
-            ],
-          ),
-        ],
+      panel: StandardCalcPanel(
+        onPressed: _responseKey,
       ),
     );
   }

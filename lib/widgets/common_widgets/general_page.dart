@@ -10,19 +10,21 @@ class GeneralPage extends StatelessWidget {
     this.iconData,
     this.body,
     this.bottomNavigationBar,
+    this.extendBodyBehindAppBar = true,
   }) : super(key: key);
 
   final String? appBarTitle;
   final IconData? iconData;
   final Widget? body;
   final Widget? bottomNavigationBar;
+  final bool extendBodyBehindAppBar;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
       extendBody: true,
-      extendBodyBehindAppBar: true,
+      extendBodyBehindAppBar: extendBodyBehindAppBar,
       appBar: BlurAbleAppBar(
         title: appBarTitle,
         actions: iconData == null

@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import '../../../themes/text_info.dart';
 import '../../common_widgets/no_scroll_behavior_widget.dart';
 
-class CalcDisplay extends StatelessWidget {
-  const CalcDisplay(this._expController, this._currentAns, this._expTextSize,
+class StandardCalcDisplay extends StatelessWidget {
+  const StandardCalcDisplay(
+      this._expController, this._currentAns, this._expTextSize,
       {Key? key})
       : super(key: key);
 

@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 
 class VSizeBox extends StatelessWidget {
-  const VSizeBox({Key? key}) : super(key: key);
+  const VSizeBox({
+    Key? key,
+    this.size = 16.0,
+  }) : super(key: key);
+
+  final double size;
 
   @override
   Widget build(BuildContext context) {
-    return const SizedBox(
-      height: 16.0,
+    return SizedBox(
+      height: size,
     );
   }
 }
