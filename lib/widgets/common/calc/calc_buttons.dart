@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../h_size_box.dart';
+import '../sizebox/h_size_box.dart';
 import 'calc_button.dart';
 
 class FirstCalcButtons extends StatelessWidget {

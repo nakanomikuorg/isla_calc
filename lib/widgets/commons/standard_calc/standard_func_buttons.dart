@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:isla_calc/widgets/common_widgets/h_size_box.dart';
+import 'package:isla_calc/widgets/common/sizebox/h_size_box.dart';
 
-import '../../common_widgets/calc/calc_button.dart';
+import '../../common/calc/calc_button.dart';
 
 class StandardFuncButtons extends StatelessWidget {
   const StandardFuncButtons({

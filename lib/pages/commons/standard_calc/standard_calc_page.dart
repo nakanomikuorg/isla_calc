@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../../../models/common/calc_model.dart';
 import '../../../themes/text_info.dart';
 import '../../../tool/calc/calc.dart';
-import '../../../widgets/common_widgets/calc/calc_body_content.dart';
-import '../../../widgets/common_widgets/general_page.dart';
+import '../../../widgets/common/calc/calc_body_content.dart';
+import '../../../widgets/common/page/general_page.dart';
 import '../../../widgets/commons/standard_calc/standard_calc_display.dart';
 import '../../../widgets/commons/standard_calc/standard_calc_panel.dart';
 
@@ -12,11 +14,16 @@ class StandardCalcPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const GeneralPage(
-      appBarTitle: '标准计算器',
-      iconData: Icons.more_vert_rounded,
-      body: StandardCalcBodyContent(),
-      extendBodyBehindAppBar: false,
+    return ChangeNotifierProvider(
+      create: (BuildContext context) {
+        return CalcModel();
+      },
+      child: const GeneralPage(
+        appBarTitle: '标准计算器',
+        iconData: Icons.more_vert_rounded,
+        body: StandardCalcBodyContent(),
+        extendBodyBehindAppBar: false,
+      ),
     );
   }
 }

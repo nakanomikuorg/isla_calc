@@ -52,3 +52,10 @@ flutter:
       fonts:
         - asset: fonts/seguiemj.ttf
           weight: 400
+    - family: Iconfont
+      fonts:
+        - asset: fonts/iconfont.ttf
+
+  assets:
+    - images/logo.png
+    - images/icekylin.png

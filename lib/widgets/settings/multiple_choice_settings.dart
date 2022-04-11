@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 
 class MultipleChoiceSettings extends StatelessWidget {
-  const MultipleChoiceSettings(
-      {Key? key, this.title, this.subtitle, required this.onTap})
-      : super(key: key);
+  const MultipleChoiceSettings({
+    Key? key,
+    this.title,
+    this.subtitle,
+    required this.onTap,
+  }) : super(key: key);
 
   final String? title;
   final String? subtitle;

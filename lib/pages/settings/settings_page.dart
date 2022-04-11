@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:isla_calc/widgets/common_widgets/blur_able_alert_dialog.dart';
+import 'package:isla_calc/widgets/common/dialog/blur_able_alert_dialog.dart';
 import 'package:provider/provider.dart';
 
 import '../../models/settings/theme_model.dart';
 import '../../tool/tools.dart';
-import '../../widgets/common_widgets/blur_able_simple_dialog.dart';
-import '../../widgets/common_widgets/general_page.dart';
+import '../../widgets/common/dialog/blur_able_simple_dialog.dart';
+import '../../widgets/common/page/general_page.dart';
 import '../../widgets/settings/custom_color_picker.dart';
 import '../../widgets/settings/multiple_choice_settings.dart';
 import '../../widgets/settings/set_item_group.dart';

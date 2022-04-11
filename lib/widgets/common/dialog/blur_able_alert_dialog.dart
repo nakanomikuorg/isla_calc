@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../models/settings/theme_model.dart';
-import 'blur_widget.dart';
+import '../../../models/settings/theme_model.dart';
+import '../decoration/blur_widget.dart';
 
 class BlurAbleAlertDialog extends StatelessWidget {
   const BlurAbleAlertDialog({

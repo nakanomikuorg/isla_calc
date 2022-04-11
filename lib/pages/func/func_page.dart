@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '../../models/func/cards_info.dart';
-import '../../widgets/common_widgets/general_page.dart';
-import '../../widgets/common_widgets/subtitle.dart';
-import '../../widgets/common_widgets/v_size_box.dart';
+import '../../widgets/common/page/general_page.dart';
+import '../../widgets/common/page/subtitle.dart';
+import '../../widgets/common/sizebox/v_size_box.dart';
 import '../../widgets/func/func_card.dart';
 import '../../widgets/func/func_cards_info_data.dart';
 import '../../widgets/func/func_navigation_bar.dart';
@@ -93,10 +93,10 @@ class FuncPageBody extends StatelessWidget {
                 ),
                 ...commonCardsInfo.groupCardInfos.map((groupCardInfo) {
                   return FuncCard(
-                    groupCardInfo.cardTitle,
-                    groupCardInfo.cardSubtitle,
-                    groupCardInfo.cardIconData,
-                    groupCardInfo.pushName,
+                    title: groupCardInfo.cardTitle,
+                    subtitle: groupCardInfo.cardSubtitle,
+                    icon: groupCardInfo.cardIconData,
+                    pushName: groupCardInfo.pushName,
                   );
                 }),
               ],

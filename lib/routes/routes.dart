@@ -1,3 +1,4 @@
+import '../pages/about_the_app/about_the_app_page.dart';
 import '../pages/commons/standard_calc/standard_calc_page.dart';
 import '../pages/func/func_page.dart';
 import '../pages/settings/settings_page.dart';
@@ -9,4 +10,5 @@ final routes = {
   '/standard-calc': (context) => const StandardCalcPage(),
   '/global-settings': (context) => const SettingsPage(),
   '/len-conv': (context) => const LenConvPage(),
+  '/about-the-app': (context) => const AboutTheAppPage(),
 };

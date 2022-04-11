@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:isla_calc/widgets/common_widgets/v_size_box.dart';
+import 'package:isla_calc/widgets/common/sizebox/v_size_box.dart';
 
 import 'calc_buttons.dart';
 
