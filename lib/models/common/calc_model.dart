@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:isla_calc/tool/tools.dart';
 
 import '../../tool/calc/calc.dart';
 
@@ -53,6 +54,7 @@ class CalcModel extends ChangeNotifier {
   var _originalExp = '';
   var _newExp = '';
   var _currentAnsStr = '';
+  var _currentAns = 0.0;
   var _baseOffset = 0;
   var _extentOffset = 0;
 
@@ -120,7 +122,14 @@ class CalcModel extends ChangeNotifier {
     );
 
     try {
-      _currentAnsStr = Calc.calcExp(_newExp).toString();
+      _currentAns = Calc.calcExp(_newExp);
+      _currentAnsStr = Tool.isInt(_currentAns)
+          ? _currentAns.truncate().toString()
+          : _currentAns.toString();
+
+      if (_newExp == _currentAnsStr) {
+        _currentAnsStr = '';
+      }
     } catch (e) {
       _currentAnsStr = '';
     }

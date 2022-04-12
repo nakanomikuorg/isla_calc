@@ -14,4 +14,8 @@ class Tool {
     var bStr = color.blue.toRadixString(16).padLeft(2, '0');
     return '#$rStr$gStr$bStr';
   }
+
+  static bool isInt(double value) {
+    return value == value.truncateToDouble();
+  }
 }
