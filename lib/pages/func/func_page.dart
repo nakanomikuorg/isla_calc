@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 import '../../models/func/cards_info.dart';
-import '../../widgets/common/page/general_page.dart';
-import '../../widgets/common/page/subtitle.dart';
-import '../../widgets/common/sizebox/v_size_box.dart';
 import '../../widgets/func/func_card.dart';
 import '../../widgets/func/func_cards_info_data.dart';
 import '../../widgets/func/func_navigation_bar.dart';
+import '../../widgets/general/page/general_page.dart';
+import '../../widgets/general/page/subtitle.dart';
+import '../../widgets/general/size_box/v_size_box.dart';
 
 class FuncPage extends StatefulWidget {
   const FuncPage({Key? key}) : super(key: key);
@@ -19,22 +19,22 @@ class _FuncPageState extends State<FuncPage> {
   static const _homePage = FuncPageBody(
     title: '艾拉计算器',
     emj: '🍨',
-    cardsInfos: FuncCardsInfoData.homePageCardsInfos,
+    cardsInfos: FuncCardsInfoData.homePageInfos,
   );
   static const _unitConv = FuncPageBody(
     title: '单位换算',
     emj: '📏',
-    cardsInfos: FuncCardsInfoData.unitConvCardsInfos,
+    cardsInfos: FuncCardsInfoData.unitConvInfos,
   );
   static const _specialCalc = FuncPageBody(
     title: '特殊计算',
     emj: '💷',
-    cardsInfos: FuncCardsInfoData.specialCalcCardsInfos,
+    cardsInfos: FuncCardsInfoData.specialCalcInfos,
   );
   static const _professionalField = FuncPageBody(
     title: '专业领域',
     emj: '⚗',
-    cardsInfos: FuncCardsInfoData.specialCalcCardsInfos,
+    cardsInfos: FuncCardsInfoData.specialCalcInfos,
   );
 
   static const List<FuncPageBody> _pages = [
@@ -84,19 +84,19 @@ class FuncPageBody extends StatelessWidget {
       emj: emj,
       children: <Widget>[
         ...?cardsInfos?.map(
-          (commonCardsInfo) {
+          (cardsInfo) {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Subtitle(
-                  title: commonCardsInfo.groupName,
+                  title: cardsInfo.groupName,
                 ),
-                ...commonCardsInfo.groupCardInfos.map((groupCardInfo) {
+                ...cardsInfo.groupCardInfos.map((cardInfo) {
                   return FuncCard(
-                    title: groupCardInfo.cardTitle,
-                    subtitle: groupCardInfo.cardSubtitle,
-                    icon: groupCardInfo.cardIconData,
-                    pushName: groupCardInfo.pushName,
+                    title: cardInfo.cardTitle,
+                    subtitle: cardInfo.cardSubtitle,
+                    icon: cardInfo.cardIconData,
+                    pushName: cardInfo.pushName,
                   );
                 }),
               ],

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../common/calc/calc_panel.dart';
+import '../../general/calc/calc_panel.dart';
 import 'standard_func_buttons.dart';
 
 class StandardCalcPanel extends StatelessWidget {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../common/card/icon_card.dart';
+import '../general/card/icon_card.dart';
 
 class FuncCard extends StatelessWidget {
   const FuncCard({

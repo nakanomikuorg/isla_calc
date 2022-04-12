@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../../widgets/common/card/circle_img_card.dart';
-import '../../widgets/common/card/icon_card.dart';
-import '../../widgets/common/page/general_page.dart';
-import '../../widgets/common/page/subtitle.dart';
-import '../../widgets/common/sizebox/v_size_box.dart';
+import '../../widgets/general/card/circle_img_card.dart';
+import '../../widgets/general/card/icon_card.dart';
+import '../../widgets/general/page/general_page.dart';
+import '../../widgets/general/page/subtitle.dart';
+import '../../widgets/general/size_box/v_size_box.dart';
 
 class AboutTheAppPage extends StatelessWidget {
   const AboutTheAppPage({Key? key}) : super(key: key);
@@ -48,7 +48,7 @@ class AboutTheAppPage extends StatelessWidget {
             onPressed: () {},
           ),
           const Subtitle(
-            title: '📜 licenses',
+            title: '📜 Licenses',
           ),
           IconCard(
             title: 'GPLv3',

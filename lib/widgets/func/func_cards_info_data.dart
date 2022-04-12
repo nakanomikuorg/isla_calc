@@ -4,14 +4,16 @@ import 'func_card_info_data.dart';
 
 class FuncCardsInfoData {
   /// 艾拉首页
-  static const homePageCardsInfos = <CardsInfo>[
-    commonCalcCardsInfo,
-    moreCardsInfo,
+  static const homePageInfos = <CardsInfo>[
+    commonCalcInfo,
+    moreInfo,
   ];
 
+  static const _commonCalcStr = '✒ 常规计算';
+
   /// 常规计算
-  static const commonCalcCardsInfo = CardsInfo(
-    '✒ 常规计算',
+  static const commonCalcInfo = CardsInfo(
+    _commonCalcStr,
     <CardInfo>[
       FuncCardInfoData.standardCalc,
       FuncCardInfoData.scientificCalc,
@@ -20,8 +22,14 @@ class FuncCardsInfoData {
     ],
   );
 
+  /// 所有常规计算
+  static const allCommonCalcInfo = CardsInfo(
+    _commonCalcStr,
+    FuncCardInfoData.commonCalc,
+  );
+
   /// 更多
-  static const moreCardsInfo = CardsInfo(
+  static const moreInfo = CardsInfo(
     '📦 更多',
     <CardInfo>[
       FuncCardInfoData.globalSettings,
@@ -31,13 +39,16 @@ class FuncCardsInfoData {
   );
 
   /// 单位转换
-  static const unitConvCardsInfos = <CardsInfo>[
-    baseUnitCardsInfo,
+  static const unitConvInfos = <CardsInfo>[
+    baseUnitInfo,
+    commonUnitInfo,
   ];
 
+  static const _baseUnitStr = '🧊 基本单位';
+
   /// 基本单位
-  static const baseUnitCardsInfo = CardsInfo(
-    '🧊 基本单位',
+  static const baseUnitInfo = CardsInfo(
+    _baseUnitStr,
     <CardInfo>[
       FuncCardInfoData.lenConv,
       FuncCardInfoData.massConv,
@@ -46,11 +57,36 @@ class FuncCardsInfoData {
     ],
   );
 
+  /// 所有基本单位
+  static const allBaseUnitInfo = CardsInfo(
+    _baseUnitStr,
+    FuncCardInfoData.baseUnit,
+  );
+
+  static const _commonUnitStr = '📍 常用单位';
+
+  /// 常用单位
+  static const commonUnitInfo = CardsInfo(
+    _commonUnitStr,
+    <CardInfo>[
+      FuncCardInfoData.areaConv,
+      FuncCardInfoData.pressureConv,
+      FuncCardInfoData.energyConv,
+      FuncCardInfoData.commonUnitMore,
+    ],
+  );
+
+  /// 所有常用单位
+  static const allCommonUnitInfo = CardsInfo(
+    _commonUnitStr,
+    FuncCardInfoData.commonUnit,
+  );
+
   /// 特殊计算
-  static const specialCalcCardsInfos = <CardsInfo>[
+  static const specialCalcInfos = <CardsInfo>[
     dailyLifeInfo,
     dateTimeInfo,
-    financialManagementCardsInfo,
+    financialManagementInfo,
   ];
 
   /// 日常生活
@@ -76,7 +112,7 @@ class FuncCardsInfoData {
   );
 
   /// 金融理财
-  static const financialManagementCardsInfo = CardsInfo(
+  static const financialManagementInfo = CardsInfo(
     '💰 金融理财',
     <CardInfo>[
       FuncCardInfoData.mortgageCalc,

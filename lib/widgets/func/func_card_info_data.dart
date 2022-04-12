@@ -44,23 +44,23 @@ class FuncCardInfoData {
   /// 进制转换
   static const baseConv = CardInfo(
     '进制转换',
-    '十进制、二进制...',
+    '十进制、二进制',
     Icons.looks_two_outlined,
     '/base-conv',
   );
 
-  /// 逻辑计算器
+  /// 逻辑运算
   static const logicCalc = CardInfo(
-    '逻辑计算器',
-    '或、且、非...',
+    '逻辑运算',
+    '或、且、非',
     Icons.check_circle_outline_rounded,
     '/logic-calc',
   );
 
-  /// 位计算器
+  /// 位运算
   static const bitCalc = CardInfo(
-    '位计算器',
-    '与、或...',
+    '位运算',
+    '与、或',
     Icons.exposure_zero_rounded,
     '/bit-calc',
   );
@@ -76,7 +76,7 @@ class FuncCardInfoData {
   /// 更多（常规计算）
   static const commonCalcMore = CardInfo(
     _moreText,
-    '逻辑计算器、位计算器...',
+    '逻辑运算、位运算',
     Icons.more_horiz_rounded,
     '/common-calc-more',
   );
@@ -84,7 +84,7 @@ class FuncCardInfoData {
   /// 全局设置
   static const globalSettings = CardInfo(
     '全局设置',
-    '主题、位数...',
+    '主题、小数位',
     Icons.settings,
     '/global-settings',
   );
@@ -107,18 +107,20 @@ class FuncCardInfoData {
 
   // 单位转换
   /// 基本单位
-  static const baseUnitConv = <CardInfo>[
+  static const baseUnit = <CardInfo>[
     lenConv,
     massConv,
     timeConv,
     currentConv,
     tempConv,
+    molarMassConv,
+    lightIntensityConv,
   ];
 
   /// 长度换算
   static const lenConv = CardInfo(
     '长度换算',
-    '米、千米...',
+    '米、千米',
     Icons.straighten_outlined,
     '/len-conv',
   );
@@ -126,7 +128,7 @@ class FuncCardInfoData {
   /// 质量换算
   static const massConv = CardInfo(
     '质量换算',
-    '千克、吨...',
+    '千克、吨',
     Icons.inventory_2_rounded,
     '/mass-conv',
   );
@@ -134,7 +136,7 @@ class FuncCardInfoData {
   /// 时间换算
   static const timeConv = CardInfo(
     '时间换算',
-    '秒、分...',
+    '时、分、秒',
     Icons.schedule_rounded,
     '/time-conv',
   );
@@ -142,7 +144,7 @@ class FuncCardInfoData {
   /// 电流换算
   static const currentConv = CardInfo(
     '电流换算',
-    '安培、毫安...',
+    '安培、毫安',
     Icons.flash_on_rounded,
     '/current-conv',
   );
@@ -150,21 +152,117 @@ class FuncCardInfoData {
   /// 温度换算
   static const tempConv = CardInfo(
     '温度换算',
-    '安培、毫安...',
+    '摄氏度、华氏度',
     Icons.thermostat_rounded,
     '/temp-conv',
   );
 
-  /// 物质的量
+  /// 摩尔质量
+  static const molarMassConv = CardInfo(
+    '摩尔质量',
+    'kg/mol、g/mol',
+    Icons.co2_rounded,
+    '/molar-mass-conv',
+  );
 
   /// 发光强度
+  static const lightIntensityConv = CardInfo(
+    '发光强度',
+    '坎德拉',
+    Icons.emoji_objects_outlined,
+    '/light-intensity-conv',
+  );
 
   /// 更多（基本单位）
   static const baseUnitMore = CardInfo(
     _moreText,
-    '电流换算、温度换算...',
+    '电流换算、温度换算',
     Icons.more_horiz_rounded,
     '/base-unit-more',
+  );
+
+  /// 常用单位
+  static const commonUnit = <CardInfo>[
+    areaConv,
+    pressureConv,
+    energyConv,
+    powerConv,
+    forceConv,
+    velocityConv,
+    angleConv,
+    dataStorageConv,
+  ];
+
+  /// 面积换算
+  static const areaConv = CardInfo(
+    '面积换算',
+    '平方米、平方公里',
+    Icons.grid_3x3_rounded,
+    '/area-conv',
+  );
+
+  /// 压力换算
+  static const pressureConv = CardInfo(
+    '压力换算',
+    '帕斯卡',
+    Icons.compress_rounded,
+    '/pressure-conv',
+  );
+
+  /// 能量和功
+  static const energyConv = CardInfo(
+    '能量和功',
+    '焦耳、千焦',
+    Icons.whatshot_rounded,
+    '/energy-conv',
+  );
+
+  /// 功率转换
+  static const powerConv = CardInfo(
+    '功率转换',
+    '瓦、千瓦',
+    Icons.power_rounded,
+    '/power-conv',
+  );
+
+  /// 力转换
+  static const forceConv = CardInfo(
+    '力转换',
+    '牛顿、exanewton',
+    Icons.waving_hand_rounded,
+    '/force-conv',
+  );
+
+  /// 速度转换
+  static const velocityConv = CardInfo(
+    '速度转换',
+    '米 / 秒、公里 / 小时',
+    Icons.speed_rounded,
+    '/velocity-conv',
+  );
+
+  /// 角度转换
+  static const angleConv = CardInfo(
+    '角度转换',
+    '角度、弧度',
+    Icons.arrow_back_ios_rounded,
+    '/angle-conv',
+  );
+
+  /// 储存容量
+  static const dataStorageConv = CardInfo(
+    '储存容量',
+    '比特、字节',
+    Icons.sd_card_outlined,
+    '/data-storage-conv',
+  );
+
+  /// 更多（常用单位）
+  static const commonUnitMore = CardInfo(
+    _moreText,
+    '功率转换、力转换',
+    Icons.more_horiz_rounded,
+    '/common-unit-more',
   );
 
   // 特殊计算
@@ -213,7 +311,7 @@ class FuncCardInfoData {
   /// 油耗量换算
   static const fuelConsumptionConv = CardInfo(
     '油耗量换算',
-    '百公里油耗...',
+    '百公里油耗',
     Icons.local_gas_station_rounded,
     '/fuel-consumption-conv',
   );
@@ -221,7 +319,7 @@ class FuncCardInfoData {
   /// 游戏价格
   static const gamePriceCalc = CardInfo(
     '游戏价格',
-    'Switch 游戏实际价格...',
+    'Switch 游戏实际购价',
     Icons.sports_esports_outlined,
     '/game-price-calc',
   );
@@ -229,7 +327,7 @@ class FuncCardInfoData {
   /// 更多（日常生活）
   static const dailyLifeMore = CardInfo(
     _moreText,
-    '运动热量、油耗量换算...',
+    '运动热量、油耗量换算',
     Icons.more_horiz_rounded,
     '/daily-life-more',
   );

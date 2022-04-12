@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../models/common/calc_model.dart';
-import '../../../themes/text_info.dart';
-import '../../../tool/calc/calc.dart';
-import '../../../widgets/common/calc/calc_body_content.dart';
-import '../../../widgets/common/page/general_page.dart';
-import '../../../widgets/commons/standard_calc/standard_calc_display.dart';
-import '../../../widgets/commons/standard_calc/standard_calc_panel.dart';
+import '../../models/common/calc_model.dart';
+import '../../themes/text_info.dart';
+import '../../tool/calc/calc.dart';
+import '../../widgets/commons/standard_calc/standard_calc_display.dart';
+import '../../widgets/commons/standard_calc/standard_calc_panel.dart';
+import '../../widgets/general/calc/calc_body_content.dart';
+import '../../widgets/general/page/general_page.dart';
 
 class StandardCalcPage extends StatelessWidget {
   const StandardCalcPage({Key? key}) : super(key: key);

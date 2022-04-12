@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../themes/text_info.dart';
-import '../../common/decoration/no_scroll_behavior_widget.dart';
+import '../../general/decoration/no_scroll_behavior_widget.dart';
 
 class StandardCalcDisplay extends StatelessWidget {
   const StandardCalcDisplay(

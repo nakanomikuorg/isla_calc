@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../widgets/common/calc/calc_body_content.dart';
-import '../../../widgets/common/calc/calc_panel.dart';
-import '../../../widgets/common/page/general_page.dart';
+import '../../widgets/general/calc/calc_body_content.dart';
+import '../../widgets/general/calc/calc_panel.dart';
+import '../../widgets/general/page/general_page.dart';
 
 class LenConvPage extends StatelessWidget {
   const LenConvPage({Key? key}) : super(key: key);

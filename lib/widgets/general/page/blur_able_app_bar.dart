@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:isla_calc/widgets/common/decoration/blur_widget.dart';
+import 'package:isla_calc/widgets/general/decoration/blur_widget.dart';
 import 'package:provider/provider.dart';
 
 import '../../../models/settings/theme_model.dart';

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../common/page/subtitle.dart';
-import '../common/sizebox/v_size_box.dart';
+import '../general/page/subtitle.dart';
+import '../general/size_box/v_size_box.dart';
 
 class SetItemGroup extends StatelessWidget {
   const SetItemGroup({
