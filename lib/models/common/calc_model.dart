@@ -50,15 +50,17 @@ class CalcModel extends ChangeNotifier {
   final _expBegin = StringBuffer();
   final _expEnd = StringBuffer();
 
+  var _originalExp = '';
   var _newExp = '';
-  var _currentAns = '';
+  var _currentAnsStr = '';
   var _baseOffset = 0;
   var _extentOffset = 0;
-  var _originalExp = '';
 
   get expCtl => _expCtl;
 
-  get currentAns => _currentAns;
+  get newExp => _newExp;
+
+  get currentAns => _currentAnsStr;
 
   void responseKey(String v) {
     _baseOffset = _expCtl.selection.baseOffset;
@@ -69,16 +71,17 @@ class CalcModel extends ChangeNotifier {
       return;
     }
 
-    _originalExp = _exp.toString();
     int rstOffset;
 
+    _originalExp = _newExp;
+    _exp.clear();
     _expBegin.clear();
     _expEnd.clear();
 
     _expEnd.write(
       _originalExp.substring(
-        _extentOffset == -1 ? _exp.length : _extentOffset,
-        _exp.length,
+        _extentOffset,
+        _originalExp.length,
       ),
     );
 
@@ -90,45 +93,59 @@ class CalcModel extends ChangeNotifier {
       _expBegin.write(
         _originalExp.substring(
           0,
-          _baseOffset == -1 ? _exp.length : _baseOffset,
+          _baseOffset,
         ),
       );
 
-      if (_operand.contains(v)) {
+      if (v == _equal) {
+        rstOffset = _responseEqualKey();
+      } else if (_operand.contains(v)) {
         rstOffset = _responseOperandKey(v);
       } else if (_operator.contains(v)) {
         rstOffset = _responseOperatorKey(v);
-      } else if (v == _equal) {
-        rstOffset = _responseEqualKey();
       } else {
         rstOffset = _baseOffset;
       }
     }
 
     _newExp = _exp.toString();
-
     _expCtl.value = _expCtl.value.copyWith(
       text: _newExp,
       selection: TextSelection.fromPosition(
-        TextPosition(offset: rstOffset),
+        TextPosition(
+          offset: rstOffset,
+        ),
       ),
       composing: TextRange.empty,
     );
 
     try {
-      _currentAns = Calc.calcExp(_newExp).toString();
+      _currentAnsStr = Calc.calcExp(_newExp).toString();
     } catch (e) {
-      _currentAns = '';
+      _currentAnsStr = '';
     }
+
+    notifyListeners();
   }
 
   int _responseEqualKey() {
-    return -1;
+    if (_currentAnsStr != '') {
+      _exp.write(
+        _currentAnsStr,
+      );
+
+      return _currentAnsStr.length;
+    } else {
+      _exp.write(
+        _originalExp,
+      );
+
+      return _extentOffset;
+    }
   }
 
   int _responseOperatorKey(String v) {
     _exp
-      ..clear()
       ..write(_expBegin.toString())
       ..write(v)
       ..write(_expEnd.toString());
@@ -138,17 +155,14 @@ class CalcModel extends ChangeNotifier {
 
   int _responseOperandKey(String v) {
     _exp
-      ..clear()
       ..write(_expBegin.toString())
       ..write(v)
       ..write(_expEnd.toString());
 
-    return _baseOffset + 1;
+    return _baseOffset + v.length;
   }
 
   int _responseACKey() {
-    _exp.clear();
-
     return 0;
   }
 
@@ -156,17 +170,17 @@ class CalcModel extends ChangeNotifier {
     int rstOffset;
 
     if (_baseOffset == _extentOffset) {
-      // 指针
+      // 选择的区域为指针
       _expBegin.write(
         _originalExp.substring(
           0,
-          _baseOffset == -1 ? _exp.length - 1 : _baseOffset - 1,
+          _baseOffset - 1,
         ),
       );
 
       rstOffset = _baseOffset - 1;
     } else {
-      // 选区
+      // 选择的区域为选区
       _expBegin.write(
         _originalExp.substring(
           0,
@@ -178,7 +192,6 @@ class CalcModel extends ChangeNotifier {
     }
 
     _exp
-      ..clear()
       ..write(_expBegin.toString())
       ..write(_expEnd.toString());
 

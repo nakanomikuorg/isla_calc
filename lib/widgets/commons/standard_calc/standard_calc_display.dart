@@ -1,17 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../../../models/common/calc_model.dart';
 import '../../../themes/text_info.dart';
 import '../../general/decoration/no_scroll_behavior_widget.dart';
 
 class StandardCalcDisplay extends StatelessWidget {
-  const StandardCalcDisplay(
-      this._expController, this._currentAns, this._expTextSize,
-      {Key? key})
-      : super(key: key);
-
-  final TextEditingController _expController;
-  final String _currentAns;
-  final double _expTextSize;
+  const StandardCalcDisplay({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,20 +23,17 @@ class StandardCalcDisplay extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: <Widget>[
-            Expanded(
+            const Expanded(
               flex: 3,
               child: Center(
-                child: ExpDisplay(
-                  _expController,
-                  _expTextSize,
-                ),
+                child: ExpDisplay(),
               ),
             ),
             Expanded(
               flex: 2,
               child: Container(
                 alignment: Alignment.bottomRight,
-                child: AnsDisplay(_currentAns),
+                child: const AnsDisplay(),
               ),
             ),
             const SizedBox(
@@ -55,34 +47,37 @@ class StandardCalcDisplay extends StatelessWidget {
 }
 
 class ExpDisplay extends StatelessWidget {
-  const ExpDisplay(this._expController, this._textSize, {Key? key})
-      : super(key: key);
-
-  final TextEditingController _expController;
-  final double _textSize;
+  const ExpDisplay({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(0.0, 16.0, 20.0, 16.0),
-      child: TweenAnimationBuilder<double>(
-        curve: Curves.easeIn,
-        duration: const Duration(milliseconds: 128),
-        tween: Tween(begin: _textSize, end: _textSize),
-        builder: (context, value, child) {
-          return TextField(
-            autocorrect: false,
-            autofocus: true,
-            controller: _expController,
-            decoration: null,
-            enableSuggestions: false,
-            readOnly: true,
-            showCursor: true,
-            style: TextStyle(
-              fontSize: value,
-              color: Theme.of(context).colorScheme.onSurface,
+      child: Consumer<CalcModel>(
+        builder: (context, calc, child) {
+          return TweenAnimationBuilder<double>(
+            curve: Curves.easeIn,
+            duration: const Duration(milliseconds: 128),
+            tween: Tween(
+              begin: TextInfo.getStandardCalcExpDisplayTextSize(calc.newExp),
+              end: TextInfo.getStandardCalcExpDisplayTextSize(calc.newExp),
             ),
-            textAlign: TextAlign.right,
+            builder: (context, value, child) {
+              return TextField(
+                autocorrect: false,
+                autofocus: true,
+                controller: calc.expCtl,
+                decoration: null,
+                enableSuggestions: false,
+                readOnly: true,
+                showCursor: true,
+                style: TextStyle(
+                  fontSize: value,
+                  color: Theme.of(context).colorScheme.onSurface,
+                ),
+                textAlign: TextAlign.right,
+              );
+            },
           );
         },
       ),
@@ -91,22 +86,23 @@ class ExpDisplay extends StatelessWidget {
 }
 
 class AnsDisplay extends StatelessWidget {
-  const AnsDisplay(this._currentAns, {Key? key}) : super(key: key);
-
-  final String _currentAns;
+  const AnsDisplay({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(0.0, 0.0, 20.0, 16.0),
-      child: Text(
-        _currentAns,
-        textAlign: TextAlign.right,
-        style: TextStyle(
-          fontSize: TextInfo.getStandardCalcAnsDisplayTextSize(_currentAns),
-          color: Theme.of(context).colorScheme.onSurfaceVariant,
-        ),
-      ),
+      child: Consumer<CalcModel>(builder: (context, calc, child) {
+        return Text(
+          calc.currentAns,
+          textAlign: TextAlign.right,
+          style: TextStyle(
+            fontSize:
+                TextInfo.getStandardCalcAnsDisplayTextSize(calc.currentAns),
+            color: Theme.of(context).colorScheme.onSurfaceVariant,
+          ),
+        );
+      }),
     );
   }
 }

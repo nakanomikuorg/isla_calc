@@ -42,12 +42,12 @@ class Calc {
         os = exp.substring(i, i + oLen);
 
         if (numSB.length == 0) {
-          if (isSign && (s == '-' || s == '+')) {
-            if ('-' == s) {
+          if (isSign && (s == '−' || s == '+')) {
+            if ('−' == s) {
               isPositive = !isPositive;
             }
 
-            isSign = false;
+            isSign = true;
             i++;
           } else {
             o = Operator.getOperator(exp.substring(i, i + oLen));
