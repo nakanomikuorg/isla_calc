@@ -3,45 +3,32 @@ import 'package:provider/provider.dart';
 
 import '../../../models/common/calc_model.dart';
 import '../../../themes/text_info.dart';
-import '../../general/decoration/no_scroll_behavior_widget.dart';
+import '../../general/calc/calc_display.dart';
 
 class StandardCalcDisplay extends StatelessWidget {
   const StandardCalcDisplay({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.surface,
-        borderRadius: const BorderRadius.vertical(
-          bottom: Radius.circular(20.0),
+    return CalcDisplay(
+      children: <Widget>[
+        const Expanded(
+          flex: 3,
+          child: Center(
+            child: ExpDisplay(),
+          ),
         ),
-      ),
-      child: ScrollConfiguration(
-        behavior: NoScrollBehaviorWidget(),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: <Widget>[
-            const Expanded(
-              flex: 3,
-              child: Center(
-                child: ExpDisplay(),
-              ),
-            ),
-            Expanded(
-              flex: 2,
-              child: Container(
-                alignment: Alignment.bottomRight,
-                child: const AnsDisplay(),
-              ),
-            ),
-            const SizedBox(
-              height: 16.0,
-            ),
-          ],
+        Expanded(
+          flex: 2,
+          child: Container(
+            alignment: Alignment.bottomRight,
+            child: const AnsDisplay(),
+          ),
         ),
-      ),
+        const SizedBox(
+          height: 16.0,
+        ),
+      ],
     );
   }
 }
