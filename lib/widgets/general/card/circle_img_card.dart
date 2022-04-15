@@ -26,9 +26,7 @@ class CircleImgCard extends StatelessWidget {
       ),
       title: title,
       subtitle: subtitle,
-      onPressed: () {
-        onPressed();
-      },
+      onPressed: onPressed,
     );
   }
 }

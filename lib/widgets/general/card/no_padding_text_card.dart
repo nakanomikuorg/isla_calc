@@ -1,30 +1,35 @@
 import 'package:flutter/material.dart';
 
+import '../../../themes/text_info.dart';
 import '../../../tool/tools.dart';
-import 'custom_card.dart';
+import 'no_padding_custom_card.dart';
 
-class IconCard extends StatelessWidget {
-  const IconCard({
+class NoPaddingTextCard extends StatelessWidget {
+  const NoPaddingTextCard({
     Key? key,
     required this.title,
     this.subtitle,
-    required this.icon,
+    required this.text,
     this.trailing,
     required this.onPressed,
+    this.shadowColor,
+    this.radius = 12.0,
   }) : super(key: key);
 
   final String title;
   final String? subtitle;
-  final IconData icon;
+  final String text;
   final Widget? trailing;
   final Function onPressed;
+  final Color? shadowColor;
+  final double radius;
 
   @override
   Widget build(BuildContext context) {
     var scaleFactor = MediaQuery.of(context).textScaleFactor;
     var bool = Tool.nextBool();
 
-    return CustomCard(
+    return NoPaddingCustomCard(
       title: title,
       subtitle: subtitle,
       leading: Container(
@@ -36,15 +41,24 @@ class IconCard extends StatelessWidget {
               : Theme.of(context).colorScheme.tertiary,
           borderRadius: BorderRadius.circular(scaleFactor * 20.0),
         ),
-        child: Icon(
-          icon,
-          size: scaleFactor * 24.0,
-          color: bool
-              ? Theme.of(context).colorScheme.onPrimary
-              : Theme.of(context).colorScheme.onTertiary,
+        child: Center(
+          child: Text(
+            text,
+            style: TextStyle(
+              fontSize: 16.0,
+              fontWeight: FontWeight.w500,
+              color: bool
+                  ? Theme.of(context).colorScheme.onPrimary
+                  : Theme.of(context).colorScheme.onTertiary,
+              fontFamilyFallback: TextInfo.fontFamilyFallback,
+            ),
+          ),
         ),
       ),
+      trailing: trailing,
       onPressed: onPressed,
+      shadowColor: shadowColor,
+      radius: radius,
     );
   }
 }
