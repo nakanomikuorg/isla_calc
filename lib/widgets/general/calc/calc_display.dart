@@ -6,9 +6,11 @@ class CalcDisplay extends StatelessWidget {
   const CalcDisplay({
     Key? key,
     required this.children,
+    this.isScrollAble = true,
   }) : super(key: key);
 
   final List<Widget> children;
+  final bool isScrollAble;
 
   @override
   Widget build(BuildContext context) {
@@ -20,13 +22,17 @@ class CalcDisplay extends StatelessWidget {
           bottom: Radius.circular(20.0),
         ),
       ),
-      child: ScrollConfiguration(
-        behavior: NoScrollBehaviorWidget(),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: children,
-        ),
-      ),
+      child: isScrollAble
+          ? ScrollConfiguration(
+              behavior: NoScrollBehaviorWidget(),
+              child: ListView(
+                children: children,
+              ),
+            )
+          : Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: children,
+            ),
     );
   }
 }

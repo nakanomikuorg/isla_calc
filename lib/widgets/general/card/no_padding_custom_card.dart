@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'custom_list_tile.dart';
+
 class NoPaddingCustomCard extends StatelessWidget {
   const NoPaddingCustomCard({
     Key? key,
@@ -7,7 +9,9 @@ class NoPaddingCustomCard extends StatelessWidget {
     this.subtitle,
     this.leading,
     this.trailing,
-    required this.onPressed,
+    this.onPressed,
+    this.onFocusChange,
+    this.primaryColor,
     this.shadowColor,
     this.radius = 12.0,
   }) : super(key: key);
@@ -16,7 +20,9 @@ class NoPaddingCustomCard extends StatelessWidget {
   final String? subtitle;
   final Widget? leading;
   final Widget? trailing;
-  final Function onPressed;
+  final VoidCallback? onPressed;
+  final ValueChanged<bool>? onFocusChange;
+  final Color? primaryColor;
   final Color? shadowColor;
   final double radius;
 
@@ -26,7 +32,9 @@ class NoPaddingCustomCard extends StatelessWidget {
       clipBehavior: Clip.antiAlias,
       style: ElevatedButton.styleFrom(
         padding: const EdgeInsets.all(0.0),
-        primary: Theme.of(context).colorScheme.surface,
+        primary: primaryColor == null
+            ? Theme.of(context).colorScheme.surface
+            : primaryColor!,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(
             Radius.circular(radius),
@@ -34,10 +42,9 @@ class NoPaddingCustomCard extends StatelessWidget {
         ),
         shadowColor: shadowColor,
       ),
-      onPressed: () {
-        onPressed();
-      },
-      child: ListTile(
+      onPressed: onPressed,
+      onFocusChange: onFocusChange,
+      child: CustomListTile(
         leading: leading,
         trailing: trailing,
         title: Text(

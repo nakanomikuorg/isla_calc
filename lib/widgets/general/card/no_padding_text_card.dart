@@ -11,7 +11,9 @@ class NoPaddingTextCard extends StatelessWidget {
     this.subtitle,
     required this.text,
     this.trailing,
-    required this.onPressed,
+    this.onPressed,
+    this.onFocusChange,
+    this.primaryColor,
     this.shadowColor,
     this.radius = 12.0,
   }) : super(key: key);
@@ -20,7 +22,9 @@ class NoPaddingTextCard extends StatelessWidget {
   final String? subtitle;
   final String text;
   final Widget? trailing;
-  final Function onPressed;
+  final VoidCallback? onPressed;
+  final ValueChanged<bool>? onFocusChange;
+  final Color? primaryColor;
   final Color? shadowColor;
   final double radius;
 
@@ -57,6 +61,8 @@ class NoPaddingTextCard extends StatelessWidget {
       ),
       trailing: trailing,
       onPressed: onPressed,
+      onFocusChange: onFocusChange,
+      primaryColor: primaryColor,
       shadowColor: shadowColor,
       radius: radius,
     );

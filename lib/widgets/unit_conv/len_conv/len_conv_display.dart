@@ -1,74 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
-import '../../../models/common/calc_model.dart';
 import '../../general/calc/calc_display.dart';
-import '../../general/card/no_padding_text_card.dart';
+import 'len_conv_entry_display.dart';
 
 class LenConvDisplay extends StatelessWidget {
   const LenConvDisplay({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return CalcDisplay(
+    return const CalcDisplay(
       children: <Widget>[
-        NoPaddingTextCard(
-          title: 'km',
-          subtitle: '千米',
-          text: 'K',
-          radius: 20.0,
-          shadowColor: Colors.transparent,
-          trailing: SizedBox(
-            child: Consumer<CalcModel>(
-              builder: (context, calc, child) {
-                return TextField(
-                  autocorrect: false,
-                  autofocus: true,
-                  decoration: null,
-                  controller: calc.expCtl,
-                  enableSuggestions: false,
-                  readOnly: true,
-                  showCursor: true,
-                  style: TextStyle(
-                    fontSize: 32,
-                    color: Theme.of(context).colorScheme.onSurface,
-                  ),
-                  textAlign: TextAlign.right,
-                );
-              },
-            ),
-            width: MediaQuery.of(context).size.width * 0.6,
-          ),
-          onPressed: () {},
+        LenConvEntryDisplay(
+          unitName: '千米',
+          unitSymbol: 'km',
         ),
-        NoPaddingTextCard(
-          title: 'm',
-          subtitle: '米',
-          text: 'M',
-          radius: 20.0,
-          shadowColor: Colors.transparent,
-          trailing: SizedBox(
-            child: Consumer<CalcModel>(
-              builder: (context, calc, child) {
-                return TextField(
-                  autocorrect: false,
-                  autofocus: true,
-                  decoration: null,
-                  controller: calc.expCtl,
-                  enableSuggestions: false,
-                  readOnly: true,
-                  showCursor: true,
-                  style: TextStyle(
-                    fontSize: 32,
-                    color: Theme.of(context).colorScheme.onSurface,
-                  ),
-                  textAlign: TextAlign.right,
-                );
-              },
-            ),
-            width: MediaQuery.of(context).size.width * 0.6,
-          ),
-          onPressed: () {},
+        LenConvEntryDisplay(
+          unitName: '米',
+          unitSymbol: 'm',
         ),
       ],
     );

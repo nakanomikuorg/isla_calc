@@ -9,20 +9,23 @@ class CircleImgCard extends StatelessWidget {
     this.subtitle,
     required this.img,
     this.trailing,
-    required this.onPressed,
+    this.onPressed,
   }) : super(key: key);
 
   final String title;
   final String? subtitle;
   final String img;
   final Widget? trailing;
-  final Function onPressed;
+  final VoidCallback? onPressed;
 
   @override
   Widget build(BuildContext context) {
+    var scaleFactor = MediaQuery.of(context).textScaleFactor;
+
     return CustomCard(
       leading: CircleAvatar(
         foregroundImage: AssetImage(img),
+        radius: scaleFactor * 20.0,
       ),
       title: title,
       subtitle: subtitle,

@@ -10,14 +10,14 @@ class CustomCard extends StatelessWidget {
     this.subtitle,
     this.leading,
     this.trailing,
-    required this.onPressed,
+    this.onPressed,
   }) : super(key: key);
 
   final String title;
   final String? subtitle;
   final Widget? leading;
   final Widget? trailing;
-  final Function onPressed;
+  final VoidCallback? onPressed;
 
   @override
   Widget build(BuildContext context) {

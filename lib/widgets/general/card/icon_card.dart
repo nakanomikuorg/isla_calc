@@ -10,14 +10,14 @@ class IconCard extends StatelessWidget {
     this.subtitle,
     required this.icon,
     this.trailing,
-    required this.onPressed,
+    this.onPressed,
   }) : super(key: key);
 
   final String title;
   final String? subtitle;
   final IconData icon;
   final Widget? trailing;
-  final Function onPressed;
+  final VoidCallback? onPressed;
 
   @override
   Widget build(BuildContext context) {
