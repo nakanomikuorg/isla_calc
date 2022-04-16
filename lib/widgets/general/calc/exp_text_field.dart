@@ -5,11 +5,13 @@ class ExpTextField extends StatelessWidget {
     Key? key,
     required this.color,
     required this.fontSize,
+    this.focusNode,
     this.controller,
   }) : super(key: key);
 
   final Color color;
   final double fontSize;
+  final FocusNode? focusNode;
   final TextEditingController? controller;
 
   @override
@@ -20,6 +22,7 @@ class ExpTextField extends StatelessWidget {
       controller: controller,
       decoration: null,
       enableSuggestions: false,
+      focusNode: focusNode,
       showCursor: true,
       style: TextStyle(
         color: color,

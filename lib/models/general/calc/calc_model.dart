@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:isla_calc/tool/tools.dart';
 
-import '../../tool/calc/calc.dart';
+import '../../../tool/calc/calc.dart';
 
 class CalcModel extends ChangeNotifier {
   static const _operand = <String>{
@@ -53,8 +53,11 @@ class CalcModel extends ChangeNotifier {
 
   var _originalExp = '';
   var _newExp = '';
+  var _originalAnsStr = '';
+  var _originalAns = double.nan;
   var _currentAnsStr = '';
-  var _currentAns = 0.0;
+  var _currentAns = double.nan;
+  var _hasAns = false;
   var _baseOffset = 0;
   var _extentOffset = 0;
 
@@ -62,7 +65,17 @@ class CalcModel extends ChangeNotifier {
 
   get newExp => _newExp;
 
-  get currentAns => _currentAnsStr;
+  get originalExp => _originalExp;
+
+  get originalAns => _originalAns;
+
+  get originalAnsStr => _originalAnsStr;
+
+  get currentAnsStr => _currentAnsStr;
+
+  get currentAns => _currentAns;
+
+  get hasAns => _hasAns;
 
   void responseKey(String v) {
     _baseOffset = _expCtl.selection.baseOffset;
@@ -123,15 +136,21 @@ class CalcModel extends ChangeNotifier {
 
     try {
       _currentAns = Calc.calcExp(_newExp);
-      _currentAnsStr = Tool.isInt(_currentAns)
-          ? _currentAns.truncate().toString()
-          : _currentAns.toString();
+      _originalAns = _currentAns;
+
+      _currentAnsStr = Tool.getNumStr(_currentAns);
+      _originalAnsStr = _currentAnsStr;
 
       if (_newExp == _currentAnsStr) {
         _currentAnsStr = '';
       }
+
+      _hasAns = true;
     } catch (e) {
+      _currentAns = double.nan;
       _currentAnsStr = '';
+
+      _hasAns = false;
     }
 
     notifyListeners();

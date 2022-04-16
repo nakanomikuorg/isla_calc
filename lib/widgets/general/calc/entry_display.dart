@@ -8,17 +8,33 @@ class EntryDisplay extends StatefulWidget {
     Key? key,
     required this.unitName,
     required this.unitSymbol,
+    required this.isFocused,
   }) : super(key: key);
 
   final String unitName;
   final String unitSymbol;
+  final bool isFocused;
 
   @override
   State<EntryDisplay> createState() => _EntryDisplayState();
 }
 
 class _EntryDisplayState extends State<EntryDisplay> {
-  var _isFocused = false;
+  late FocusNode _focusNode;
+  late bool _isFocused;
+
+  @override
+  void initState() {
+    super.initState();
+    _isFocused = widget.isFocused;
+    _focusNode = FocusNode();
+  }
+
+  @override
+  void dispose() {
+    _focusNode.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,10 +44,19 @@ class _EntryDisplayState extends State<EntryDisplay> {
       text: widget.unitSymbol.substring(0, 1).toUpperCase(),
       radius: 0.0,
       shadowColor: Colors.transparent,
-      trailing: const EntryCoreDisplay(),
+      trailing: EntryCoreDisplay(
+        focusNode: _focusNode,
+        isFocused: _isFocused,
+      ),
       primaryColor:
           _isFocused ? Theme.of(context).colorScheme.surfaceVariant : null,
-      onPressed: () {},
+      onPressed: () {
+        setState(() {
+          _isFocused = true;
+        });
+
+        _focusNode.requestFocus();
+      },
       onFocusChange: (v) {
         setState(() {
           _isFocused = v;

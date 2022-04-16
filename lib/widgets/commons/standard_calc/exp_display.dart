@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../models/common/calc_model.dart';
+import '../../../models/general/calc/calc_model.dart';
 import '../../../themes/text_info.dart';
 import '../../general/calc/exp_text_field.dart';
 

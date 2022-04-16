@@ -13,10 +13,12 @@ class LenConvDisplay extends StatelessWidget {
         LenConvEntryDisplay(
           unitName: '千米',
           unitSymbol: 'km',
+          isFocused: true,
         ),
         LenConvEntryDisplay(
           unitName: '米',
           unitSymbol: 'm',
+          isFocused: false,
         ),
       ],
     );

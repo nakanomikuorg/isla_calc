@@ -7,16 +7,19 @@ class LenConvEntryDisplay extends StatelessWidget {
     Key? key,
     required this.unitName,
     required this.unitSymbol,
+    required this.isFocused,
   }) : super(key: key);
 
   final String unitName;
   final String unitSymbol;
+  final bool isFocused;
 
   @override
   Widget build(BuildContext context) {
     return EntryDisplay(
       unitName: unitName,
       unitSymbol: unitSymbol,
+      isFocused: isFocused,
     );
   }
 }

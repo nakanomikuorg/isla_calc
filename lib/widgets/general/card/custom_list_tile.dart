@@ -62,7 +62,13 @@ class CustomListTile extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
+              VSizeBox(
+                size: minVerticalPadding,
+              ),
               trailing!,
+              VSizeBox(
+                size: minVerticalPadding,
+              ),
             ],
           ),
         const HSizeBox(),

@@ -101,7 +101,7 @@ class _AppearanceSettingsState extends State<AppearanceSettings> {
         ),
         MultipleChoiceSettings(
           title: '配色',
-          subtitle: Tool.getColorString(_currentColor),
+          subtitle: Tool.getColorStr(_currentColor),
           onTap: () async {
             bool? isChanged = await _changeColor(context);
 
