@@ -80,10 +80,11 @@ class _ColorfulAppState extends State<ColorfulApp> {
             if (pageContentBuilder != null) {
               if (settings.arguments != null) {
                 final Route route = MaterialPageRoute(
-                    builder: (context) => pageContentBuilder(
-                          context,
-                          arguments: settings.arguments,
-                        ));
+                  builder: (context) => pageContentBuilder(
+                    context,
+                    arguments: settings.arguments,
+                  ),
+                );
                 return route;
               } else {
                 final Route route = MaterialPageRoute(
@@ -91,9 +92,11 @@ class _ColorfulAppState extends State<ColorfulApp> {
                 );
                 return route;
               }
+            } else {
+              return MaterialPageRoute(
+                builder: (context) => routes['/unimplemented']!(context),
+              );
             }
-
-            return null;
           },
         );
       },

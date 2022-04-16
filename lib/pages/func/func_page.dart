@@ -17,7 +17,7 @@ class FuncPage extends StatefulWidget {
 
 class _FuncPageState extends State<FuncPage> {
   static const _homePage = FuncPageBody(
-    title: '艾拉计算器',
+    title: '艾拉计算器（Beta）',
     emj: '🍨',
     cardsInfos: FuncCardsInfoData.homePageInfos,
   );

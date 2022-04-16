@@ -6,6 +6,7 @@ import '../pages/func/common_calc_more_page.dart';
 import '../pages/func/common_unit_more_page.dart';
 import '../pages/func/func_page.dart';
 import '../pages/settings/settings_page.dart';
+import '../pages/unimplemented_page.dart';
 import '../pages/unit_conv/len_conv_page.dart';
 
 // 配置路由
@@ -19,4 +20,5 @@ final routes = {
   '/base-unit-more': (context) => const BaseUnitMorePage(),
   '/common-unit-more': (context) => const CommonUnitMorePage(),
   '/about-the-app': (context) => const AboutTheAppPage(),
+  '/unimplemented': (context) => const UnimplementedPage(),
 };
