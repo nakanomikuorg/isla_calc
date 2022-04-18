@@ -1,493 +1,612 @@
 import 'package:flutter/material.dart';
 
+import '../../generated/l10n.dart';
 import '../../models/func/card_info.dart';
 
 class FuncCardInfoData {
-  static const _moreText = '更多';
+  static String _getMoreText(BuildContext context) {
+    return S.of(context).moreText;
+  }
 
   // 艾拉首页
   /// 常规计算
-  static const commonCalc = <CardInfo>[
-    standardCalc,
-    scientificCalc,
-    fractionCalc,
-    baseConv,
-    logicCalc,
-    bitCalc,
-    desmos,
-  ];
+  static List<CardInfo> getCommonCalc(BuildContext context) {
+    return <CardInfo>[
+      getStandardCalc(context),
+      getScientificCalc(context),
+      getFractionCalc(context),
+      getBaseConv(context),
+      getLogicCalc(context),
+      getBitCalc(context),
+      getDesmos(context),
+    ];
+  }
 
   /// 标准计算器
-  static const standardCalc = CardInfo(
-    '标准计算器',
-    '基本计算',
-    Icons.calculate_outlined,
-    '/standard-calc',
-  );
+  static CardInfo getStandardCalc(BuildContext context) {
+    return CardInfo(
+      S.of(context).standardCalcTitle,
+      S.of(context).standardCalcDesc,
+      Icons.calculate_outlined,
+      '/standard-calc',
+    );
+  }
 
   /// 科学计算器
-  static const scientificCalc = CardInfo(
-    '科学计算器',
-    '类卡西欧',
-    Icons.analytics_outlined,
-    '/scientific-calc',
-  );
+  static CardInfo getScientificCalc(BuildContext context) {
+    return CardInfo(
+      S.of(context).scientificCalcTitle,
+      S.of(context).scientificCalcDesc,
+      Icons.analytics_outlined,
+      '/scientific-calc',
+    );
+  }
 
   /// 分数计算器
-  static const fractionCalc = CardInfo(
-    '分数计算器',
-    '分数键盘',
-    Icons.ballot_outlined,
-    '/fraction-calc',
-  );
+  static CardInfo getFractionCalc(BuildContext context) {
+    return CardInfo(
+      S.of(context).fractionCalcTitle,
+      S.of(context).fractionCalcDesc,
+      Icons.ballot_outlined,
+      '/fraction-calc',
+    );
+  }
 
   /// 进制转换
-  static const baseConv = CardInfo(
-    '进制转换',
-    '十进制、二进制',
-    Icons.looks_two_outlined,
-    '/base-conv',
-  );
+  static CardInfo getBaseConv(BuildContext context) {
+    return CardInfo(
+      S.of(context).baseConvTitle,
+      S.of(context).baseConvDesc,
+      Icons.looks_two_outlined,
+      '/base-conv',
+    );
+  }
 
   /// 逻辑运算
-  static const logicCalc = CardInfo(
-    '逻辑运算',
-    '或、且、非',
-    Icons.check_circle_outline_rounded,
-    '/logic-calc',
-  );
+  static CardInfo getLogicCalc(BuildContext context) {
+    return CardInfo(
+      S.of(context).logicCalcTitle,
+      S.of(context).logicCalcDesc,
+      Icons.check_circle_outline_rounded,
+      '/logic-calc',
+    );
+  }
 
   /// 位运算
-  static const bitCalc = CardInfo(
-    '位运算',
-    '与、或',
-    Icons.exposure_zero_rounded,
-    '/bit-calc',
-  );
+  static CardInfo getBitCalc(BuildContext context) {
+    return CardInfo(
+      S.of(context).bitCalcTitle,
+      S.of(context).bitCalcDesc,
+      Icons.exposure_zero_rounded,
+      '/bit-calc',
+    );
+  }
 
   /// Desmos
-  static const desmos = CardInfo(
-    'Desmos',
-    'WebView',
-    Icons.show_chart_rounded,
-    '/desmos',
-  );
+  static CardInfo getDesmos(BuildContext context) {
+    return CardInfo(
+      S.of(context).desmosTitle,
+      S.of(context).desmosDesc,
+      Icons.show_chart_rounded,
+      '/desmos',
+    );
+  }
 
   /// 更多（常规计算）
-  static const commonCalcMore = CardInfo(
-    _moreText,
-    '逻辑运算、位运算',
-    Icons.more_horiz_rounded,
-    '/common-calc-more',
-  );
+  static CardInfo getCommonCalcMore(BuildContext context) {
+    return CardInfo(
+      _getMoreText(context),
+      S.of(context).commonCalcMoreDesc,
+      Icons.more_horiz_rounded,
+      '/common-calc-more',
+    );
+  }
 
   /// 全局设置
-  static const globalSettings = CardInfo(
-    '全局设置',
-    '主题、小数位',
-    Icons.settings,
-    '/global-settings',
-  );
+  static CardInfo getGlobalSettings(BuildContext context) {
+    return CardInfo(
+      S.of(context).globalSettingsTitle,
+      S.of(context).globalSettingsDesc,
+      Icons.settings,
+      '/global-settings',
+    );
+  }
 
   /// 相关说明
-  static const relatedInstructions = CardInfo(
-    '相关说明',
-    '使用技巧',
-    Icons.book_outlined,
-    '/related-instructions',
-  );
+  static CardInfo getRelatedInstructions(BuildContext context) {
+    return CardInfo(
+      S.of(context).relatedInstructionsTitle,
+      S.of(context).relatedInstructionsDesc,
+      Icons.book_outlined,
+      '/related-instructions',
+    );
+  }
 
   /// 关于应用
-  static const aboutTheApp = CardInfo(
-    '关于应用',
-    '参与贡献',
-    Icons.info_outline_rounded,
-    '/about-the-app',
-  );
+  static CardInfo getAboutTheApp(BuildContext context) {
+    return CardInfo(
+      S.of(context).aboutTheAppTitle,
+      S.of(context).aboutTheAppDesc,
+      Icons.info_outline_rounded,
+      '/about-the-app',
+    );
+  }
 
   // 单位转换
   /// 基本单位
-  static const baseUnit = <CardInfo>[
-    lenConv,
-    massConv,
-    timeConv,
-    currentConv,
-    tempConv,
-    molarMassConv,
-    lightIntensityConv,
-  ];
+  static List<CardInfo> getBaseUnit(BuildContext context) {
+    return <CardInfo>[
+      getLenConv(context),
+      getMassConv(context),
+      getTimeConv(context),
+      getCurrentConv(context),
+      getTempConv(context),
+      getMolarMassConv(context),
+      getLightIntensityConv(context),
+    ];
+  }
 
   /// 长度换算
-  static const lenConv = CardInfo(
-    '长度换算',
-    '米、千米',
-    Icons.straighten_outlined,
-    '/len-conv',
-  );
+  static CardInfo getLenConv(BuildContext context) {
+    return CardInfo(
+      S.of(context).lenConvTitle,
+      S.of(context).lenConvDesc,
+      Icons.straighten_outlined,
+      '/len-conv',
+    );
+  }
 
   /// 质量换算
-  static const massConv = CardInfo(
-    '质量换算',
-    '千克、吨',
-    Icons.inventory_2_rounded,
-    '/mass-conv',
-  );
+  static CardInfo getMassConv(BuildContext context) {
+    return CardInfo(
+      S.of(context).massConvTitle,
+      S.of(context).massConvDesc,
+      Icons.inventory_2_rounded,
+      '/mass-conv',
+    );
+  }
 
   /// 时间换算
-  static const timeConv = CardInfo(
-    '时间换算',
-    '时、分、秒',
-    Icons.schedule_rounded,
-    '/time-conv',
-  );
+  static CardInfo getTimeConv(BuildContext context) {
+    return CardInfo(
+      S.of(context).timeConvTitle,
+      S.of(context).timeConvDesc,
+      Icons.schedule_rounded,
+      '/time-conv',
+    );
+  }
 
   /// 电流换算
-  static const currentConv = CardInfo(
-    '电流换算',
-    '安培、毫安',
-    Icons.flash_on_rounded,
-    '/current-conv',
-  );
+  static CardInfo getCurrentConv(BuildContext context) {
+    return CardInfo(
+      S.of(context).currentConvTitle,
+      S.of(context).currentConvDesc,
+      Icons.flash_on_rounded,
+      '/current-conv',
+    );
+  }
 
   /// 温度换算
-  static const tempConv = CardInfo(
-    '温度换算',
-    '摄氏度、华氏度',
-    Icons.thermostat_rounded,
-    '/temp-conv',
-  );
+  static CardInfo getTempConv(BuildContext context) {
+    return CardInfo(
+      S.of(context).tempConvTitle,
+      S.of(context).tempConvDesc,
+      Icons.thermostat_rounded,
+      '/temp-conv',
+    );
+  }
 
   /// 摩尔质量
-  static const molarMassConv = CardInfo(
-    '摩尔质量',
-    'kg/mol、g/mol',
-    Icons.co2_rounded,
-    '/molar-mass-conv',
-  );
+  static CardInfo getMolarMassConv(BuildContext context) {
+    return CardInfo(
+      S.of(context).molarMassConvTitle,
+      S.of(context).molarMassConvDesc,
+      Icons.co2_rounded,
+      '/molar-mass-conv',
+    );
+  }
 
   /// 发光强度
-  static const lightIntensityConv = CardInfo(
-    '发光强度',
-    '坎德拉',
-    Icons.emoji_objects_outlined,
-    '/light-intensity-conv',
-  );
+  static CardInfo getLightIntensityConv(BuildContext context) {
+    return CardInfo(
+      S.of(context).lightIntensityConvTitle,
+      S.of(context).lightIntensityConvDesc,
+      Icons.emoji_objects_outlined,
+      '/light-intensity-conv',
+    );
+  }
 
   /// 更多（基本单位）
-  static const baseUnitMore = CardInfo(
-    _moreText,
-    '电流换算、温度换算',
-    Icons.more_horiz_rounded,
-    '/base-unit-more',
-  );
+  static CardInfo getBaseUnitMore(BuildContext context) {
+    return CardInfo(
+      _getMoreText(context),
+      S.of(context).baseUnitMoreDesc,
+      Icons.more_horiz_rounded,
+      '/base-unit-more',
+    );
+  }
 
   /// 常用单位
-  static const commonUnit = <CardInfo>[
-    areaConv,
-    pressureConv,
-    energyConv,
-    powerConv,
-    forceConv,
-    velocityConv,
-    angleConv,
-    dataStorageConv,
-  ];
+  static List<CardInfo> getCommonUnit(BuildContext context) {
+    return <CardInfo>[
+      getAreaConv(context),
+      getPressureConv(context),
+      getEnergyConv(context),
+      getPowerConv(context),
+      getForceConv(context),
+      getVelocityConv(context),
+      getAngleConv(context),
+      getDataStorageConv(context),
+    ];
+  }
 
   /// 面积换算
-  static const areaConv = CardInfo(
-    '面积换算',
-    '平方米、平方公里',
-    Icons.grid_3x3_rounded,
-    '/area-conv',
-  );
+  static CardInfo getAreaConv(BuildContext context) {
+    return CardInfo(
+      S.of(context).areaConvTitle,
+      S.of(context).areaConvDesc,
+      Icons.grid_3x3_rounded,
+      '/area-conv',
+    );
+  }
 
   /// 压力换算
-  static const pressureConv = CardInfo(
-    '压力换算',
-    '帕斯卡',
-    Icons.compress_rounded,
-    '/pressure-conv',
-  );
+  static CardInfo getPressureConv(BuildContext context) {
+    return CardInfo(
+      S.of(context).pressureConvTitle,
+      S.of(context).pressureConvDesc,
+      Icons.compress_rounded,
+      '/pressure-conv',
+    );
+  }
 
   /// 能量和功
-  static const energyConv = CardInfo(
-    '能量和功',
-    '焦耳、千焦',
-    Icons.whatshot_rounded,
-    '/energy-conv',
-  );
+  static CardInfo getEnergyConv(BuildContext context) {
+    return CardInfo(
+      S.of(context).energyConvTitle,
+      S.of(context).energyConvDesc,
+      Icons.whatshot_rounded,
+      '/energy-conv',
+    );
+  }
 
   /// 功率转换
-  static const powerConv = CardInfo(
-    '功率转换',
-    '瓦、千瓦',
-    Icons.power_rounded,
-    '/power-conv',
-  );
+  static CardInfo getPowerConv(BuildContext context) {
+    return CardInfo(
+      S.of(context).powerConvTitle,
+      S.of(context).powerConvDesc,
+      Icons.power_rounded,
+      '/power-conv',
+    );
+  }
 
   /// 力转换
-  static const forceConv = CardInfo(
-    '力转换',
-    '牛顿、exanewton',
-    Icons.waving_hand_rounded,
-    '/force-conv',
-  );
+  static CardInfo getForceConv(BuildContext context) {
+    return CardInfo(
+      S.of(context).forceConvTitle,
+      S.of(context).forceConvDesc,
+      Icons.waving_hand_rounded,
+      '/force-conv',
+    );
+  }
 
   /// 速度转换
-  static const velocityConv = CardInfo(
-    '速度转换',
-    '米 / 秒、公里 / 小时',
-    Icons.speed_rounded,
-    '/velocity-conv',
-  );
+  static CardInfo getVelocityConv(BuildContext context) {
+    return CardInfo(
+      S.of(context).velocityConvTitle,
+      S.of(context).velocityConvDesc,
+      Icons.speed_rounded,
+      '/velocity-conv',
+    );
+  }
 
   /// 角度转换
-  static const angleConv = CardInfo(
-    '角度转换',
-    '角度、弧度',
-    Icons.arrow_back_ios_rounded,
-    '/angle-conv',
-  );
+  static CardInfo getAngleConv(BuildContext context) {
+    return CardInfo(
+      S.of(context).angleConvTitle,
+      S.of(context).angleConvDesc,
+      Icons.arrow_back_ios_rounded,
+      '/angle-conv',
+    );
+  }
 
   /// 储存容量
-  static const dataStorageConv = CardInfo(
-    '储存容量',
-    '比特、字节',
-    Icons.sd_card_outlined,
-    '/data-storage-conv',
-  );
+  static CardInfo getDataStorageConv(BuildContext context) {
+    return CardInfo(
+      S.of(context).dataStorageConvTitle,
+      S.of(context).dataStorageConvDesc,
+      Icons.sd_card_outlined,
+      '/data-storage-conv',
+    );
+  }
 
   /// 更多（常用单位）
-  static const commonUnitMore = CardInfo(
-    _moreText,
-    '功率转换、力转换',
-    Icons.more_horiz_rounded,
-    '/common-unit-more',
-  );
+  static CardInfo getCommonUnitMore(BuildContext context) {
+    return CardInfo(
+      _getMoreText(context),
+      S.of(context).commonUnitMoreDesc,
+      Icons.more_horiz_rounded,
+      '/common-unit-more',
+    );
+  }
 
   // 特殊计算
   /// 日常生活
-  static const dailyLife = <CardInfo>[
-    relativesConv,
-    bMI,
-    foodCalorieCalc,
-    exerCalorieCalc,
-    fuelConsumptionConv,
-    gamePriceCalc,
-  ];
+  static List<CardInfo> getDailyLife(BuildContext context) {
+    return <CardInfo>[
+      getRelativesConv(context),
+      getBMI(context),
+      getFoodCalorieCalc(context),
+      getExerCalorieCalc(context),
+      getFuelConsumptionConv(context),
+      getGamePriceCalc(context),
+    ];
+  }
 
   /// 亲戚称呼
-  static const relativesConv = CardInfo(
-    '亲戚称呼',
-    '称呼互查',
-    Icons.family_restroom_rounded,
-    '/relatives-conv',
-  );
+  static CardInfo getRelativesConv(BuildContext context) {
+    return CardInfo(
+      S.of(context).relativesConvTitle,
+      S.of(context).relativesConvDesc,
+      Icons.family_restroom_rounded,
+      '/relatives-conv',
+    );
+  }
 
   /// BMI 指数
-  static const bMI = CardInfo(
-    'BMI 指数',
-    '身体质量指数',
-    Icons.sports_soccer_rounded,
-    '/bmi',
-  );
+  static CardInfo getBMI(BuildContext context) {
+    return CardInfo(
+      S.of(context).bMITitle,
+      S.of(context).bMIDesc,
+      Icons.sports_soccer_rounded,
+      '/bmi',
+    );
+  }
 
   /// 食物热量
-  static const foodCalorieCalc = CardInfo(
-    '食物热量',
-    '食物卡路里',
-    Icons.fastfood_outlined,
-    '/food-calorie-calc',
-  );
+  static CardInfo getFoodCalorieCalc(BuildContext context) {
+    return CardInfo(
+      S.of(context).foodCalorieCalcTitle,
+      S.of(context).foodCalorieCalcDesc,
+      Icons.fastfood_outlined,
+      '/food-calorie-calc',
+    );
+  }
 
   /// 运动热量
-  static const exerCalorieCalc = CardInfo(
-    '运动热量',
-    '运动卡路里消耗',
-    Icons.surfing_rounded,
-    '/exer-calorie-calc',
-  );
+  static CardInfo getExerCalorieCalc(BuildContext context) {
+    return CardInfo(
+      S.of(context).exerCalorieCalcTitle,
+      S.of(context).exerCalorieCalcDesc,
+      Icons.surfing_rounded,
+      '/exer-calorie-calc',
+    );
+  }
 
   /// 油耗量换算
-  static const fuelConsumptionConv = CardInfo(
-    '油耗量换算',
-    '百公里油耗',
-    Icons.local_gas_station_rounded,
-    '/fuel-consumption-conv',
-  );
+  static CardInfo getFuelConsumptionConv(BuildContext context) {
+    return CardInfo(
+      S.of(context).fuelConsumptionConvTitle,
+      S.of(context).fuelConsumptionConvDesc,
+      Icons.local_gas_station_rounded,
+      '/fuel-consumption-conv',
+    );
+  }
 
   /// 游戏价格
-  static const gamePriceCalc = CardInfo(
-    '游戏价格',
-    'Switch 游戏实际购价',
-    Icons.sports_esports_outlined,
-    '/game-price-calc',
-  );
+  static CardInfo getGamePriceCalc(BuildContext context) {
+    return CardInfo(
+      S.of(context).gamePriceCalcTitle,
+      S.of(context).gamePriceCalcDesc,
+      Icons.sports_esports_outlined,
+      '/game-price-calc',
+    );
+  }
 
   /// 更多（日常生活）
-  static const dailyLifeMore = CardInfo(
-    _moreText,
-    '运动热量、油耗量换算',
-    Icons.more_horiz_rounded,
-    '/daily-life-more',
-  );
+  static CardInfo getDailyLifeMore(BuildContext context) {
+    return CardInfo(
+      _getMoreText(context),
+      S.of(context).dailyLifeMoreDesc,
+      Icons.more_horiz_rounded,
+      '/daily-life-more',
+    );
+  }
 
   /// 日期时间
-  static const dateTime = <CardInfo>[
-    zodiacCalc,
-    birthdayCalc,
-    countdown,
-    dateInterval,
-    calendarConv,
-    timeZoneConv,
-  ];
+  static List<CardInfo> getDateTime(BuildContext context) {
+    return <CardInfo>[
+      getZodiacCalc(context),
+      getBirthdayCalc(context),
+      getCountdown(context),
+      getDateInterval(context),
+      getCalendarConv(context),
+      getTimeZoneConv(context),
+    ];
+  }
 
   /// 生肖计算
-  static const zodiacCalc = CardInfo(
-    '生肖计算',
-    '生肖、年份互查',
-    Icons.cruelty_free_rounded,
-    '/zodiac-calc',
-  );
+  static CardInfo getZodiacCalc(BuildContext context) {
+    return CardInfo(
+      S.of(context).zodiacCalcTitle,
+      S.of(context).zodiacCalcDesc,
+      Icons.cruelty_free_rounded,
+      '/zodiac-calc',
+    );
+  }
 
   /// 生日计算
-  static const birthdayCalc = CardInfo(
-    '生日计算',
-    '已度过的天数...',
-    Icons.cake_outlined,
-    '/birthday-calc',
-  );
+  static CardInfo getBirthdayCalc(BuildContext context) {
+    return CardInfo(
+      S.of(context).birthdayCalcTitle,
+      S.of(context).birthdayCalcDesc,
+      Icons.cake_outlined,
+      '/birthday-calc',
+    );
+  }
 
   /// 倒数日
-  static const countdown = CardInfo(
-    '倒数日',
-    '日期倒数...',
-    Icons.event_available_rounded,
-    '/countdown',
-  );
+  static CardInfo getCountdown(BuildContext context) {
+    return CardInfo(
+      S.of(context).countdownTitle,
+      S.of(context).countdownDesc,
+      Icons.event_available_rounded,
+      '/countdown',
+    );
+  }
 
   /// 日期间隔
-  static const dateInterval = CardInfo(
-    '日期间隔',
-    '日期计算 / 推算',
-    Icons.date_range_rounded,
-    '/date-interval',
-  );
+  static CardInfo getDateInterval(BuildContext context) {
+    return CardInfo(
+      S.of(context).dateIntervalTitle,
+      S.of(context).dateIntervalDesc,
+      Icons.date_range_rounded,
+      '/date-interval',
+    );
+  }
 
   /// 历法转换
-  static const calendarConv = CardInfo(
-    '历法转换',
-    '公历、农历...',
-    Icons.brightness_6_rounded,
-    '/date-interval',
-  );
+  static CardInfo getCalendarConv(BuildContext context) {
+    return CardInfo(
+      S.of(context).calendarConvTitle,
+      S.of(context).calendarConvDesc,
+      Icons.brightness_6_rounded,
+      '/date-interval',
+    );
+  }
 
   /// 时区转换
-  static const timeZoneConv = CardInfo(
-    '时区转换',
-    '时区转换 / 世界时间',
-    Icons.public_rounded,
-    '/time-zone-conv',
-  );
+  static CardInfo getTimeZoneConv(BuildContext context) {
+    return CardInfo(
+      S.of(context).timeZoneConvTitle,
+      S.of(context).timeZoneConvDesc,
+      Icons.public_rounded,
+      '/time-zone-conv',
+    );
+  }
 
   /// 更多（日期时间）
-  static const dateTimeMore = CardInfo(
-    _moreText,
-    '日期间隔、历法转换...',
-    Icons.more_horiz_rounded,
-    '/date-time-more',
-  );
+  static CardInfo getDateTimeMore(BuildContext context) {
+    return CardInfo(
+      _getMoreText(context),
+      S.of(context).dateTimeMoreDesc,
+      Icons.more_horiz_rounded,
+      '/date-time-more',
+    );
+  }
 
   /// 金融理财
-  static const financialManagement = <CardInfo>[
-    mortgageCalc,
-    loanCalc,
-    personalTaxCalc,
-    financialCalc,
-    exchangeRateConv,
-    capitalizeAmount,
-    discountedPriceCalc,
-    tVMCalc,
-    digitalCurrencyCalc,
-  ];
+  static List<CardInfo> getFinancialManagement(BuildContext context) {
+    return <CardInfo>[
+      getMortgageCalc(context),
+      getLoanCalc(context),
+      getPersonalTaxCalc(context),
+      getFinancialCalc(context),
+      getExchangeRateConv(context),
+      getCapitalizeAmount(context),
+      getDiscountedPriceCalc(context),
+      getTVMCalc(context),
+      getDigitalCurrencyCalc(context),
+    ];
+  }
 
   /// 房贷计算
-  static const mortgageCalc = CardInfo(
-    '房贷计算',
-    '商业贷款、公积金...',
-    Icons.home_rounded,
-    '/mortgage-calc',
-  );
+  static CardInfo getMortgageCalc(BuildContext context) {
+    return CardInfo(
+      S.of(context).mortgageCalcTitle,
+      S.of(context).mortgageCalcDesc,
+      Icons.home_rounded,
+      '/mortgage-calc',
+    );
+  }
 
   /// 贷款计算
-  static const loanCalc = CardInfo(
-    '贷款计算',
-    '普通贷款',
-    Icons.monetization_on_outlined,
-    '/loan-calc',
-  );
+  static CardInfo getLoanCalc(BuildContext context) {
+    return CardInfo(
+      S.of(context).loanCalcTitle,
+      S.of(context).loanCalcDesc,
+      Icons.monetization_on_outlined,
+      '/loan-calc',
+    );
+  }
 
   /// 个税计算
-  static const personalTaxCalc = CardInfo(
-    '个税计算',
-    '年终奖、五险一金...',
-    Icons.money_off_rounded,
-    '/personal-tax-calc',
-  );
+  static CardInfo getPersonalTaxCalc(BuildContext context) {
+    return CardInfo(
+      S.of(context).personalTaxCalcTitle,
+      S.of(context).personalTaxCalcDesc,
+      Icons.money_off_rounded,
+      '/personal-tax-calc',
+    );
+  }
 
   /// 理财计算
-  static const financialCalc = CardInfo(
-    '理财计算',
-    '复利、定投...',
-    Icons.attach_money_rounded,
-    '/personal-tax-calc',
-  );
+  static CardInfo getFinancialCalc(BuildContext context) {
+    return CardInfo(
+      S.of(context).financialCalcTitle,
+      S.of(context).financialCalcDesc,
+      Icons.attach_money_rounded,
+      '/personal-tax-calc',
+    );
+  }
 
   /// 汇率换算
-  static const exchangeRateConv = CardInfo(
-    '汇率换算',
-    '法币、数字货币...',
-    Icons.currency_pound_rounded,
-    '/exchange-rate-conv',
-  );
+  static CardInfo getExchangeRateConv(BuildContext context) {
+    return CardInfo(
+      S.of(context).exchangeRateConvTitle,
+      S.of(context).exchangeRateConvDesc,
+      Icons.currency_pound_rounded,
+      '/exchange-rate-conv',
+    );
+  }
 
   /// 大写金额
-  static const capitalizeAmount = CardInfo(
-    '大写金额',
-    '人民币大写金额',
-    Icons.currency_yen_rounded,
-    '/capitalize-amount',
-  );
+  static CardInfo getCapitalizeAmount(BuildContext context) {
+    return CardInfo(
+      S.of(context).capitalizeAmountTitle,
+      S.of(context).capitalizeAmountDesc,
+      Icons.currency_yen_rounded,
+      '/capitalize-amount',
+    );
+  }
 
   /// 优惠金额
-  static const discountedPriceCalc = CardInfo(
-    '优惠金额',
-    '打折优惠、满减...',
-    Icons.currency_yen_rounded,
-    '/discounted-price-calc',
-  );
+  static CardInfo getDiscountedPriceCalc(BuildContext context) {
+    return CardInfo(
+      S.of(context).discountedPriceCalcTitle,
+      S.of(context).discountedPriceCalcDesc,
+      Icons.discount_rounded,
+      '/discounted-price-calc',
+    );
+  }
 
   /// TVM 计算
-  static const tVMCalc = CardInfo(
-    'TVM 计算',
-    '货币时间价值',
-    Icons.currency_exchange_rounded,
-    '/tvm-calc',
-  );
+  static CardInfo getTVMCalc(BuildContext context) {
+    return CardInfo(
+      S.of(context).tVMCalcTitle,
+      S.of(context).tVMCalcDesc,
+      Icons.currency_exchange_rounded,
+      '/tvm-calc',
+    );
+  }
 
   /// 数字货币
-  static const digitalCurrencyCalc = CardInfo(
-    '数字货币',
-    '数字货币相关计算',
-    Icons.currency_exchange_rounded,
-    '/digital-currency-calc',
-  );
+  static CardInfo getDigitalCurrencyCalc(BuildContext context) {
+    return CardInfo(
+      S.of(context).digitalCurrencyCalcTitle,
+      S.of(context).digitalCurrencyCalcDesc,
+      Icons.currency_bitcoin_rounded,
+      '/digital-currency-calc',
+    );
+  }
 
   /// 更多（金融理财）
-  static const financialManagementMore = CardInfo(
-    _moreText,
-    '理财计算、汇率换算...',
-    Icons.more_horiz_rounded,
-    '/financial-management-more',
-  );
+  static CardInfo getFinancialManagementMore(BuildContext context) {
+    return CardInfo(
+      _getMoreText(context),
+      S.of(context).financialManagementMoreDesc,
+      Icons.more_horiz_rounded,
+      '/financial-management-more',
+    );
+  }
 }

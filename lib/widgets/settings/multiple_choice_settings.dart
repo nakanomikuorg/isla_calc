@@ -15,7 +15,7 @@ class MultipleChoiceSettings extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(4.0, 0.0, 4.0, 4.0),
+      padding: const EdgeInsets.fromLTRB(4.0, 0.0, 4.0, 0.0),
       child: ListTile(
         title: title == null ? null : Text(title!),
         subtitle: subtitle == null ? null : Text(subtitle!),

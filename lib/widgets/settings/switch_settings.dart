@@ -30,7 +30,7 @@ class _SwitchSettingsState extends State<SwitchSettings> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(4.0, 0.0, 0.0, 4.0),
+      padding: const EdgeInsets.fromLTRB(4.0, 0.0, 0.0, 0.0),
       child: ListTile(
         title: Text(widget.title),
         subtitle: Text(widget.desc),

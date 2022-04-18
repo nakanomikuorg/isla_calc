@@ -8,8 +8,8 @@ class CommonCalcMorePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MorePage(
-      cardsInfo: FuncCardsInfoData.allCommonCalcInfo,
+    return MorePage(
+      cardsInfo: FuncCardsInfoData.getAllCommonCalcInfo(context),
     );
   }
 }

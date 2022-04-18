@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:isla_calc/widgets/general/decoration/blur_widget.dart';
 import 'package:provider/provider.dart';
 
+import '../../generated/l10n.dart';
 import '../../models/settings/theme_model.dart';
 
 class FuncNavigationBar extends StatelessWidget {
@@ -30,25 +31,25 @@ class FuncNavigationBar extends StatelessWidget {
           setCurrentPage: _setCurrentPage,
           navigationDestinations: <NavigationDestination>[
             NavigationDestination(
-              label: '常规计算',
+              label: S.of(context).funcHomePageNavigationTitle,
               icon: Icon(Icons.analytics_outlined,
                   color: Theme.of(context).colorScheme.onSurfaceVariant),
             ),
             NavigationDestination(
-              label: '单位换算',
+              label: S.of(context).funcUnitConvTitle,
               icon: Icon(Icons.design_services_outlined,
                   color: Theme.of(context).colorScheme.onSurfaceVariant),
             ),
             NavigationDestination(
-              label: '特殊计算',
+              label: S.of(context).funcSpecialCalcTitle,
               icon: Icon(Icons.currency_pound_outlined,
                   color: Theme.of(context).colorScheme.onSurfaceVariant),
             ),
-            NavigationDestination(
-              label: '专业领域',
-              icon: Icon(Icons.satellite_alt_outlined,
-                  color: Theme.of(context).colorScheme.onSurfaceVariant),
-            ),
+            // NavigationDestination(
+            //   label: S.of(context).funcProfessionalFieldTitle,
+            //   icon: Icon(Icons.satellite_alt_outlined,
+            //       color: Theme.of(context).colorScheme.onSurfaceVariant),
+            // ),
           ],
         );
 

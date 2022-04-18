@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:isla_calc/routes/routes.dart';
 import 'package:isla_calc/themes/theme_info.dart';
 import 'package:provider/provider.dart';
 
+import 'generated/l10n.dart';
 import 'global_settings_data.dart';
 import 'models/settings/theme_model.dart';
 
@@ -69,6 +71,13 @@ class _ColorfulAppState extends State<ColorfulApp> {
         var seedColor = theme.color;
 
         return MaterialApp(
+          localizationsDelegates: const [
+            S.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: S.delegate.supportedLocales,
           debugShowCheckedModeBanner: false,
           theme: ThemeInfo.getThemeData(context, seedColor),
           darkTheme: ThemeInfo.getDarkThemeData(context, seedColor),

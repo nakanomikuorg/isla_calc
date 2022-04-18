@@ -1,9 +1,13 @@
+import 'package:isla_calc/pages/func/daily_life_more_page.dart';
+
 import '../pages/about_the_app/about_the_app_page.dart';
 import '../pages/commons/desmos_page.dart';
 import '../pages/commons/standard_calc_page.dart';
 import '../pages/func/base_unit_more_page.dart';
 import '../pages/func/common_calc_more_page.dart';
 import '../pages/func/common_unit_more_page.dart';
+import '../pages/func/date_time_more_page.dart';
+import '../pages/func/financial_management_more_page.dart';
 import '../pages/func/func_page.dart';
 import '../pages/settings/settings_page.dart';
 import '../pages/unimplemented_page.dart';
@@ -20,5 +24,9 @@ final routes = {
   '/base-unit-more': (context) => const BaseUnitMorePage(),
   '/common-unit-more': (context) => const CommonUnitMorePage(),
   '/about-the-app': (context) => const AboutTheAppPage(),
+  '/daily-life-more': (context) => const DailyLifeMorePage(),
+  '/date-time-more': (context) => const DateTimeMorePage(),
+  '/financial-management-more': (context) =>
+      const FinancialManagementMorePage(),
   '/unimplemented': (context) => const UnimplementedPage(),
 };

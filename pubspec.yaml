@@ -14,20 +14,22 @@ dependencies:
   cupertino_icons: ^1.0.2
   shared_preferences: ^2.0.13
   provider: ^6.0.2
+  intl: ^0.17.0
   flutter_colorpicker: ^1.0.3
   number_precision: ^2.0.2+1
   webview_flutter: ^3.0.2
   url_launcher: ^6.0.20
   flutter_markdown: ^0.6.9+1
+  flutter_localizations:
+    sdk: flutter
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
+  intl_generator: 0.2.1
   flutter_lints: ^1.0.0
 
 flutter:
-
   uses-material-design: true
 
   fonts:
@@ -61,3 +63,5 @@ flutter:
   assets:
     - images/logo.png
     - images/icekylin.png
+flutter_intl:
+  enabled: true

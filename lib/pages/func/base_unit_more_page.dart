@@ -8,8 +8,8 @@ class BaseUnitMorePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MorePage(
-      cardsInfo: FuncCardsInfoData.allBaseUnitInfo,
+    return MorePage(
+      cardsInfo: FuncCardsInfoData.getAllBaseUnitInfo(context),
     );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../generated/l10n.dart';
 import '../../models/func/cards_info.dart';
 import '../../widgets/func/func_card.dart';
 import '../../widgets/func/func_cards_info_data.dart';
@@ -16,34 +17,6 @@ class FuncPage extends StatefulWidget {
 }
 
 class _FuncPageState extends State<FuncPage> {
-  static const _homePage = FuncPageBody(
-    title: '艾拉计算器（Beta）',
-    emj: '🍨',
-    cardsInfos: FuncCardsInfoData.homePageInfos,
-  );
-  static const _unitConv = FuncPageBody(
-    title: '单位换算',
-    emj: '📏',
-    cardsInfos: FuncCardsInfoData.unitConvInfos,
-  );
-  static const _specialCalc = FuncPageBody(
-    title: '特殊计算',
-    emj: '💷',
-    cardsInfos: FuncCardsInfoData.specialCalcInfos,
-  );
-  static const _professionalField = FuncPageBody(
-    title: '专业领域',
-    emj: '⚗',
-    cardsInfos: FuncCardsInfoData.specialCalcInfos,
-  );
-
-  static const List<FuncPageBody> _pages = [
-    _homePage,
-    _unitConv,
-    _specialCalc,
-    _professionalField,
-  ];
-
   int _currentPageIndex = 0;
 
   void _setCurrentPage(int i) {
@@ -54,6 +27,18 @@ class _FuncPageState extends State<FuncPage> {
 
   @override
   Widget build(BuildContext context) {
+    const _homePage = HomePage();
+    const _unitConv = UnitConv();
+    const _specialCalc = SpecialCalc();
+    // const _professionalField = ProfessionalField();
+
+    const List<Widget> _pages = [
+      _homePage,
+      _unitConv,
+      _specialCalc,
+      // _professionalField,
+    ];
+
     return GeneralPage(
       iconData: Icons.more_vert_rounded,
       body: _pages[_currentPageIndex],
@@ -105,6 +90,58 @@ class FuncPageBody extends StatelessWidget {
         ),
         const VSizeBox(),
       ],
+    );
+  }
+}
+
+class HomePage extends StatelessWidget {
+  const HomePage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return FuncPageBody(
+      title: S.of(context).funcHomePageTitle,
+      emj: '🍨',
+      cardsInfos: FuncCardsInfoData.getHomePageInfos(context),
+    );
+  }
+}
+
+class UnitConv extends StatelessWidget {
+  const UnitConv({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return FuncPageBody(
+      title: S.of(context).funcUnitConvTitle,
+      emj: '📏',
+      cardsInfos: FuncCardsInfoData.getUnitConvInfos(context),
+    );
+  }
+}
+
+class SpecialCalc extends StatelessWidget {
+  const SpecialCalc({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return FuncPageBody(
+      title: S.of(context).funcSpecialCalcTitle,
+      emj: '💷',
+      cardsInfos: FuncCardsInfoData.getSpecialCalcInfos(context),
+    );
+  }
+}
+
+class ProfessionalField extends StatelessWidget {
+  const ProfessionalField({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return FuncPageBody(
+      title: S.of(context).funcProfessionalFieldTitle,
+      emj: '⚗',
+      cardsInfos: FuncCardsInfoData.getSpecialCalcInfos(context),
     );
   }
 }

@@ -34,9 +34,16 @@ class MoreBodyContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var groupName = cardsInfo.groupName;
+
     return GeneralPageBody(
-      title: cardsInfo.groupName.split(' ')[1],
-      emj: cardsInfo.groupName.split(' ')[0],
+      title: groupName.substring(
+        groupName.indexOf(' ') + 1,
+      ),
+      emj: groupName.substring(
+        0,
+        groupName.indexOf(' '),
+      ),
       children: <Widget>[
         ...cardsInfo.groupCardInfos.map((cardInfo) {
           return FuncCard(

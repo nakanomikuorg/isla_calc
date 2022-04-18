@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../generated/l10n.dart';
 import '../../widgets/general/card/circle_img_card.dart';
 import '../../widgets/general/card/icon_card.dart';
 import '../../widgets/general/page/general_page.dart';
@@ -23,7 +24,7 @@ class AboutTheAppBodyContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GeneralPageBody(
-      title: '关于应用',
+      title: S.of(context).aboutTheAppTitle,
       emj: '🦜',
       children: <Widget>[
         const Subtitle(

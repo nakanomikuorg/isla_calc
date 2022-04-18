@@ -75,6 +75,7 @@ class GeneralPageBody extends StatelessWidget {
             style: TextStyle(
               color: Theme.of(context).colorScheme.onSurface,
               fontSize: TextInfo.titleSize,
+              fontWeight: FontWeight.w500,
               fontFamilyFallback: TextInfo.fontFamilyFallback,
             ),
           ),
