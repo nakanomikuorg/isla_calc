@@ -135,7 +135,7 @@ class CalcModel extends ChangeNotifier {
     );
 
     try {
-      _currentAns = Calc.calcExp(_newExp);
+      _currentAns = Calc.calcExp(_newExp).toDouble();
       _originalAns = _currentAns;
 
       _currentAnsStr = Tool.getNumStr(_currentAns);

@@ -1,3 +1,5 @@
+import 'package:rational/rational.dart';
+
 import 'exp/infix_exp.dart';
 import 'exp/reverse_polish_exp.dart';
 import 'exp_element/exp_element.dart';
@@ -5,7 +7,7 @@ import 'exp_element/operand.dart';
 import 'exp_element/operator.dart';
 
 class Calc {
-  static double calcExp(String exp) {
+  static Rational calcExp(String exp) {
     return calcRPE(
       convertToRPE(
         parseExp(exp),
@@ -125,9 +127,9 @@ class Calc {
     return rpe;
   }
 
-  static double calcRPE(ReversePolishExp exp) {
-    var cs = <double>[];
-    var operands = <double>[];
+  static Rational calcRPE(ReversePolishExp exp) {
+    var cs = <Rational>[];
+    var operands = <Rational>[];
     int numOfParameters;
     int csLen;
     int start;

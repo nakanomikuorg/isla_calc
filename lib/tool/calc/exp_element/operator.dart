@@ -1,11 +1,16 @@
 import 'dart:math';
 
-import 'package:number_precision/number_precision.dart';
+import 'package:decimal/decimal.dart';
+import 'package:rational/rational.dart';
 
 import 'exp_element.dart';
 
 /// 抽象运算符类
 abstract class Operator implements ExpElement {
+  Decimal d(String s) {
+    return Decimal.parse(s);
+  }
+
   final String _operator;
   final int _priority;
   final int _numOfParameters;
@@ -73,7 +78,7 @@ abstract class Operator implements ExpElement {
     return _operator;
   }
 
-  double calc(List<double> operands);
+  Rational calc(List<Rational> operands);
 }
 
 /// π
@@ -81,8 +86,8 @@ class Pi extends Operator {
   const Pi() : super('π', 1, 0, false);
 
   @override
-  double calc(List<double> operands) {
-    return pi;
+  Rational calc(List<Rational> operands) {
+    return d(pi.toString()).toRational();
   }
 }
 
@@ -91,8 +96,8 @@ class EulerNum extends Operator {
   const EulerNum() : super('e', 1, 0, false);
 
   @override
-  double calc(List<double> operands) {
-    return e;
+  Rational calc(List<Rational> operands) {
+    return d(e.toString()).toRational();
   }
 }
 
@@ -101,12 +106,8 @@ class PercentSign extends Operator {
   const PercentSign() : super('%', 2, 1, false);
 
   @override
-  double calc(List<double> operands) {
-    try {
-      return NP.times(operands.first, 0.01).toDouble();
-    } on Exception {
-      return operands.first * 0.01;
-    }
+  Rational calc(List<Rational> operands) {
+    return operands.first * d('0.01').toRational();
   }
 }
 
@@ -115,13 +116,13 @@ class Factorial extends Operator {
   const Factorial() : super('!', 2, 1, false);
 
   @override
-  double calc(List<double> operands) {
+  Rational calc(List<Rational> operands) {
     var value = operands.first;
-    if ((value >= 0) && (value == value.toInt())) {
-      var rst = 1.0;
+    if ((value >= d('0').toRational()) && (value.isInteger)) {
+      var rst = d('1').toRational();
 
-      for (var i = value; i > 1; i--) {
-        rst = NP.times(rst, i).toDouble();
+      for (var i = value.toDouble(); i > 1; i--) {
+        rst = rst * d(i.toString()).toRational();
       }
 
       return rst;
@@ -136,8 +137,9 @@ class Power extends Operator {
   const Power() : super('^', 3, 2, true);
 
   @override
-  double calc(List<double> operands) {
-    return pow(operands.first, operands[1]).toDouble();
+  Rational calc(List<Rational> operands) {
+    return d(pow(operands.first.toDouble(), operands[1].toDouble()).toString())
+        .toRational();
   }
 }
 
@@ -146,8 +148,8 @@ class SquareRoot extends Operator {
   const SquareRoot() : super('√', 3, 1, true);
 
   @override
-  double calc(List<double> operands) {
-    return sqrt(operands.first);
+  Rational calc(List<Rational> operands) {
+    return d(sqrt(operands.first.toDouble()).toString()).toRational();
   }
 }
 
@@ -156,8 +158,10 @@ class CubeRoot extends Operator {
   const CubeRoot() : super('∛', 3, 1, true);
 
   @override
-  double calc(List<double> operands) {
-    return pow(operands.first, NP.divide(1, 3).toDouble()).toDouble();
+  Rational calc(List<Rational> operands) {
+    return d(pow(operands.first.toDouble(), (d('1') / d('3')).toDouble())
+            .toString())
+        .toRational();
   }
 }
 
@@ -166,8 +170,8 @@ class NaturalLog extends Operator {
   const NaturalLog() : super('ln', 3, 1, true);
 
   @override
-  double calc(List<double> operands) {
-    return log(operands.first);
+  Rational calc(List<Rational> operands) {
+    return d(log(operands.first.toDouble()).toString()).toRational();
   }
 }
 
@@ -176,8 +180,8 @@ class Sin extends Operator {
   const Sin() : super('sin', 3, 1, true);
 
   @override
-  double calc(List<double> operands) {
-    return sin(operands.first);
+  Rational calc(List<Rational> operands) {
+    return d(sin(operands.first.toDouble()).toString()).toRational();
   }
 }
 
@@ -186,8 +190,8 @@ class Cos extends Operator {
   const Cos() : super('cos', 3, 1, true);
 
   @override
-  double calc(List<double> operands) {
-    return cos(operands.first);
+  Rational calc(List<Rational> operands) {
+    return d(cos(operands.first.toDouble()).toString()).toRational();
   }
 }
 
@@ -196,8 +200,8 @@ class Tan extends Operator {
   const Tan() : super('tan', 3, 1, true);
 
   @override
-  double calc(List<double> operands) {
-    return tan(operands.first);
+  Rational calc(List<Rational> operands) {
+    return d(tan(operands.first.toDouble()).toString()).toRational();
   }
 }
 
@@ -206,8 +210,8 @@ class Asin extends Operator {
   const Asin() : super('sin⁻¹', 3, 1, true);
 
   @override
-  double calc(List<double> operands) {
-    return asin(operands.first);
+  Rational calc(List<Rational> operands) {
+    return d(asin(operands.first.toDouble()).toString()).toRational();
   }
 }
 
@@ -216,8 +220,8 @@ class Acos extends Operator {
   const Acos() : super('cos⁻¹', 3, 1, true);
 
   @override
-  double calc(List<double> operands) {
-    return acos(operands.first);
+  Rational calc(List<Rational> operands) {
+    return d(acos(operands.first.toDouble()).toString()).toRational();
   }
 }
 
@@ -226,8 +230,8 @@ class Atan extends Operator {
   const Atan() : super('tan⁻¹', 3, 1, true);
 
   @override
-  double calc(List<double> operands) {
-    return atan(operands.first);
+  Rational calc(List<Rational> operands) {
+    return d(atan(operands.first.toDouble()).toString()).toRational();
   }
 }
 
@@ -236,12 +240,8 @@ class Times extends Operator {
   const Times() : super('×', 4, 2, true);
 
   @override
-  double calc(List<double> operands) {
-    try {
-      return NP.times(operands.first, operands[1]).toDouble();
-    } on Exception {
-      return operands.first * operands[1];
-    }
+  Rational calc(List<Rational> operands) {
+    return operands.first * operands[1];
   }
 }
 
@@ -250,12 +250,8 @@ class Divide extends Operator {
   const Divide() : super('÷', 4, 2, true);
 
   @override
-  double calc(List<double> operands) {
-    try {
-      return NP.divide(operands.first, operands[1]).toDouble();
-    } on Exception {
-      return operands.first / operands[1];
-    }
+  Rational calc(List<Rational> operands) {
+    return operands.first / operands[1];
   }
 }
 
@@ -264,12 +260,8 @@ class Plus extends Operator {
   const Plus() : super('+', 5, 2, true);
 
   @override
-  double calc(List<double> operands) {
-    try {
-      return NP.plus(operands.first, operands[1]).toDouble();
-    } on Exception {
-      return operands.first + operands[1];
-    }
+  Rational calc(List<Rational> operands) {
+    return operands.first + operands[1];
   }
 }
 
@@ -278,12 +270,8 @@ class Minus extends Operator {
   const Minus() : super('—', 5, 2, true);
 
   @override
-  double calc(List<double> operands) {
-    try {
-      return NP.minus(operands.first, operands[1]).toDouble();
-    } on Exception {
-      return operands.first - operands[1];
-    }
+  Rational calc(List<Rational> operands) {
+    return operands.first - operands[1];
   }
 }
 
@@ -292,7 +280,7 @@ class LeftParenthesis extends Operator {
   const LeftParenthesis() : super("(", 0, 0, true);
 
   @override
-  double calc(List<double> operands) {
+  Rational calc(List<Rational> operands) {
     throw UnimplementedError();
   }
 }
@@ -302,7 +290,7 @@ class RightParenthesis extends Operator {
   const RightParenthesis() : super(")", 0, 0, false);
 
   @override
-  double calc(List<double> operands) {
+  Rational calc(List<Rational> operands) {
     throw UnimplementedError();
   }
 }

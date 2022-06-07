@@ -1,4 +1,6 @@
+import 'package:decimal/decimal.dart';
 import 'package:isla_calc/tool/calc/exp_element/exp_element.dart';
+import 'package:rational/rational.dart';
 
 class Operand implements ExpElement {
   static const operands = <String>{
@@ -17,13 +19,17 @@ class Operand implements ExpElement {
 
   final bool _isPositive;
   final String _operand;
-  late final double _value;
+  late final Rational _value;
 
   Operand(this._isPositive, this._operand) {
-    _value = double.parse(_operand);
+    _value = Rational.parse(_operand);
   }
 
-  double get value => (_isPositive ? 1 : -1) * _value;
+  Rational get value =>
+      (_isPositive
+          ? Decimal.parse("1").toRational()
+          : Decimal.parse("-1").toRational()) *
+      _value;
 
   @override
   bool operator ==(Object other) =>
