@@ -1,7 +1,7 @@
+import 'package:calc_model/calc_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../models/general/calc/calc_model.dart';
 import '../../general/calc/calc_panel.dart';
 
 class LenConvPanel extends StatelessWidget {

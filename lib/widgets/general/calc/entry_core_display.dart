@@ -1,7 +1,7 @@
+import 'package:calc_model/calc_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../models/general/calc/calc_model.dart';
 import '../size_box/v_size_box.dart';
 import 'exp_text_field.dart';
 
@@ -18,63 +18,65 @@ class EntryCoreDisplay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      child: Consumer<CalcModel>(
-        builder: (context, calc, child) {
-          List<Widget> children;
+      child: Consumer<ConvModel>(builder: (context, conv, child) {
+        return Consumer<CalcModel>(
+          builder: (context, calc, child) {
+            List<Widget> children;
 
-          if (isFocused) {
-            if ((calc.hasAns && calc.currentAnsStr == '') ||
-                (calc.newExp.length == 0)) {
-              children = <Widget>[
-                ExpTextField(
-                  color: Theme.of(context).colorScheme.onSurfaceVariant,
-                  focusNode: focusNode,
-                  fontSize: 37.0,
-                  controller: calc.expCtl,
-                ),
-              ];
+            if (isFocused) {
+              if ((calc.hasAns && calc.currentAnsStr == '') ||
+                  (calc.newExp.length == 0)) {
+                children = <Widget>[
+                  ExpTextField(
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
+                    focusNode: focusNode,
+                    fontSize: 37.0,
+                    controller: calc.expCtl,
+                  ),
+                ];
+              } else {
+                children = <Widget>[
+                  ExpTextField(
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
+                    focusNode: focusNode,
+                    fontSize: 12.0,
+                    controller: calc.expCtl,
+                  ),
+                  const VSizeBox(
+                    size: 4.0,
+                  ),
+                  Text(
+                    calc.originalAnsStr,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.onSurface,
+                      fontSize: 24.0,
+                    ),
+                  ),
+                ];
+              }
             } else {
               children = <Widget>[
-                ExpTextField(
-                  color: Theme.of(context).colorScheme.onSurfaceVariant,
-                  focusNode: focusNode,
-                  fontSize: 12.0,
-                  controller: calc.expCtl,
-                ),
-                const VSizeBox(
-                  size: 4.0,
-                ),
                 Text(
-                  calc.originalAnsStr,
+                  conv.getRst(calc.originalAnsStr).toString(),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.onSurface,
-                    fontSize: 24.0,
+                    fontSize: 39.0,
                   ),
                 ),
               ];
             }
-          } else {
-            children = <Widget>[
-              Text(
-                calc.originalAnsStr,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                  color: Theme.of(context).colorScheme.onSurface,
-                  fontSize: 39.0,
-                ),
-              ),
-            ];
-          }
 
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: children,
-          );
-        },
-      ),
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: children,
+            );
+          },
+        );
+      }),
       width: MediaQuery.of(context).size.width * 0.4,
     );
   }

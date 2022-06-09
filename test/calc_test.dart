@@ -1,6 +1,6 @@
+import 'package:calc_core/calc_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:isla_calc/tool/calc/calc.dart';
 
 void main() {
   var exps = <String>[

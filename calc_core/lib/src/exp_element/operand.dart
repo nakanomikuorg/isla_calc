@@ -1,6 +1,7 @@
 import 'package:decimal/decimal.dart';
-import 'package:isla_calc/tool/calc/exp_element/exp_element.dart';
 import 'package:rational/rational.dart';
+
+import 'exp_element.dart';
 
 class Operand implements ExpElement {
   static const operands = <String>{

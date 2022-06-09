@@ -1,7 +1,6 @@
+import 'package:calc_core/calc_core.dart';
+import 'package:calc_tool/calc_tool.dart';
 import 'package:flutter/material.dart';
-import 'package:isla_calc/tool/tools.dart';
-
-import '../../../tool/calc/calc.dart';
 
 class CalcModel extends ChangeNotifier {
   static const _operand = <String>{

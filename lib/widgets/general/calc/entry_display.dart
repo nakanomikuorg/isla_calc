@@ -1,4 +1,6 @@
+import 'package:calc_model/calc_model.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../card/no_padding_text_card.dart';
 import 'entry_core_display.dart';
@@ -6,13 +8,9 @@ import 'entry_core_display.dart';
 class EntryDisplay extends StatefulWidget {
   const EntryDisplay({
     Key? key,
-    required this.unitName,
-    required this.unitSymbol,
     required this.isFocused,
   }) : super(key: key);
 
-  final String unitName;
-  final String unitSymbol;
   final bool isFocused;
 
   @override
@@ -38,30 +36,35 @@ class _EntryDisplayState extends State<EntryDisplay> {
 
   @override
   Widget build(BuildContext context) {
-    return NoPaddingTextCard(
-      title: widget.unitSymbol,
-      subtitle: widget.unitName,
-      text: widget.unitSymbol.substring(0, 1).toUpperCase(),
-      radius: 0.0,
-      shadowColor: Colors.transparent,
-      trailing: EntryCoreDisplay(
+    return Consumer<ConvModel>(
+      builder: (context, conv, child) {
+        return NoPaddingTextCard(
+          title: conv.unitSymbol,
+          subtitle: conv.unitName,
+          text: conv.unitSymbol.substring(0, 1).toUpperCase(),
+          radius: 0.0,
+          shadowColor: Colors.transparent,
+          trailing: child,
+          primaryColor:
+              _isFocused ? Theme.of(context).colorScheme.surfaceVariant : null,
+          onPressed: () {
+            setState(() {
+              _isFocused = true;
+            });
+
+            _focusNode.requestFocus();
+          },
+          onFocusChange: (v) {
+            setState(() {
+              _isFocused = v;
+            });
+          },
+        );
+      },
+      child: EntryCoreDisplay(
         focusNode: _focusNode,
         isFocused: _isFocused,
       ),
-      primaryColor:
-          _isFocused ? Theme.of(context).colorScheme.surfaceVariant : null,
-      onPressed: () {
-        setState(() {
-          _isFocused = true;
-        });
-
-        _focusNode.requestFocus();
-      },
-      onFocusChange: (v) {
-        setState(() {
-          _isFocused = v;
-        });
-      },
     );
   }
 }

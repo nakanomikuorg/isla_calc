@@ -1,10 +1,10 @@
+import 'package:calc_tool/calc_tool.dart';
 import 'package:flutter/material.dart';
 import 'package:isla_calc/widgets/settings/set_item_group.dart';
 import 'package:isla_calc/widgets/settings/switch_settings.dart';
 import 'package:provider/provider.dart';
 
 import '../../models/settings/theme_model.dart';
-import '../../tool/tools.dart';
 import '../general/dialog/blur_able_alert_dialog.dart';
 import '../general/dialog/blur_able_simple_dialog.dart';
 import 'custom_color_picker.dart';
