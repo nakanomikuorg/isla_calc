@@ -9,23 +9,26 @@ class LenConvEntryDisplay extends StatelessWidget {
     Key? key,
     required this.unitName,
     required this.unitSymbol,
-    required this.convRelationship,
+    required this.convFromMetaRelationship,
+    required this.convToMetaRelationship,
     required this.isFocused,
   }) : super(key: key);
 
   final String unitName;
   final String unitSymbol;
-  final String convRelationship;
+  final String convFromMetaRelationship;
+  final String convToMetaRelationship;
   final bool isFocused;
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (BuildContext context) {
-        return ConvModel(
+        return ConvEntryModel(
           unitName,
           unitSymbol,
-          convRelationship,
+          convFromMetaRelationship,
+          convToMetaRelationship,
         );
       },
       child: EntryDisplay(isFocused: isFocused),

@@ -1,4 +1,6 @@
+import 'package:calc_model/calc_model.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../generated/l10n.dart';
 import '../../widgets/general/page/calc_page.dart';
@@ -10,10 +12,15 @@ class LenConvPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CalcPage(
-      title: S.of(context).lenConvTitle,
-      display: const LenConvDisplay(),
-      panel: const LenConvPanel(),
+    return ChangeNotifierProvider(
+      create: (BuildContext context) {
+        return ConvModel();
+      },
+      child: CalcPage(
+        title: S.of(context).lenConvTitle,
+        display: const LenConvDisplay(),
+        panel: const LenConvPanel(),
+      ),
     );
   }
 }

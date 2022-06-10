@@ -13,13 +13,15 @@ class LenConvDisplay extends StatelessWidget {
         LenConvEntryDisplay(
           unitName: '千米',
           unitSymbol: 'km',
-          convRelationship: 'x × 0.001',
+          convFromMetaRelationship: 'x × 1000',
+          convToMetaRelationship: 'x × 0.001',
           isFocused: true,
         ),
         LenConvEntryDisplay(
           unitName: '米',
           unitSymbol: 'm',
-          convRelationship: 'x',
+          convFromMetaRelationship: 'x',
+          convToMetaRelationship: 'x',
           isFocused: false,
         ),
       ],

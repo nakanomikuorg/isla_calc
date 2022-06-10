@@ -1,4 +1,6 @@
+import 'package:calc_model/calc_model.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class NumButton extends StatelessWidget {
   const NumButton({
@@ -107,7 +109,8 @@ class TextFnButton extends StatelessWidget {
       bgColor: bgColor == null
           ? Theme.of(context).colorScheme.primaryContainer
           : bgColor!,
-      onPressed: () => onPressed(text),
+      onPressed: () =>
+          Provider.of<CalcModel>(context, listen: false).responseKey(text),
     );
   }
 }

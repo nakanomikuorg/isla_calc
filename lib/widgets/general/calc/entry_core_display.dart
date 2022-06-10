@@ -18,7 +18,7 @@ class EntryCoreDisplay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      child: Consumer<ConvModel>(builder: (context, conv, child) {
+      child: Consumer<ConvEntryModel>(builder: (context, conv, child) {
         return Consumer<CalcModel>(
           builder: (context, calc, child) {
             List<Widget> children;
@@ -46,7 +46,7 @@ class EntryCoreDisplay extends StatelessWidget {
                     size: 4.0,
                   ),
                   Text(
-                    calc.originalAnsStr,
+                    conv.getRst(calc.originalAnsStr).toString(),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(

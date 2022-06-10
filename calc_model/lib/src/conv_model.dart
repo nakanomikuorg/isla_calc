@@ -2,21 +2,18 @@ import 'package:calc_core/calc_core.dart';
 import 'package:flutter/material.dart';
 
 class ConvModel extends ChangeNotifier {
-  late final String _unitName;
-  late final String _unitSymbol;
-  late final String _convRelationship;
+  double _originalMetaValue = double.nan;
+  String _originalConvToMetaRelationship = '';
 
-  ConvModel(this._unitName, this._unitSymbol, this._convRelationship);
+  double get originalMetaValue => _originalMetaValue;
 
-  String get convRelationship => _convRelationship;
+  set originalMetaValue(double v) {
+    var exp = _originalConvToMetaRelationship.replaceAll('x', '($v)');
 
-  String get unitSymbol => _unitSymbol;
+    _originalMetaValue = Calc.calcExp(exp).toDouble();
+  }
 
-  String get unitName => _unitName;
-
-  double getRst(String originalAnsStr) {
-    var exp = _convRelationship.replaceAll('x', '($originalAnsStr)');
-
-    return Calc.calcExp(exp).toDouble();
+  set originalConvToMetaRelationship(String r) {
+    _originalConvToMetaRelationship = r;
   }
 }

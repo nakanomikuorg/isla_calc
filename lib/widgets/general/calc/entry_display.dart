@@ -36,28 +36,37 @@ class _EntryDisplayState extends State<EntryDisplay> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<ConvModel>(
-      builder: (context, conv, child) {
-        return NoPaddingTextCard(
-          title: conv.unitSymbol,
-          subtitle: conv.unitName,
-          text: conv.unitSymbol.substring(0, 1).toUpperCase(),
-          radius: 0.0,
-          shadowColor: Colors.transparent,
-          trailing: child,
-          primaryColor:
-              _isFocused ? Theme.of(context).colorScheme.surfaceVariant : null,
-          onPressed: () {
-            setState(() {
-              _isFocused = true;
-            });
+    return Consumer<ConvEntryModel>(
+      builder: (context, convEntry, child) {
+        return Consumer<ConvModel>(
+          builder: (context, conv, child) {
+            return NoPaddingTextCard(
+              title: convEntry.unitSymbol,
+              subtitle: convEntry.unitName,
+              text: convEntry.unitSymbol.substring(0, 1).toUpperCase(),
+              radius: 0.0,
+              shadowColor: Colors.transparent,
+              trailing: child,
+              primaryColor: _isFocused
+                  ? Theme.of(context).colorScheme.surfaceVariant
+                  : null,
+              onPressed: () {
+                setState(() {
+                  _isFocused = true;
+                });
 
-            _focusNode.requestFocus();
-          },
-          onFocusChange: (v) {
-            setState(() {
-              _isFocused = v;
-            });
+                conv.originalConvToMetaRelationship =
+                    convEntry.convToMetaRelationship;
+                _focusNode.requestFocus();
+              },
+              onFocusChange: (v) {
+                if (_isFocused != v) {
+                  setState(() {
+                    _isFocused = v;
+                  });
+                }
+              },
+            );
           },
         );
       },
