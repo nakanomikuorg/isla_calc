@@ -37,16 +37,16 @@ class _EntryDisplayState extends State<EntryDisplay> {
   @override
   Widget build(BuildContext context) {
     return Consumer<ConvEntryModel>(
-      builder: (context, convEntry, child) {
+      builder: (context, convEntry, outerChild) {
         return Consumer<ConvModel>(
-          builder: (context, conv, child) {
+          builder: (context, conv, innerChild) {
             return NoPaddingTextCard(
               title: convEntry.unitSymbol,
               subtitle: convEntry.unitName,
               text: convEntry.unitSymbol.substring(0, 1).toUpperCase(),
               radius: 0.0,
               shadowColor: Colors.transparent,
-              trailing: child,
+              trailing: outerChild,
               primaryColor: _isFocused
                   ? Theme.of(context).colorScheme.surfaceVariant
                   : null,

@@ -18,65 +18,76 @@ class EntryCoreDisplay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      child: Consumer<ConvEntryModel>(builder: (context, conv, child) {
-        return Consumer<CalcModel>(
-          builder: (context, calc, child) {
-            List<Widget> children;
+      child: Consumer<ConvEntryModel>(
+        builder: (context, convEntry, outerChild) {
+          if (isFocused) {
+            return Consumer<CalcModel>(
+              builder: (context, calc, innerChild) {
+                List<Widget> children;
 
-            if (isFocused) {
-              if ((calc.hasAns && calc.currentAnsStr == '') ||
-                  (calc.newExp.length == 0)) {
-                children = <Widget>[
-                  ExpTextField(
-                    color: Theme.of(context).colorScheme.onSurfaceVariant,
-                    focusNode: focusNode,
-                    fontSize: 37.0,
-                    controller: calc.expCtl,
-                  ),
-                ];
-              } else {
-                children = <Widget>[
-                  ExpTextField(
-                    color: Theme.of(context).colorScheme.onSurfaceVariant,
-                    focusNode: focusNode,
-                    fontSize: 12.0,
-                    controller: calc.expCtl,
-                  ),
-                  const VSizeBox(
-                    size: 4.0,
-                  ),
-                  Text(
-                    conv.getRst(calc.originalAnsStr).toString(),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      color: Theme.of(context).colorScheme.onSurface,
-                      fontSize: 24.0,
+                if ((calc.hasAns && calc.currentAnsStr == '') ||
+                    (calc.newExp.length == 0)) {
+                  children = <Widget>[
+                    ExpTextField(
+                      color: Theme.of(context).colorScheme.onSurfaceVariant,
+                      focusNode: focusNode,
+                      fontSize: 37.0,
+                      controller: calc.expCtl,
                     ),
-                  ),
-                ];
-              }
-            } else {
-              children = <Widget>[
-                Text(
-                  conv.getRst(calc.originalAnsStr).toString(),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.onSurface,
-                    fontSize: 39.0,
-                  ),
-                ),
-              ];
-            }
+                  ];
+                } else {
+                  children = <Widget>[
+                    ExpTextField(
+                      color: Theme.of(context).colorScheme.onSurfaceVariant,
+                      focusNode: focusNode,
+                      fontSize: 12.0,
+                      controller: calc.expCtl,
+                    ),
+                    const VSizeBox(
+                      size: 4.0,
+                    ),
+                    Text(
+                      calc.originalAnsStr,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.onSurface,
+                        fontSize: 24.0,
+                      ),
+                    ),
+                  ];
+                }
 
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: children,
+                );
+              },
+            );
+          } else {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.end,
-              children: children,
+              children: <Widget>[
+                Consumer<ConvModel>(
+                  builder: (context, conv, innerChild) {
+                    return Text(
+                      convEntry
+                          .getRst(conv.originalMetaValue.toString())
+                          .toString(),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.onSurface,
+                        fontSize: 39.0,
+                      ),
+                    );
+                  },
+                ),
+              ],
             );
-          },
-        );
-      }),
+          }
+        },
+      ),
       width: MediaQuery.of(context).size.width * 0.4,
     );
   }

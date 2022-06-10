@@ -1,6 +1,4 @@
-import 'package:calc_model/calc_model.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class NumButton extends StatelessWidget {
   const NumButton({
@@ -31,7 +29,9 @@ class NumButton extends StatelessWidget {
       ),
       bgColor: Theme.of(context).colorScheme.secondaryContainer,
       size: size,
-      onPressed: () => onPressed(text),
+      onPressed: () {
+        onPressed(text);
+      },
     );
   }
 }
@@ -67,7 +67,9 @@ class IconFnButton extends StatelessWidget {
           ? Theme.of(context).colorScheme.tertiaryContainer
           : bgColor!,
       size: size,
-      onPressed: () => onPressed(label),
+      onPressed: () {
+        onPressed(label);
+      },
     );
   }
 }
@@ -109,8 +111,9 @@ class TextFnButton extends StatelessWidget {
       bgColor: bgColor == null
           ? Theme.of(context).colorScheme.primaryContainer
           : bgColor!,
-      onPressed: () =>
-          Provider.of<CalcModel>(context, listen: false).responseKey(text),
+      onPressed: () {
+        onPressed(text);
+      },
     );
   }
 }

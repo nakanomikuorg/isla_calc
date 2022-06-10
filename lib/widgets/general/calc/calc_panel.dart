@@ -8,10 +8,12 @@ class CalcPanel extends StatelessWidget {
     Key? key,
     this.child,
     this.size = 0.6,
+    this.onPressed,
   }) : super(key: key);
 
   final Widget? child;
   final double size;
+  final Function? onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -34,30 +36,35 @@ class CalcPanel extends StatelessWidget {
             ),
           FirstCalcButtons(
             size: size,
+            onPressed: onPressed,
           ),
           const VSizeBox(
             size: 8.0,
           ),
           SecondCalcButtons(
             size: size,
+            onPressed: onPressed,
           ),
           const VSizeBox(
             size: 8.0,
           ),
           ThirdCalcButtons(
             size: size,
+            onPressed: onPressed,
           ),
           const VSizeBox(
             size: 8.0,
           ),
           FourthCalcButtons(
             size: size,
+            onPressed: onPressed,
           ),
           const VSizeBox(
             size: 8.0,
           ),
           FifthCalcButtons(
             size: size,
+            onPressed: onPressed,
           ),
           const VSizeBox(),
         ],

@@ -9,14 +9,21 @@ class FirstCalcButtons extends StatelessWidget {
   const FirstCalcButtons({
     Key? key,
     required this.size,
+    this.onPressed,
   }) : super(key: key);
 
   final double size;
+  final Function? onPressed;
 
   @override
   Widget build(BuildContext context) {
     var responseKey =
         Provider.of<CalcModel>(context, listen: false).responseKey;
+
+    onPressed2(s) {
+      responseKey(s);
+      onPressed!();
+    }
 
     return Row(
       children: <Widget>[
@@ -24,7 +31,7 @@ class FirstCalcButtons extends StatelessWidget {
         TextFnButton(
           text: 'AC',
           size: size,
-          onPressed: responseKey,
+          onPressed: onPressed2,
         ),
         const HSizeBox(
           size: 8.0,
@@ -32,7 +39,7 @@ class FirstCalcButtons extends StatelessWidget {
         TextFnButton(
           text: '×',
           size: size,
-          onPressed: responseKey,
+          onPressed: onPressed2,
         ),
         const HSizeBox(
           size: 8.0,
@@ -40,7 +47,7 @@ class FirstCalcButtons extends StatelessWidget {
         TextFnButton(
           text: '÷',
           size: size,
-          onPressed: responseKey,
+          onPressed: onPressed2,
         ),
         const HSizeBox(
           size: 8.0,
@@ -49,7 +56,7 @@ class FirstCalcButtons extends StatelessWidget {
           icon: Icons.backspace_outlined,
           label: 'backspace',
           size: size,
-          onPressed: responseKey,
+          onPressed: onPressed2,
         ),
         const HSizeBox(),
       ],
@@ -61,14 +68,21 @@ class SecondCalcButtons extends StatelessWidget {
   const SecondCalcButtons({
     Key? key,
     required this.size,
+    this.onPressed,
   }) : super(key: key);
 
   final double size;
+  final Function? onPressed;
 
   @override
   Widget build(BuildContext context) {
     var responseKey =
         Provider.of<CalcModel>(context, listen: false).responseKey;
+
+    onPressed2(s) {
+      responseKey(s);
+      onPressed!();
+    }
 
     return Row(
       children: <Widget>[
@@ -76,7 +90,7 @@ class SecondCalcButtons extends StatelessWidget {
         NumButton(
           text: '7',
           size: size,
-          onPressed: responseKey,
+          onPressed: onPressed2,
         ),
         const HSizeBox(
           size: 8.0,
@@ -84,7 +98,7 @@ class SecondCalcButtons extends StatelessWidget {
         NumButton(
           text: '8',
           size: size,
-          onPressed: responseKey,
+          onPressed: onPressed2,
         ),
         const HSizeBox(
           size: 8.0,
@@ -92,7 +106,7 @@ class SecondCalcButtons extends StatelessWidget {
         NumButton(
           text: '9',
           size: size,
-          onPressed: responseKey,
+          onPressed: onPressed2,
         ),
         const HSizeBox(
           size: 8.0,
@@ -100,7 +114,7 @@ class SecondCalcButtons extends StatelessWidget {
         TextFnButton(
           text: '( )',
           size: size,
-          onPressed: responseKey,
+          onPressed: onPressed2,
         ),
         const HSizeBox(),
       ],
@@ -112,14 +126,21 @@ class ThirdCalcButtons extends StatelessWidget {
   const ThirdCalcButtons({
     Key? key,
     required this.size,
+    this.onPressed,
   }) : super(key: key);
 
   final double size;
+  final Function? onPressed;
 
   @override
   Widget build(BuildContext context) {
     var responseKey =
         Provider.of<CalcModel>(context, listen: false).responseKey;
+
+    onPressed2(s) {
+      responseKey(s);
+      onPressed!();
+    }
 
     return Row(
       children: <Widget>[
@@ -127,7 +148,7 @@ class ThirdCalcButtons extends StatelessWidget {
         NumButton(
           text: '4',
           size: size,
-          onPressed: responseKey,
+          onPressed: onPressed2,
         ),
         const HSizeBox(
           size: 8.0,
@@ -135,7 +156,7 @@ class ThirdCalcButtons extends StatelessWidget {
         NumButton(
           text: '5',
           size: size,
-          onPressed: responseKey,
+          onPressed: onPressed2,
         ),
         const HSizeBox(
           size: 8.0,
@@ -143,7 +164,7 @@ class ThirdCalcButtons extends StatelessWidget {
         NumButton(
           text: '6',
           size: size,
-          onPressed: responseKey,
+          onPressed: onPressed2,
         ),
         const HSizeBox(
           size: 8.0,
@@ -151,7 +172,7 @@ class ThirdCalcButtons extends StatelessWidget {
         TextFnButton(
           text: '−',
           size: size,
-          onPressed: responseKey,
+          onPressed: onPressed2,
         ),
         const HSizeBox(),
       ],
@@ -163,14 +184,21 @@ class FourthCalcButtons extends StatelessWidget {
   const FourthCalcButtons({
     Key? key,
     required this.size,
+    this.onPressed,
   }) : super(key: key);
 
   final double size;
+  final Function? onPressed;
 
   @override
   Widget build(BuildContext context) {
     var responseKey =
         Provider.of<CalcModel>(context, listen: false).responseKey;
+
+    onPressed2(s) {
+      responseKey(s);
+      onPressed!();
+    }
 
     return Row(
       children: <Widget>[
@@ -178,7 +206,7 @@ class FourthCalcButtons extends StatelessWidget {
         NumButton(
           text: '1',
           size: size,
-          onPressed: responseKey,
+          onPressed: onPressed2,
         ),
         const HSizeBox(
           size: 8.0,
@@ -186,7 +214,7 @@ class FourthCalcButtons extends StatelessWidget {
         NumButton(
           text: '2',
           size: size,
-          onPressed: responseKey,
+          onPressed: onPressed2,
         ),
         const HSizeBox(
           size: 8.0,
@@ -194,7 +222,7 @@ class FourthCalcButtons extends StatelessWidget {
         NumButton(
           text: '3',
           size: size,
-          onPressed: responseKey,
+          onPressed: onPressed2,
         ),
         const HSizeBox(
           size: 8.0,
@@ -202,7 +230,7 @@ class FourthCalcButtons extends StatelessWidget {
         TextFnButton(
           text: '+',
           size: size,
-          onPressed: responseKey,
+          onPressed: onPressed2,
         ),
         const HSizeBox(),
       ],
@@ -214,14 +242,21 @@ class FifthCalcButtons extends StatelessWidget {
   const FifthCalcButtons({
     Key? key,
     required this.size,
+    this.onPressed,
   }) : super(key: key);
 
   final double size;
+  final Function? onPressed;
 
   @override
   Widget build(BuildContext context) {
     var responseKey =
         Provider.of<CalcModel>(context, listen: false).responseKey;
+
+    onPressed2(s) {
+      responseKey(s);
+      onPressed!();
+    }
 
     return Row(
       children: <Widget>[
@@ -229,7 +264,7 @@ class FifthCalcButtons extends StatelessWidget {
         NumButton(
           text: '%',
           size: size,
-          onPressed: responseKey,
+          onPressed: onPressed2,
         ),
         const HSizeBox(
           size: 8.0,
@@ -237,7 +272,7 @@ class FifthCalcButtons extends StatelessWidget {
         NumButton(
           text: '0',
           size: size,
-          onPressed: responseKey,
+          onPressed: onPressed2,
         ),
         const HSizeBox(
           size: 8.0,
@@ -245,7 +280,7 @@ class FifthCalcButtons extends StatelessWidget {
         NumButton(
           text: '.',
           size: size,
-          onPressed: responseKey,
+          onPressed: onPressed2,
         ),
         const HSizeBox(
           size: 8.0,

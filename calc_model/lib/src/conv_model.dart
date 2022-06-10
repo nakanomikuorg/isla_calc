@@ -11,6 +11,8 @@ class ConvModel extends ChangeNotifier {
     var exp = _originalConvToMetaRelationship.replaceAll('x', '($v)');
 
     _originalMetaValue = Calc.calcExp(exp).toDouble();
+
+    notifyListeners();
   }
 
   set originalConvToMetaRelationship(String r) {

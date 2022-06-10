@@ -77,8 +77,11 @@ class CalcModel extends ChangeNotifier {
   get hasAns => _hasAns;
 
   void responseKey(String v) {
-    _baseOffset = _expCtl.selection.baseOffset;
-    _extentOffset = _expCtl.selection.extentOffset;
+    _baseOffset =
+        _expCtl.selection.baseOffset != -1 ? _expCtl.selection.baseOffset : 0;
+    _extentOffset = _expCtl.selection.extentOffset != -1
+        ? _expCtl.selection.extentOffset
+        : _newExp.length;
 
     // 按下退格键且指针在开头，直接返回
     if (v == _backspace && _baseOffset == 0 && _baseOffset == _extentOffset) {
@@ -95,7 +98,6 @@ class CalcModel extends ChangeNotifier {
     _expEnd.write(
       _originalExp.substring(
         _extentOffset,
-        _originalExp.length,
       ),
     );
 

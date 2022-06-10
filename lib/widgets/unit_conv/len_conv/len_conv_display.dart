@@ -11,17 +11,17 @@ class LenConvDisplay extends StatelessWidget {
     return const CalcDisplay(
       children: <Widget>[
         LenConvEntryDisplay(
-          unitName: '千米',
-          unitSymbol: 'km',
-          convFromMetaRelationship: 'x × 1000',
-          convToMetaRelationship: 'x × 0.001',
-          isFocused: true,
-        ),
-        LenConvEntryDisplay(
           unitName: '米',
           unitSymbol: 'm',
           convFromMetaRelationship: 'x',
           convToMetaRelationship: 'x',
+          isFocused: true,
+        ),
+        LenConvEntryDisplay(
+          unitName: '千米',
+          unitSymbol: 'km',
+          convFromMetaRelationship: 'x × 1000',
+          convToMetaRelationship: 'x × 0.001',
           isFocused: false,
         ),
       ],
