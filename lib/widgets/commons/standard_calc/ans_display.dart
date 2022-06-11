@@ -13,11 +13,10 @@ class AnsDisplay extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(0.0, 0.0, 20.0, 16.0),
       child: Consumer<CalcModel>(builder: (context, calc, child) {
         return Text(
-          calc.currentAnsStr,
+          calc.rstStr,
           textAlign: TextAlign.right,
           style: TextStyle(
-            fontSize:
-                TextInfo.getStandardCalcAnsDisplayTextSize(calc.currentAnsStr),
+            fontSize: TextInfo.getStandardCalcAnsDisplayTextSize(calc.rstStr),
             color: Theme.of(context).colorScheme.onSurfaceVariant,
           ),
         );

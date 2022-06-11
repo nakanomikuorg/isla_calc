@@ -9,15 +9,15 @@ class LenConvEntryDisplay extends StatelessWidget {
     Key? key,
     required this.unitName,
     required this.unitSymbol,
-    required this.convFromMetaRelationship,
-    required this.convToMetaRelationship,
+    required this.meta2RstRs,
+    required this.original2MetaRs,
     required this.isFocused,
   }) : super(key: key);
 
   final String unitName;
   final String unitSymbol;
-  final String convFromMetaRelationship;
-  final String convToMetaRelationship;
+  final String meta2RstRs;
+  final String original2MetaRs;
   final bool isFocused;
 
   @override
@@ -27,8 +27,8 @@ class LenConvEntryDisplay extends StatelessWidget {
         return ConvEntryModel(
           unitName,
           unitSymbol,
-          convFromMetaRelationship,
-          convToMetaRelationship,
+          meta2RstRs,
+          original2MetaRs,
         );
       },
       child: EntryDisplay(isFocused: isFocused),

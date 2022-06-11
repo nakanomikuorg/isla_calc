@@ -25,7 +25,7 @@ class EntryCoreDisplay extends StatelessWidget {
               builder: (context, calc, innerChild) {
                 List<Widget> children;
 
-                if ((calc.hasAns && calc.currentAnsStr == '') ||
+                if ((calc.hasRst && calc.rstStr == '') ||
                     (calc.newExp.length == 0)) {
                   children = <Widget>[
                     ExpTextField(
@@ -47,7 +47,7 @@ class EntryCoreDisplay extends StatelessWidget {
                       size: 4.0,
                     ),
                     Text(
-                      calc.originalAnsStr,
+                      calc.rstStr,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
@@ -71,9 +71,9 @@ class EntryCoreDisplay extends StatelessWidget {
                 Consumer<ConvModel>(
                   builder: (context, conv, innerChild) {
                     return Text(
-                      convEntry
-                          .getRst(conv.originalMetaValue.toString())
-                          .toString(),
+                      convEntry.getRst(
+                        conv.metaValue.toString(),
+                      ),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(

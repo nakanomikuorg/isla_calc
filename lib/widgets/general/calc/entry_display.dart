@@ -55,8 +55,7 @@ class _EntryDisplayState extends State<EntryDisplay> {
                   _isFocused = true;
                 });
 
-                conv.originalConvToMetaRelationship =
-                    convEntry.convToMetaRelationship;
+                conv.originalConvToMetaRelationship = convEntry.original2MetaRs;
                 _focusNode.requestFocus();
               },
               onFocusChange: (v) {

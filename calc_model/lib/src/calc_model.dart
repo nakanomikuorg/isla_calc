@@ -1,6 +1,7 @@
 import 'package:calc_core/calc_core.dart';
 import 'package:calc_tool/calc_tool.dart';
 import 'package:flutter/material.dart';
+import 'package:rational/rational.dart';
 
 class CalcModel extends ChangeNotifier {
   static const _operand = <String>{
@@ -52,11 +53,9 @@ class CalcModel extends ChangeNotifier {
 
   var _originalExp = '';
   var _newExp = '';
-  var _originalAnsStr = '';
-  var _originalAns = double.nan;
-  var _currentAnsStr = '';
-  var _currentAns = double.nan;
-  var _hasAns = false;
+  var _rstStr = '';
+  Rational? _rst;
+  var _hasRst = false;
   var _baseOffset = 0;
   var _extentOffset = 0;
 
@@ -66,15 +65,11 @@ class CalcModel extends ChangeNotifier {
 
   get originalExp => _originalExp;
 
-  get originalAns => _originalAns;
+  get rstStr => _rstStr;
 
-  get originalAnsStr => _originalAnsStr;
+  get rst => _rst;
 
-  get currentAnsStr => _currentAnsStr;
-
-  get currentAns => _currentAns;
-
-  get hasAns => _hasAns;
+  get hasRst => _hasRst;
 
   void responseKey(String v) {
     _baseOffset =
@@ -126,44 +121,41 @@ class CalcModel extends ChangeNotifier {
 
     _newExp = _exp.toString();
     _expCtl.value = _expCtl.value.copyWith(
-      text: _newExp,
+      composing: TextRange.empty,
       selection: TextSelection.fromPosition(
         TextPosition(
           offset: rstOffset,
         ),
       ),
-      composing: TextRange.empty,
+      text: _newExp,
     );
 
     try {
-      _currentAns = Calc.calcExp(_newExp).toDouble();
-      _originalAns = _currentAns;
+      _rst = Calc.calcExp(_newExp);
+      _rstStr = Tool.getNumStr(_rst!.toDouble());
 
-      _currentAnsStr = Tool.getNumStr(_currentAns);
-      _originalAnsStr = _currentAnsStr;
-
-      if (_newExp == _currentAnsStr) {
-        _currentAnsStr = '';
+      if (_newExp == _rstStr) {
+        _rstStr = '';
       }
 
-      _hasAns = true;
+      _hasRst = true;
     } catch (e) {
-      _currentAns = double.nan;
-      _currentAnsStr = '';
+      _rst = null;
+      _rstStr = '';
 
-      _hasAns = false;
+      _hasRst = false;
     }
 
     notifyListeners();
   }
 
   int _responseEqualKey() {
-    if (_currentAnsStr != '') {
+    if (_rstStr != '') {
       _exp.write(
-        _currentAnsStr,
+        _rstStr,
       );
 
-      return _currentAnsStr.length;
+      return _rstStr.length;
     } else {
       _exp.write(
         _originalExp,

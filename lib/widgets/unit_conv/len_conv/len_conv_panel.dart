@@ -11,8 +11,8 @@ class LenConvPanel extends StatelessWidget {
   Widget build(BuildContext context) {
     return CalcPanel(
       onPressed: () {
-        Provider.of<ConvModel>(context, listen: false).originalMetaValue =
-            Provider.of<CalcModel>(context, listen: false).originalAns;
+        Provider.of<ConvModel>(context, listen: false).metaValue =
+            Provider.of<CalcModel>(context, listen: false).rst;
       },
     );
   }

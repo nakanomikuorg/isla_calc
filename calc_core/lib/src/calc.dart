@@ -15,6 +15,14 @@ class Calc {
     );
   }
 
+  static Rational? tryCalcExp(String exp) {
+    try {
+      return calcExp(exp);
+    } catch (e) {
+      return null;
+    }
+  }
+
   static InfixExp parseExp(String exp) {
     exp = exp.replaceAll(' ', '').replaceAll(',', '');
 
