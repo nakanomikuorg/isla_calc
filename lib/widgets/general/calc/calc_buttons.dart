@@ -22,7 +22,9 @@ class FirstCalcButtons extends StatelessWidget {
 
     onPressed2(s) {
       responseKey(s);
-      onPressed!();
+      if (onPressed != null) {
+        onPressed!();
+      }
     }
 
     return Row(
@@ -81,7 +83,9 @@ class SecondCalcButtons extends StatelessWidget {
 
     onPressed2(s) {
       responseKey(s);
-      onPressed!();
+      if (onPressed != null) {
+        onPressed!();
+      }
     }
 
     return Row(
@@ -139,7 +143,9 @@ class ThirdCalcButtons extends StatelessWidget {
 
     onPressed2(s) {
       responseKey(s);
-      onPressed!();
+      if (onPressed != null) {
+        onPressed!();
+      }
     }
 
     return Row(
@@ -197,7 +203,9 @@ class FourthCalcButtons extends StatelessWidget {
 
     onPressed2(s) {
       responseKey(s);
-      onPressed!();
+      if (onPressed != null) {
+        onPressed!();
+      }
     }
 
     return Row(
@@ -255,7 +263,9 @@ class FifthCalcButtons extends StatelessWidget {
 
     onPressed2(s) {
       responseKey(s);
-      onPressed!();
+      if (onPressed != null) {
+        onPressed!();
+      }
     }
 
     return Row(

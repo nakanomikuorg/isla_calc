@@ -7,14 +7,18 @@ class GeneralPage extends StatelessWidget {
   const GeneralPage({
     Key? key,
     this.appBarTitle,
-    this.iconData,
+    this.actionsIconData,
+    this.actionsEntries,
+    this.actionsOnSelected,
     this.body,
     this.bottomNavigationBar,
     this.extendBodyBehindAppBar = true,
   }) : super(key: key);
 
   final String? appBarTitle;
-  final IconData? iconData;
+  final IconData? actionsIconData;
+  final List<PopupMenuEntry<String>>? actionsEntries;
+  final Function(String)? actionsOnSelected;
   final Widget? body;
   final Widget? bottomNavigationBar;
   final bool extendBodyBehindAppBar;
@@ -27,16 +31,27 @@ class GeneralPage extends StatelessWidget {
       extendBodyBehindAppBar: extendBodyBehindAppBar,
       appBar: BlurAbleAppBar(
         title: appBarTitle,
-        actions: iconData == null
+        actions: actionsEntries == null
             ? <Widget>[]
             : <Widget>[
-                IconButton(
-                  onPressed: () {},
+                PopupMenuButton<String>(
                   icon: Icon(
-                    iconData,
+                    actionsIconData,
                     color: Theme.of(context).colorScheme.onSurface,
                   ),
-                ),
+                  color: ElevationOverlay.applySurfaceTint(
+                    Theme.of(context).colorScheme.surface,
+                    Theme.of(context).colorScheme.primary,
+                    5.0,
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  itemBuilder: (context) {
+                    return actionsEntries!;
+                  },
+                  onSelected: actionsOnSelected,
+                )
               ],
       ),
       body: body,

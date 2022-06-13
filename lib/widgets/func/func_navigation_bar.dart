@@ -17,10 +17,10 @@ class FuncNavigationBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<ThemeModel>(
       builder: (context, theme, child) {
-        var originalBgColor = ElevationOverlay.colorWithOverlay(
+        var originalBgColor = ElevationOverlay.applySurfaceTint(
           Theme.of(context).colorScheme.surface,
           Theme.of(context).colorScheme.primary,
-          8.0,
+          2,
         );
         var bgColor = theme.isGaussianBlur
             ? originalBgColor.withOpacity(0.6)

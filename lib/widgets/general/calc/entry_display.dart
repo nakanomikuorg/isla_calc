@@ -38,34 +38,32 @@ class _EntryDisplayState extends State<EntryDisplay> {
   Widget build(BuildContext context) {
     return Consumer<ConvEntryModel>(
       builder: (context, convEntry, outerChild) {
-        return Consumer<ConvModel>(
-          builder: (context, conv, innerChild) {
-            return NoPaddingTextCard(
-              title: convEntry.unitSymbol,
-              subtitle: convEntry.unitName,
-              text: convEntry.unitSymbol.substring(0, 1).toUpperCase(),
-              radius: 0.0,
-              shadowColor: Colors.transparent,
-              trailing: outerChild,
-              primaryColor: _isFocused
-                  ? Theme.of(context).colorScheme.surfaceVariant
-                  : null,
-              onPressed: () {
-                setState(() {
-                  _isFocused = true;
-                });
+        return NoPaddingTextCard(
+          title: convEntry.unitSymbol,
+          subtitle: convEntry.unitName,
+          text: convEntry.unitSymbol.substring(0, 1).toUpperCase(),
+          radius: 0.0,
+          shadowColor: Colors.transparent,
+          trailing: outerChild,
+          primaryColor:
+              _isFocused ? Theme.of(context).colorScheme.surfaceVariant : null,
+          onPressed: () {
+            setState(() {
+              _isFocused = true;
+            });
 
-                conv.originalConvToMetaRelationship = convEntry.original2MetaRs;
-                _focusNode.requestFocus();
-              },
-              onFocusChange: (v) {
-                if (_isFocused != v) {
-                  setState(() {
-                    _isFocused = v;
-                  });
-                }
-              },
-            );
+            Provider.of<ConvModel>(
+              context,
+              listen: false,
+            ).originalConvToMetaRelationship = convEntry.original2MetaRs;
+            _focusNode.requestFocus();
+          },
+          onFocusChange: (v) {
+            if (_isFocused != v) {
+              setState(() {
+                _isFocused = v;
+              });
+            }
           },
         );
       },

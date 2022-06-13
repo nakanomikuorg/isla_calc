@@ -4,8 +4,8 @@ import 'package:isla_calc/routes/routes.dart';
 import 'package:isla_calc/themes/theme_info.dart';
 import 'package:provider/provider.dart';
 
+import 'data/settings/global_settings_data.dart';
 import 'generated/l10n.dart';
-import 'global_settings_data.dart';
 import 'models/settings/theme_model.dart';
 
 /*
@@ -56,10 +56,16 @@ class _ColorfulAppState extends State<ColorfulApp> {
   }
 
   void _loadGlobalSettings() async {
-    Provider.of<ThemeModel>(context, listen: false).changeGaussianBlur(
+    Provider.of<ThemeModel>(
+      context,
+      listen: false,
+    ).changeGaussianBlur(
       await GlobalSettingsData.getIsGaussianBlur(),
     );
-    Provider.of<ThemeModel>(context, listen: false).changeColor(
+    Provider.of<ThemeModel>(
+      context,
+      listen: false,
+    ).changeColor(
       await GlobalSettingsData.getColor(),
     );
   }

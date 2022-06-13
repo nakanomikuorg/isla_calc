@@ -33,7 +33,11 @@ class NoPaddingCustomCard extends StatelessWidget {
       style: ElevatedButton.styleFrom(
         padding: const EdgeInsets.all(0.0),
         primary: primaryColor == null
-            ? Theme.of(context).colorScheme.surface
+            ? ElevationOverlay.applySurfaceTint(
+                Theme.of(context).colorScheme.surface,
+                Theme.of(context).colorScheme.primary,
+                0.05,
+              )
             : primaryColor!,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(

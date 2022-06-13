@@ -17,7 +17,7 @@ class WebViewPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return GeneralPage(
       appBarTitle: appBarTitle,
-      iconData: Icons.more_vert_rounded,
+      actionsIconData: Icons.more_vert_rounded,
       body: WebViewBodyContent(
         url: url,
       ),

@@ -16,7 +16,7 @@ class MorePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GeneralPage(
-      iconData: Icons.more_vert_rounded,
+      actionsIconData: Icons.more_vert_rounded,
       body: MoreBodyContent(
         cardsInfo: cardsInfo,
       ),

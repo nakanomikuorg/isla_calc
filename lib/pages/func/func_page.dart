@@ -40,7 +40,6 @@ class _FuncPageState extends State<FuncPage> {
     ];
 
     return GeneralPage(
-      iconData: Icons.more_vert_rounded,
       body: _pages[_currentPageIndex],
       bottomNavigationBar: FuncNavigationBar(
         _currentPageIndex,
@@ -76,14 +75,16 @@ class FuncPageBody extends StatelessWidget {
                 Subtitle(
                   title: cardsInfo.groupName,
                 ),
-                ...cardsInfo.groupCardInfos.map((cardInfo) {
-                  return FuncCard(
-                    title: cardInfo.cardTitle,
-                    subtitle: cardInfo.cardSubtitle,
-                    icon: cardInfo.cardIconData,
-                    pushName: cardInfo.pushName,
-                  );
-                }),
+                ...cardsInfo.groupCardInfos.map(
+                  (cardInfo) {
+                    return FuncCard(
+                      title: cardInfo.cardTitle,
+                      subtitle: cardInfo.cardSubtitle,
+                      icon: cardInfo.cardIconData,
+                      pushName: cardInfo.pushName,
+                    );
+                  },
+                ),
               ],
             );
           },

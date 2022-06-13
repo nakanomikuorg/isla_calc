@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'themes/theme_info.dart';
+import '../../themes/theme_info.dart';
 
 class GlobalSettingsData {
   static Future<bool> getIsGaussianBlur() async {

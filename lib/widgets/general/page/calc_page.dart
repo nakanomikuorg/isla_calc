@@ -24,7 +24,7 @@ class CalcPage extends StatelessWidget {
       },
       child: GeneralPage(
         appBarTitle: title,
-        iconData: Icons.more_vert_rounded,
+        actionsIconData: Icons.more_vert_rounded,
         body: CalcBodyContent(
           display: display,
           panel: panel,

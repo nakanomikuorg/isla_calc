@@ -20,12 +20,14 @@ dependencies:
     path: ./calc_tool
   decimal:
   rational:
-  shared_preferences: ^2.0.13
-  provider: ^6.0.2
+  sqflite:
   intl: ^0.17.0
-  flutter_colorpicker: ^1.0.3
+  path:
+  provider: ^6.0.2
+  shared_preferences: ^2.0.13
   webview_flutter: ^3.0.2
   url_launcher: ^6.0.20
+  flutter_colorpicker: ^1.0.3
   flutter_markdown: ^0.6.9+1
   flutter_localizations:
     sdk: flutter

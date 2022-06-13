@@ -22,9 +22,6 @@ class BlurAbleAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return Consumer<ThemeModel>(
       builder: (context, theme, child) {
-        var bgColor = theme.isGaussianBlur || title == null
-            ? Colors.transparent
-            : Theme.of(context).colorScheme.surface.withOpacity(0.8);
         var appBar = AppBar(
           systemOverlayStyle: SystemUiOverlayStyle(
             statusBarIconBrightness:
@@ -33,7 +30,12 @@ class BlurAbleAppBar extends StatelessWidget implements PreferredSizeWidget {
                     : Brightness.light,
             statusBarColor: Colors.transparent,
           ),
-          backgroundColor: bgColor,
+          backgroundColor: Colors.transparent,
+          surfaceTintColor: ElevationOverlay.applySurfaceTint(
+            Theme.of(context).colorScheme.surface,
+            Theme.of(context).colorScheme.primary,
+            1,
+          ),
           shadowColor: Colors.transparent,
           iconTheme: IconThemeData(
             color: Theme.of(context).colorScheme.onSurfaceVariant,
