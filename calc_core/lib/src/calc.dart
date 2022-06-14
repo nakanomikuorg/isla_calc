@@ -99,25 +99,76 @@ class Calc {
     final ie = InfixExp();
 
     var ee = exp.expElements;
-    for (int i = 0; i < ee.length - 1; i++) {
-      if (ee[i] == const RightParenthesis() &&
-          (ee[i + 1] == const LeftParenthesis() || ee[i + 1] is Operand)) {
-        ie
-          ..addExpElement(ee[i])
-          ..addExpElement(const Times());
-      } else if (i > 0 &&
-          ee[i] == const LeftParenthesis() &&
-          ee[i - 1] is Operand) {
-        ie
-          ..addExpElement(const Times())
-          ..addExpElement(ee[i]);
-      } else {
-        ie.addExpElement(ee[i]);
+    var j = ee.length - 1;
+    for (int i = 0; i < ee.length; i++) {
+      if (i > 0 && _isLeftAddMultiplicationSign(ee[i], ee[i - 1])) {
+        ie.addExpElement(const Times());
+      }
+
+      ie.addExpElement(ee[i]);
+
+      if (i < j && _isRightAddMultiplicationSign(ee[i], ee[i + 1])) {
+        ie.addExpElement(const Times());
       }
     }
-    ie.addExpElement(ee.last);
 
     return ie;
+  }
+
+  /// 判断左边是否需要添加乘号
+  static bool _isLeftAddMultiplicationSign(ExpElement e, ExpElement le) {
+    if (e is Operator) {
+      // 若是运算符或括号，继续判断
+      if (e == const LeftParenthesis() || // 当前符号为左括号
+          (e != const RightParenthesis() // 或者不是右括号
+              &&
+              ((e.numOfParameters == 1 && e.isNextSign == true) // 但是是零元运算符
+                  ||
+                  e.numOfParameters == 0) // 或者右一元运算符
+          )) {
+        if (le is Operand) {
+          return true;
+        } else {
+          return false;
+        }
+      } else {
+        return false;
+      }
+    } else {
+      // 否则返回 false
+      return false;
+    }
+  }
+
+  /// 判断右边是否需要添加乘号
+  static bool _isRightAddMultiplicationSign(ExpElement e, ExpElement re) {
+    if (e is Operator) {
+      // 若是运算符或括号，继续判断
+      if (e == const RightParenthesis() || // 当前符号为右括号
+              (e != const LeftParenthesis() && // 或者不是左括号
+                  e.numOfParameters <= 1 &&
+                  e.isNextSign == false) // 但是是零元运算符或者左一元运算符
+          ) {
+        if (re is Operand) {
+          return true;
+        } else if (re is Operator) {
+          if (re == const LeftParenthesis() ||
+              (re != const RightParenthesis() && re.numOfParameters == 0) ||
+              (re.numOfParameters == 1 && re.isNextSign == true)) {
+            return true;
+          } else {
+            return false;
+          }
+        } else {
+          throw Exception();
+        }
+      } else {
+        // 否则返回 false
+        return false;
+      }
+    } else {
+      return false;
+    }
   }
 
   /// 将中缀表达式转换为逆波兰表达式
