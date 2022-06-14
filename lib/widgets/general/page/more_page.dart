@@ -36,7 +36,7 @@ class MoreBodyContent extends StatelessWidget {
   Widget build(BuildContext context) {
     var groupName = cardsInfo.groupName;
 
-    return GeneralPageBody(
+    return GeneralBodyContent(
       title: groupName.substring(
         groupName.indexOf(' ') + 1,
       ),

@@ -23,7 +23,7 @@ class AboutTheAppBodyContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GeneralPageBody(
+    return GeneralBodyContent(
       title: S.of(context).aboutTheAppTitle,
       emj: '🦜',
       children: <Widget>[

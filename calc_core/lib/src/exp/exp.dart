@@ -3,7 +3,7 @@ import '../exp_element/exp_element.dart';
 class Exp {
   final _expElements = <ExpElement>[];
 
-  get expElements => _expElements;
+  List<ExpElement> get expElements => _expElements;
 
   void addExpElement(ExpElement expElement) {
     _expElements.add(expElement);

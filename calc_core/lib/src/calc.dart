@@ -7,14 +7,18 @@ import 'exp_element/operand.dart';
 import 'exp_element/operator.dart';
 
 class Calc {
+  /// 计算字符串形式的数学表达式
   static Rational calcExp(String exp) {
     return calcRPE(
       convertToRPE(
-        parseExp(exp),
+        preprocessingIE(
+          parseExp(exp),
+        ),
       ),
     );
   }
 
+  /// 计算字符串形式的数学表达式，在计算失败时返回 null
   static Rational? tryCalcExp(String exp) {
     try {
       return calcExp(exp);
@@ -23,6 +27,7 @@ class Calc {
     }
   }
 
+  /// 解析字符串形式的数学表达式
   static InfixExp parseExp(String exp) {
     exp = exp.replaceAll(' ', '').replaceAll(',', '');
 
@@ -89,6 +94,33 @@ class Calc {
     return ie;
   }
 
+  /// 预处理中缀表达式
+  static InfixExp preprocessingIE(InfixExp exp) {
+    final ie = InfixExp();
+
+    var ee = exp.expElements;
+    for (int i = 0; i < ee.length - 1; i++) {
+      if (ee[i] == const RightParenthesis() &&
+          (ee[i + 1] == const LeftParenthesis() || ee[i + 1] is Operand)) {
+        ie
+          ..addExpElement(ee[i])
+          ..addExpElement(const Times());
+      } else if (i > 0 &&
+          ee[i] == const LeftParenthesis() &&
+          ee[i - 1] is Operand) {
+        ie
+          ..addExpElement(const Times())
+          ..addExpElement(ee[i]);
+      } else {
+        ie.addExpElement(ee[i]);
+      }
+    }
+    ie.addExpElement(ee.last);
+
+    return ie;
+  }
+
+  /// 将中缀表达式转换为逆波兰表达式
   static ReversePolishExp convertToRPE(InfixExp exp) {
     var rpe = ReversePolishExp();
     var os = <Operator>[];
@@ -135,6 +167,7 @@ class Calc {
     return rpe;
   }
 
+  /// 计算逆波兰表达式
   static Rational calcRPE(ReversePolishExp exp) {
     var cs = <Rational>[];
     var operands = <Rational>[];
@@ -168,6 +201,7 @@ class Calc {
     return cs.first;
   }
 
+  /// 返回运算符的长度
   static int _getOperatorLen(String exp, int i) {
     var len = 0;
 

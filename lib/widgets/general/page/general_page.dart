@@ -36,7 +36,7 @@ class GeneralPage extends StatelessWidget {
             : <Widget>[
                 PopupMenuButton<String>(
                   icon: Icon(
-                    actionsIconData,
+                    actionsIconData ?? Icons.more_vert_rounded,
                     color: Theme.of(context).colorScheme.onSurface,
                   ),
                   color: ElevationOverlay.applySurfaceTint(
@@ -60,8 +60,8 @@ class GeneralPage extends StatelessWidget {
   }
 }
 
-class GeneralPageBody extends StatelessWidget {
-  const GeneralPageBody({
+class GeneralBodyContent extends StatelessWidget {
+  const GeneralBodyContent({
     Key? key,
     required this.title,
     required this.emj,

@@ -18,7 +18,7 @@ class UnimplementedBodyContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const GeneralPageBody(
+    return const GeneralBodyContent(
       title: '功能开发中',
       emj: '🐣',
     );

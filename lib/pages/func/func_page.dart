@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 import '../../generated/l10n.dart';
@@ -40,6 +42,30 @@ class _FuncPageState extends State<FuncPage> {
     ];
 
     return GeneralPage(
+      actionsEntries: const [
+        PopupMenuItem<String>(
+          value: '/global-settings',
+          child: Text('全局设置'),
+        ),
+        PopupMenuItem<String>(
+          value: '/about-the-app',
+          child: Text('关于应用'),
+        ),
+        PopupMenuItem<String>(
+          value: 'exit-the-app',
+          child: Text('退出'),
+        ),
+      ],
+      actionsOnSelected: (s) {
+        if ('exit-the-app' == s) {
+          exit(0);
+        } else {
+          Navigator.pushNamed(
+            context,
+            s,
+          );
+        }
+      },
       body: _pages[_currentPageIndex],
       bottomNavigationBar: FuncNavigationBar(
         _currentPageIndex,
@@ -63,7 +89,7 @@ class FuncPageBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GeneralPageBody(
+    return GeneralBodyContent(
       title: title,
       emj: emj,
       children: <Widget>[

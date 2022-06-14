@@ -9,17 +9,21 @@ import '../pages/func/common_unit_more_page.dart';
 import '../pages/func/date_time_more_page.dart';
 import '../pages/func/financial_management_more_page.dart';
 import '../pages/func/func_page.dart';
-import '../pages/settings/settings_page.dart';
+import '../pages/history_page.dart';
+import '../pages/settings/commons/standard_calc_settings_page.dart';
+import '../pages/settings/global_settings_page.dart';
 import '../pages/unimplemented_page.dart';
 import '../pages/unit_conv/len_conv_page.dart';
 
 // 配置路由
 final routes = {
   '/': (context) => const FuncPage(),
+  '/history': (context) => const HistoryPage(),
   '/standard-calc': (context) => const StandardCalcPage(),
+  '/standard-calc-settings': (context) => const StandardCalcSettingsPage(),
   '/common-calc-more': (context) => const CommonCalcMorePage(),
   '/desmos': (context) => const DesmosPage(),
-  '/global-settings': (context) => const SettingsPage(),
+  '/global-settings': (context) => const GlobalSettingsPage(),
   '/len-conv': (context) => const LenConvPage(),
   '/base-unit-more': (context) => const BaseUnitMorePage(),
   '/common-unit-more': (context) => const CommonUnitMorePage(),

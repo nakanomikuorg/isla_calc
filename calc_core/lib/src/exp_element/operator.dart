@@ -74,6 +74,23 @@ abstract class Operator implements ExpElement {
   bool get isNextSign => _isNextSign;
 
   @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Operator &&
+          runtimeType == other.runtimeType &&
+          _operator == other._operator &&
+          _priority == other._priority &&
+          _numOfParameters == other._numOfParameters &&
+          _isNextSign == other._isNextSign;
+
+  @override
+  int get hashCode =>
+      _operator.hashCode ^
+      _priority.hashCode ^
+      _numOfParameters.hashCode ^
+      _isNextSign.hashCode;
+
+  @override
   String toString() {
     return _operator;
   }

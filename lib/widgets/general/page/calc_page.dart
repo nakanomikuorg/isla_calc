@@ -10,11 +10,17 @@ class CalcPage extends StatelessWidget {
     required this.title,
     required this.display,
     required this.panel,
+    this.actionsIconData,
+    this.actionsEntries,
+    this.actionsOnSelected,
   }) : super(key: key);
 
   final String title;
   final Widget display;
   final Widget panel;
+  final IconData? actionsIconData;
+  final List<PopupMenuEntry<String>>? actionsEntries;
+  final Function(String)? actionsOnSelected;
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +29,10 @@ class CalcPage extends StatelessWidget {
         return CalcModel();
       },
       child: GeneralPage(
+        actionsIconData: actionsIconData,
+        actionsEntries: actionsEntries,
+        actionsOnSelected: actionsOnSelected,
         appBarTitle: title,
-        actionsIconData: Icons.more_vert_rounded,
         body: CalcBodyContent(
           display: display,
           panel: panel,
