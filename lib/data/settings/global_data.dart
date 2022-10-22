@@ -1,12 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../themes/theme_info.dart';
+import '../../default/theme_info.dart';
 
-class GlobalSettingsData {
+class GlobalData {
+  static Future<int> getThemeMode() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getInt('theme-mode') ?? ThemeInfo.defaultThemeMode;
+  }
+
+  static void setThemeMode(int value) async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setInt('theme-mode', value);
+  }
+
   static Future<bool> getIsGaussianBlur() async {
     final prefs = await SharedPreferences.getInstance();
-    return prefs.getBool('isGaussianBlur') ?? ThemeInfo.defaultIsGaussianBlur;
+    return prefs.getBool('is-gaussian-blur') ?? ThemeInfo.defaultIsGaussianBlur;
   }
 
   static void setIsGaussianBlur(bool value) async {

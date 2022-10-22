@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../models/settings/theme_model.dart';
+import '../../../models/settings/global_model.dart';
 import '../decoration/blur_widget.dart';
 
 class BlurAbleAlertDialog extends StatelessWidget {
@@ -16,7 +16,7 @@ class BlurAbleAlertDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<ThemeModel>(
+    return Consumer<GlobalModel>(
       builder: (context, theme, child) {
         return theme.isGaussianBlur
             ? BlurWidget(
@@ -34,8 +34,8 @@ class BlurAbleAlertDialog extends StatelessWidget {
               Navigator.of(context).pop(true);
             },
             style: ElevatedButton.styleFrom(
-              primary: Theme.of(context).colorScheme.primary,
-              onPrimary: Theme.of(context).colorScheme.onPrimary,
+              foregroundColor: Theme.of(context).colorScheme.onPrimary,
+              backgroundColor: Theme.of(context).colorScheme.primary,
               shadowColor: Colors.transparent,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20.0),

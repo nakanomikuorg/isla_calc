@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:isla_calc/default/theme_info.dart';
 import 'package:isla_calc/routes/routes.dart';
-import 'package:isla_calc/themes/theme_info.dart';
 import 'package:provider/provider.dart';
 
-import 'data/settings/global_settings_data.dart';
+import 'data/settings/global_data.dart';
 import 'generated/l10n.dart';
-import 'models/settings/theme_model.dart';
+import 'models/settings/global_model.dart';
 
 /*
 
@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (BuildContext context) {
-        return ThemeModel();
+        return GlobalModel();
       },
       child: const ColorfulApp(),
     );
@@ -56,25 +56,45 @@ class _ColorfulAppState extends State<ColorfulApp> {
   }
 
   void _loadGlobalSettings() async {
-    Provider.of<ThemeModel>(
+    Provider.of<GlobalModel>(
+      context,
+      listen: false,
+    ).changeThemeMode(
+      await GlobalData.getThemeMode(),
+    );
+    Provider.of<GlobalModel>(
       context,
       listen: false,
     ).changeGaussianBlur(
-      await GlobalSettingsData.getIsGaussianBlur(),
+      await GlobalData.getIsGaussianBlur(),
     );
-    Provider.of<ThemeModel>(
+    Provider.of<GlobalModel>(
       context,
       listen: false,
     ).changeColor(
-      await GlobalSettingsData.getColor(),
+      await GlobalData.getColor(),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<ThemeModel>(
+    return Consumer<GlobalModel>(
       builder: (context, theme, child) {
+        var themeMode = theme.themeMode;
+        ThemeData lightTheme;
+        ThemeData darkTheme;
         var seedColor = theme.color;
+
+        if (themeMode == 0) {
+          lightTheme = ThemeInfo.getThemeData(context, seedColor);
+          darkTheme = ThemeInfo.getDarkThemeData(context, seedColor);
+        } else if (themeMode == 1) {
+          lightTheme = ThemeInfo.getThemeData(context, seedColor);
+          darkTheme = lightTheme;
+        } else {
+          darkTheme = ThemeInfo.getDarkThemeData(context, seedColor);
+          lightTheme = darkTheme;
+        }
 
         return MaterialApp(
           localizationsDelegates: const [
@@ -85,8 +105,8 @@ class _ColorfulAppState extends State<ColorfulApp> {
           ],
           supportedLocales: S.delegate.supportedLocales,
           debugShowCheckedModeBanner: false,
-          theme: ThemeInfo.getThemeData(context, seedColor),
-          darkTheme: ThemeInfo.getDarkThemeData(context, seedColor),
+          theme: lightTheme,
+          darkTheme: darkTheme,
           initialRoute: '/',
           onGenerateRoute: (RouteSettings settings) {
             final String? name = settings.name;

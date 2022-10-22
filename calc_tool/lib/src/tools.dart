@@ -8,6 +8,16 @@ class Tool {
     return random.nextBool();
   }
 
+  static String getThemeModeStr(int themeMode) {
+    if (themeMode == 0) {
+      return "跟随系统";
+    } else if (themeMode == 1) {
+      return "日间模式";
+    } else {
+      return "夜间模式";
+    }
+  }
+
   static String getColorStr(Color color) {
     var rStr = color.red.toRadixString(16).padLeft(2, '0');
     var gStr = color.green.toRadixString(16).padLeft(2, '0');

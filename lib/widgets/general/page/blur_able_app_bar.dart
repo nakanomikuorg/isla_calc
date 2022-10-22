@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:isla_calc/widgets/general/decoration/blur_widget.dart';
 import 'package:provider/provider.dart';
 
-import '../../../models/settings/theme_model.dart';
+import '../../../models/settings/global_model.dart';
 
 class BlurAbleAppBar extends StatelessWidget implements PreferredSizeWidget {
   const BlurAbleAppBar({
@@ -20,7 +20,7 @@ class BlurAbleAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<ThemeModel>(
+    return Consumer<GlobalModel>(
       builder: (context, theme, child) {
         var appBar = AppBar(
           systemOverlayStyle: SystemUiOverlayStyle(

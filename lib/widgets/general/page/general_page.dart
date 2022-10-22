@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../themes/text_info.dart';
+import '../../../default/text_info.dart';
 import 'blur_able_app_bar.dart';
 
 class GeneralPage extends StatelessWidget {

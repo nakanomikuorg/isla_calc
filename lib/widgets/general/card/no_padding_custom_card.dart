@@ -32,7 +32,7 @@ class NoPaddingCustomCard extends StatelessWidget {
       clipBehavior: Clip.antiAlias,
       style: ElevatedButton.styleFrom(
         padding: const EdgeInsets.all(0.0),
-        primary: primaryColor == null
+        backgroundColor: primaryColor == null
             ? ElevationOverlay.applySurfaceTint(
                 Theme.of(context).colorScheme.surface,
                 Theme.of(context).colorScheme.primary,

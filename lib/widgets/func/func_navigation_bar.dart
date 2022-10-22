@@ -3,7 +3,7 @@ import 'package:isla_calc/widgets/general/decoration/blur_widget.dart';
 import 'package:provider/provider.dart';
 
 import '../../generated/l10n.dart';
-import '../../models/settings/theme_model.dart';
+import '../../models/settings/global_model.dart';
 
 class FuncNavigationBar extends StatelessWidget {
   const FuncNavigationBar(this._currentPageIndex, this._setCurrentPage,
@@ -15,7 +15,7 @@ class FuncNavigationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<ThemeModel>(
+    return Consumer<GlobalModel>(
       builder: (context, theme, child) {
         var originalBgColor = ElevationOverlay.applySurfaceTint(
           Theme.of(context).colorScheme.surface,

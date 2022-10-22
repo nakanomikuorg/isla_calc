@@ -4,7 +4,7 @@ import 'package:isla_calc/widgets/settings/set_item_group.dart';
 import 'package:isla_calc/widgets/settings/switch_settings.dart';
 import 'package:provider/provider.dart';
 
-import '../../models/settings/theme_model.dart';
+import '../../models/settings/global_model.dart';
 import '../general/dialog/blur_able_alert_dialog.dart';
 import '../general/dialog/blur_able_simple_dialog.dart';
 import 'custom_color_picker.dart';
@@ -26,6 +26,7 @@ class _AppearanceSettingsState extends State<AppearanceSettings> {
         ThemeModeSettings(),
         StyleSetting(),
         ThemeColorSettings(),
+        FontSettings(),
         BlurSettings(),
       ],
     );
@@ -40,7 +41,16 @@ class ThemeModeSettings extends StatefulWidget {
 }
 
 class _ThemeModeSettingsState extends State<ThemeModeSettings> {
-  Future<int?> _changeNightMode(BuildContext context) async {
+  late int _currentThemeMode;
+
+  @override
+  void initState() {
+    super.initState();
+    _currentThemeMode =
+        Provider.of<GlobalModel>(context, listen: false).themeMode;
+  }
+
+  Future<int?> _changeThemeMode(BuildContext context) async {
     int? i = await showDialog<int>(
       context: context,
       builder: (BuildContext context) {
@@ -62,9 +72,20 @@ class _ThemeModeSettingsState extends State<ThemeModeSettings> {
   Widget build(BuildContext context) {
     return MultipleChoiceSettings(
       title: '主题模式',
-      subtitle: '跟随系统',
+      subtitle: Tool.getThemeModeStr(_currentThemeMode),
       onTap: () async {
-        int? mode = await _changeNightMode(context);
+        int? mode = await _changeThemeMode(context);
+
+        if (mode != null) {
+          setState(() {
+            _currentThemeMode = mode;
+          });
+
+          Provider.of<GlobalModel>(
+            context,
+            listen: false,
+          ).changeThemeMode(mode);
+        }
       },
     );
   }
@@ -102,7 +123,7 @@ class _ThemeColorSettingsState extends State<ThemeColorSettings> {
   @override
   void initState() {
     super.initState();
-    _currentColor = Provider.of<ThemeModel>(context, listen: false).color;
+    _currentColor = Provider.of<GlobalModel>(context, listen: false).color;
   }
 
   Future<bool?> _changeColor(BuildContext context) async {
@@ -137,12 +158,30 @@ class _ThemeColorSettingsState extends State<ThemeColorSettings> {
             _currentColor = _selectedColor!;
           });
 
-          Provider.of<ThemeModel>(
+          Provider.of<GlobalModel>(
             context,
             listen: false,
           ).changeColor(_currentColor);
         }
       },
+    );
+  }
+}
+
+class FontSettings extends StatefulWidget {
+  const FontSettings({Key? key}) : super(key: key);
+
+  @override
+  State<FontSettings> createState() => _FontSettingsState();
+}
+
+class _FontSettingsState extends State<FontSettings> {
+  @override
+  Widget build(BuildContext context) {
+    return MultipleChoiceSettings(
+      title: '数字字体',
+      subtitle: 'HarmonyOS Sans',
+      onTap: () async {},
     );
   }
 }
@@ -155,9 +194,9 @@ class BlurSettings extends StatelessWidget {
     return SwitchSettings(
       title: '高斯模糊',
       desc: '关闭或可提升性能',
-      value: Provider.of<ThemeModel>(context, listen: false).isGaussianBlur,
+      value: Provider.of<GlobalModel>(context, listen: false).isGaussianBlur,
       onChanged: (value) {
-        Provider.of<ThemeModel>(context, listen: false)
+        Provider.of<GlobalModel>(context, listen: false)
             .changeGaussianBlur(value);
       },
     );

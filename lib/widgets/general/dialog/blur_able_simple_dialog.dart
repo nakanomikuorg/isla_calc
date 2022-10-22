@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../models/settings/theme_model.dart';
+import '../../../models/settings/global_model.dart';
 import '../decoration/blur_widget.dart';
 
 class BlurAbleSimpleDialog extends StatelessWidget {
@@ -32,7 +32,7 @@ class BlurAbleSimpleDialog extends StatelessWidget {
       );
     }
 
-    return Consumer<ThemeModel>(
+    return Consumer<GlobalModel>(
       builder: (context, theme, child) {
         return theme.isGaussianBlur
             ? BlurWidget(

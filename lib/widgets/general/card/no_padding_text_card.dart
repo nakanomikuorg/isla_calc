@@ -1,7 +1,7 @@
 import 'package:calc_tool/calc_tool.dart';
 import 'package:flutter/material.dart';
 
-import '../../../themes/text_info.dart';
+import '../../../default/text_info.dart';
 import 'no_padding_custom_card.dart';
 
 class NoPaddingTextCard extends StatelessWidget {

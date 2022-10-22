@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import '../../generated/l10n.dart';
 import '../../widgets/general/page/settings_page.dart';
 import '../../widgets/settings/appearance_settings.dart';
+import '../../widgets/settings/calc_settings.dart';
+import '../../widgets/settings/general_settings.dart';
 
 class GlobalSettingsPage extends StatelessWidget {
   const GlobalSettingsPage({Key? key}) : super(key: key);
@@ -13,6 +15,8 @@ class GlobalSettingsPage extends StatelessWidget {
       title: S.of(context).globalSettingsTitle,
       emj: '⚒',
       children: const <Widget>[
+        GeneralSettings(),
+        CalcSettings(),
         AppearanceSettings(),
       ],
     );

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../themes/text_info.dart';
+import '../../../default/text_info.dart';
 
 class Subtitle extends StatefulWidget {
   const Subtitle({
